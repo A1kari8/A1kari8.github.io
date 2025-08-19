@@ -5,7 +5,7 @@ pinned: false
 description: A simple example of a Markdown blog post.
 tags: [Markdown, Blogging]
 category: Examples
-draft: false
+draft: true
 ---
 
 # An h1 header
@@ -71,15 +71,15 @@ for i in range(10):
 
 Now a nested list:
 
-1.  First, get these ingredients:
+1. First, get these ingredients:
 
     - carrots
     - celery
     - lentils
 
-2.  Boil some water.
+2. Boil some water.
 
-3.  Dump everything in the pot and follow
+3. Dump everything in the pot and follow
     this algorithm:
 
         find wooden spoon
