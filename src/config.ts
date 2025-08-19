@@ -12,20 +12,20 @@ import { LinkPreset } from "./types/config";
 import { getTranslateLanguageFromConfig } from "./utils/language-utils";
 
 // Define site language
-const SITE_LANG = "en"; // Language code, e.g., 'en', 'zh_CN', 'ja', etc.
+const SITE_LANG = "zh_CN"; // Language code, e.g., 'en', 'zh_CN', 'ja', etc.
 
 export const siteConfig: SiteConfig = {
-	title: "Mizuki",
-	subtitle: "One demo website",
+	title: "A1kari8",
+	subtitle: "A1kari8's Blog",
 
 	lang: SITE_LANG,
 
 	themeColor: {
-		hue: 210, // Default hue for theme color, range from 0 to 360. e.g., red: 0, cyan: 200, teal: 250, pink: 345
+		hue: 260, // Default hue for theme color, range from 0 to 360. e.g., red: 0, cyan: 200, teal: 250, pink: 345
 		fixed: false, // Hide theme color picker for visitors
 	},
 	translate: {
-		enable: true, // Enable translation feature
+		enable: false, // Enable translation feature
 		service: "client.edge", // Use Edge browser translation service
 		defaultLanguage: getTranslateLanguageFromConfig(SITE_LANG), // Automatically set default translation language based on site language
 		showSelectTag: false, // Don't show default language selection dropdown, use custom button
@@ -61,20 +61,20 @@ export const siteConfig: SiteConfig = {
 		position: "center", // Equivalent to object-position, only supports 'top', 'center', 'bottom'. Default is 'center'
 
 		carousel: {
-			enable: true, // When true: enable carousel for multiple images. When false: randomly display one image from the array
+			enable: false, // When true: enable carousel for multiple images. When false: randomly display one image from the array
 
 			interval: 1, // Carousel interval time (seconds)
 		},
 
 		homeText: {
 			enable: true, // Display custom text on homepage
-			title: "Mizuki", // Homepage banner main title
+			title: "A1kari8", // Homepage banner main title
 
 			subtitle: [
-				"One demo website",
-				"Carousel Text1",
-				"Carousel Text2",
-				"Carousel Text3",
+				"A1kari8's Blog",
+				// "Carousel Text1",
+				// "Carousel Text2",
+				// "Carousel Text3",
 			], // Homepage banner subtitle, supports multiple texts
 			typewriter: {
 				enable: true, // Enable subtitle typewriter effect
@@ -112,37 +112,37 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Archive,
 		LinkPreset.About,
 		LinkPreset.Friends,
-		LinkPreset.Anime,
-		LinkPreset.Diary,
-		{
-			name: "GitHub",
-			url: "https://github.com/matsuzaka-yuki", // Internal links should not include base path as it will be automatically added
+		// LinkPreset.Anime,
+		// LinkPreset.Diary,
+		// {
+		// 	name: "GitHub",
+		// 	url: "https://github.com/A1kari8", // Internal links should not include base path as it will be automatically added
 
-			external: true, // Show external link icon and open in new tab
-		},
+		// 	external: true, // Show external link icon and open in new tab
+		// },
 	],
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "assets/images/avatar.jpg", // Relative to /src directory. If starts with '/', relative to /public directory
-	name: "Mizuki",
-	bio: "This is a description",
+	avatar: "assets/images/avatar.png", // Relative to /src directory. If starts with '/', relative to /public directory
+	name: "A1kari8",
+	bio: "",
 	links: [
-		{
-			name: "Bilibli",
-			icon: "fa6-brands:bilibili",
-			url: "https://space.bilibili.com/701864046",
-		},
-		{
-			name: "Gitee",
-			icon: "mdi:git",
-			url: "https://gitee.com/matsuzakayuki",
-		},
-		{
-			name: "GitHub",
-			icon: "fa6-brands:github",
-			url: "https://github.com/matsuzaka-yuki",
-		},
+		// {
+		// 	name: "Bilibli",
+		// 	icon: "fa6-brands:bilibili",
+		// 	url: "https://space.bilibili.com/701864046",
+		// },
+		// {
+		// 	name: "Gitee",
+		// 	icon: "mdi:git",
+		// 	url: "https://gitee.com/matsuzakayuki",
+		// },
+		// {
+		// 	name: "GitHub",
+		// 	icon: "fa6-brands:github",
+		// 	url: "https://github.com/matsuzaka-yuki",
+		// },
 	],
 };
 
@@ -168,7 +168,7 @@ export const commentConfig: CommentConfig = {
 export const announcementConfig: AnnouncementConfig = {
 	enable: true, // Enable announcement feature
 	title: "Announcement", // Announcement title
-	content: "Welcome to my blog! This is a sample announcement.", // Announcement content
+	content: "博客当笔记本用，非常不严谨，只用于自己理解", // Announcement content
 	closable: true, // Allow users to close the announcement
 	link: {
 		enable: true, // Enable link
@@ -179,5 +179,5 @@ export const announcementConfig: AnnouncementConfig = {
 };
 
 export const musicPlayerConfig: MusicPlayerConfig = {
-	enable: true, // Enable music player feature
+	enable: false, // Enable music player feature
 };
