@@ -25,7 +25,7 @@ import { remarkExcerpt } from "./src/plugins/remark-excerpt.js";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 // https://astro.build/config
 export default defineConfig({
-	site: "https://blog.mysqil.com/",
+	site: "https://a1kari8.github.io/",
 
 	base: "/",
 	trailingSlash: "always",
@@ -53,7 +53,7 @@ export default defineConfig({
 				"fa6-brands": ["*"],
 				"fa6-regular": ["*"],
 				"fa6-solid": ["*"],
-				"mdi": ["*"],
+				mdi: ["*"],
 			},
 		}),
 		expressiveCode({
