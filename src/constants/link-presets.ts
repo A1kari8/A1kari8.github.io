@@ -27,8 +27,8 @@ export const LinkPresets: { [key in LinkPreset]: NavBarLink } = {
 		name: i18n(I18nKey.diary),
 		url: "/diary/",
 	},
-	[LinkPreset.Toolbox]: {
-		name: i18n(I18nKey.toolbox),
-		url: "/toolbox/",
+	[LinkPreset.Gallery]: {
+		name: i18n(I18nKey.gallery),
+		url: "/gallery/",
 	},
 };

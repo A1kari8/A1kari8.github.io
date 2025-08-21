@@ -74,6 +74,27 @@ enum I18nKey {
 	toolboxSubtitle = "toolboxSubtitle",
 	toolboxSearchPlaceholder = "toolboxSearchPlaceholder",
 	toolboxNoResults = "toolboxNoResults",
+
+	// Gallery
+	gallery = "gallery",
+	gallerySubtitle = "gallerySubtitle",
+	galleryGroups = "galleryGroups",
+	galleryCreateGroup = "galleryCreateGroup",
+	galleryGroupName = "galleryGroupName",
+	galleryGroupDescription = "galleryGroupDescription",
+	galleryGroupCover = "galleryGroupCover",
+	galleryUploadImages = "galleryUploadImages",
+	galleryImageCount = "galleryImageCount",
+	galleryImagesCount = "galleryImagesCount",
+	galleryViewAll = "galleryViewAll",
+	galleryEdit = "galleryEdit",
+	galleryDelete = "galleryDelete",
+	gallerySort = "gallerySort",
+	galleryComments = "galleryComments",
+	galleryAddComment = "galleryAddComment",
+	galleryNoGroups = "galleryNoGroups",
+	galleryNoImages = "galleryNoImages",
+	galleryCreateFirst = "galleryCreateFirst",
 }
 
 export default I18nKey;
