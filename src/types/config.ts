@@ -4,17 +4,7 @@ export type SiteConfig = {
 	title: string;
 	subtitle: string;
 
-	lang:
-		| "en"
-		| "zh_CN"
-		| "zh_TW"
-		| "ja"
-		| "ko"
-		| "es"
-		| "th"
-		| "vi"
-		| "tr"
-		| "id";
+	lang: "en" | "zh_CN" | "zh_TW" | "ja";
 
 	themeColor: {
 		hue: number;
@@ -81,9 +71,17 @@ export enum LinkPreset {
 	Friends = 3,
 	Anime = 4,
 	Diary = 5,
+	Toolbox = 6,
 }
 
 export type NavBarLink = {
+	name: string;
+	url: string;
+	external?: boolean;
+	submenu?: NavBarLink[];
+};
+
+export type SubMenuItem = {
 	name: string;
 	url: string;
 	external?: boolean;

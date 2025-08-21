@@ -112,6 +112,44 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Archive,
 		LinkPreset.About,
 		LinkPreset.Friends,
+		{
+			name: "工具箱",
+			url: "/tools/",
+			submenu: [
+				{
+					name: "颜色转换器",
+					url: "/tools/color/",
+				},
+				{
+					name: "JSON 分析器",
+					url: "/tools/json/",
+				},
+				{
+					name: "正则表达式测试器",
+					url: "/regex/",
+				},
+			],
+		},
+		// 示例：添加其他子菜单的方法（取消注释即可使用）
+		// {
+		// 	name: "资源",
+		// 	url: "/resources/",
+		// 	submenu: [
+		// 		{
+		// 			name: "📚 学习资料",
+		// 			url: "/resources/learning/"
+		// 		},
+		// 		{
+		// 			name: "🔗 链接收藏",
+		// 			url: "/resources/links/"
+		// 		},
+		// 		{
+		// 			name: "🌐 外部网站",
+		// 			url: "https://example.com",
+		// 			external: true
+		// 		}
+		// 	]
+		// },
 		// LinkPreset.Anime,
 		// LinkPreset.Diary,
 		// {

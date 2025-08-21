@@ -1,0 +1,279 @@
+---
+import { Icon } from "astro-icon/components";
+import I18nKey from "../../i18n/i18nKey";
+import { i18n } from "../../i18n/translation";
+import MainGridLayout from "../../layouts/MainGridLayout.astro";
+
+const formatJson = (input) => {
+	try {
+		const obj = JSON.parse(input);
+		return JSON.stringify(obj, null, 2);
+	} catch (e) {
+		return `⚠️ JSON 错误：${e.message}`;
+	}
+};
+---
+
+<MainGridLayout title="JSON 分析器" description="格式化并解析 JSON 数据结构，支持语法高亮和多种格式化选项">
+    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
+        <div class="card-base z-10 px-9 py-6 relative w-full">
+            <div class="flex items-center justify-center mb-6">
+                <div class="flex items-center gap-3">
+                    <Icon name="material-symbols:code-rounded" class="text-2xl text-[var(--primary)]" />
+                    <h2 class="text-2xl font-bold text-[var(--tw-prose-headings)]">JSON 分析器</h2>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- 输入区域 -->
+                <div class="space-y-6">
+                    <div class="bg-[var(--btn-regular-bg)] p-6 rounded-xl border border-[var(--line-divider)]">
+                        <h3 class="text-lg font-semibold text-[var(--tw-prose-headings)] mb-4 flex items-center gap-2">
+                            <Icon name="material-symbols:input-rounded" class="text-lg text-[var(--primary)]" />
+                            JSON 输入
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            <textarea 
+                                name="input" 
+                                placeholder="粘贴 JSON 内容到这里..." 
+                                rows="12" 
+                                class="w-full p-4 bg-[var(--card-bg)] border border-[var(--line-divider)] rounded-lg font-mono text-sm focus:border-[var(--primary)] focus:outline-none transition-colors resize-none text-[var(--tw-prose-body)]"
+                                style="font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;"
+                            ></textarea>
+                            
+                            <div class="flex gap-2">
+                                <button type="button" id="formatBtn" class="btn-plain scale-animation px-4 py-2 text-sm font-medium text-[var(--primary)] hover:bg-[var(--btn-plain-bg-hover)] rounded-lg transition-all duration-200">
+                                    <Icon name="material-symbols:format-indent-increase" class="text-lg mr-1" />
+                                    格式化
+                                </button>
+                                <button type="button" id="minifyBtn" class="btn-plain scale-animation px-4 py-2 text-sm font-medium text-[var(--primary)] hover:bg-[var(--btn-plain-bg-hover)] rounded-lg transition-all duration-200">
+                                    <Icon name="material-symbols:format-indent-decrease" class="text-lg mr-1" />
+                                    压缩
+                                </button>
+                                <button type="button" id="clearBtn" class="btn-plain scale-animation px-4 py-2 text-sm font-medium text-[var(--primary)] hover:bg-[var(--btn-plain-bg-hover)] rounded-lg transition-all duration-200">
+                                    <Icon name="material-symbols:clear-all" class="text-lg mr-1" />
+                                    清空
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 输出区域 -->
+                <div class="space-y-6">
+                    <div class="bg-[var(--btn-regular-bg)] p-6 rounded-xl border border-[var(--line-divider)]">
+                        <h3 class="text-lg font-semibold text-[var(--tw-prose-headings)] mb-4 flex items-center gap-2">
+                            <Icon name="material-symbols:output-rounded" class="text-lg text-[var(--primary)]" />
+                            分析结果
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-[var(--card-bg)] p-4 rounded-lg border border-[var(--line-divider)] min-h-[200px]">
+                                <div id="jsonOutput" class="font-mono text-sm text-[var(--tw-prose-body)] whitespace-pre-wrap" style="font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;">
+                                    <div class="text-[var(--content-meta)] text-center py-8">等待输入...</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-2">
+                                <button type="button" id="copyBtn" class="btn-plain scale-animation px-4 py-2 text-sm font-medium text-[var(--primary)] hover:bg-[var(--btn-plain-bg-hover)] rounded-lg transition-all duration-200">
+                                    <Icon name="material-symbols:content-copy-outline" class="text-lg mr-1" />
+                                    复制结果
+                                </button>
+                                <button type="button" id="downloadBtn" class="btn-plain scale-animation px-4 py-2 text-sm font-medium text-[var(--primary)] hover:bg-[var(--btn-plain-bg-hover)] rounded-lg transition-all duration-200">
+                                    <Icon name="material-symbols:download" class="text-lg mr-1" />
+                                    下载
+                                </button>
+                            </div>
+                            
+                            <!-- 统计信息 -->
+                            <div id="jsonStats" class="hidden">
+                                <div class="grid grid-cols-3 gap-4 text-sm">
+                                    <div class="text-center">
+                                        <div class="text-[var(--content-meta)]">对象数量</div>
+                                        <div id="objectCount" class="font-bold text-[var(--primary)]">0</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-[var(--content-meta)]">数组数量</div>
+                                        <div id="arrayCount" class="font-bold text-[var(--primary)]">0</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-[var(--content-meta)]">总键数</div>
+                                        <div id="totalKeys" class="font-bold text-[var(--primary)]">0</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</MainGridLayout>
+
+<script type="module">
+    function setupJsonViewer() {
+        const inputArea = document.querySelector('textarea[name="input"]');
+        const jsonOutput = document.getElementById('jsonOutput');
+        const formatBtn = document.getElementById('formatBtn');
+        const minifyBtn = document.getElementById('minifyBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const jsonStats = document.getElementById('jsonStats');
+        const objectCount = document.getElementById('objectCount');
+        const arrayCount = document.getElementById('arrayCount');
+        const totalKeys = document.getElementById('totalKeys');
+
+        let currentJson = '';
+
+        function updateOutput() {
+            const input = inputArea.value.trim();
+            if (!input) {
+                jsonOutput.innerHTML = '<div class="text-[var(--content-meta)] text-center py-8">等待输入...</div>';
+                jsonStats.classList.add('hidden');
+                return;
+            }
+
+            try {
+                const obj = JSON.parse(input);
+                currentJson = JSON.stringify(obj, null, 2);
+                
+                // 简单的语法高亮
+                const highlighted = highlightJson(currentJson);
+                jsonOutput.innerHTML = highlighted;
+                
+                // 显示统计信息
+                showStats(obj);
+                jsonStats.classList.remove('hidden');
+                
+            } catch (e) {
+                jsonOutput.innerHTML = `<div class="text-red-500 text-center py-8">⚠️ JSON 错误：${e.message}</div>`;
+                jsonStats.classList.add('hidden');
+            }
+        }
+
+        function highlightJson(json) {
+            return json
+                .replace(/"([^"]+)":/g, '<span class="text-blue-600 dark:text-blue-400">"$1"</span>:')
+                .replace(/: "([^"]+)"/g, ': <span class="text-green-600 dark:text-green-400">"$1"</span>')
+                .replace(/: (\d+)/g, ': <span class="text-purple-600 dark:text-purple-400">$1</span>')
+                .replace(/: (true|false|null)/g, ': <span class="text-orange-600 dark:text-orange-400">$1</span>')
+                .replace(/([{}[\],])/g, '<span class="text-gray-500 dark:text-gray-400">$1</span>');
+        }
+
+        function showStats(obj) {
+            let objCount = 0;
+            let arrCount = 0;
+            let keyCount = 0;
+
+            function countItems(item) {
+                if (Array.isArray(item)) {
+                    arrCount++;
+                    item.forEach(countItems);
+                } else if (item && typeof item === 'object') {
+                    objCount++;
+                    keyCount += Object.keys(item).length;
+                    Object.values(item).forEach(countItems);
+                }
+            }
+
+            countItems(obj);
+            
+            objectCount.textContent = objCount;
+            arrayCount.textContent = arrCount;
+            totalKeys.textContent = keyCount;
+        }
+
+        function formatJson() {
+            const input = inputArea.value.trim();
+            if (!input) return;
+
+            try {
+                const obj = JSON.parse(input);
+                inputArea.value = JSON.stringify(obj, null, 2);
+                updateOutput();
+            } catch (e) {
+                alert('无效的 JSON 格式');
+            }
+        }
+
+        function minifyJson() {
+            const input = inputArea.value.trim();
+            if (!input) return;
+
+            try {
+                const obj = JSON.parse(input);
+                inputArea.value = JSON.stringify(obj);
+                updateOutput();
+            } catch (e) {
+                alert('无效的 JSON 格式');
+            }
+        }
+
+        function clearInput() {
+            inputArea.value = '';
+            updateOutput();
+        }
+
+        function copyResult() {
+            if (currentJson) {
+                navigator.clipboard.writeText(currentJson).then(() => {
+                    // 临时显示成功提示
+                    const originalText = copyBtn.innerHTML;
+                    copyBtn.innerHTML = '<Icon name="material-symbols:check" class="text-lg mr-1" />已复制';
+                    copyBtn.classList.add('text-green-500');
+                    setTimeout(() => {
+                        copyBtn.innerHTML = originalText;
+                        copyBtn.classList.remove('text-green-500');
+                    }, 2000);
+                });
+            }
+        }
+
+        function downloadJson() {
+            if (currentJson) {
+                const blob = new Blob([currentJson], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'formatted.json';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+        }
+
+        // 事件监听
+        inputArea.addEventListener('input', updateOutput);
+        formatBtn.addEventListener('click', formatJson);
+        minifyBtn.addEventListener('click', minifyJson);
+        clearBtn.addEventListener('click', clearInput);
+        copyBtn.addEventListener('click', copyResult);
+        downloadBtn.addEventListener('click', downloadJson);
+
+        // 添加示例数据
+        const exampleJson = `{
+  "name": "示例数据",
+  "version": "1.0.0",
+  "description": "这是一个示例 JSON 数据",
+  "features": [
+    "格式化",
+    "压缩",
+    "语法高亮",
+    "统计分析"
+  ],
+  "metadata": {
+    "author": "开发者",
+    "created": "2025-01-27"
+  }
+}`;
+        
+        inputArea.value = exampleJson;
+        updateOutput();
+    }
+
+    // 页面加载完成后初始化
+    document.addEventListener('DOMContentLoaded', setupJsonViewer);
+</script>

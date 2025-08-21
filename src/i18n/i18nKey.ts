@@ -38,35 +38,42 @@ enum I18nKey {
 	author = "author",
 	publishedAt = "publishedAt",
 	license = "license",
-	friends = 'friends',
-	anime = 'anime',
-	diary = 'diary',
+	friends = "friends",
+	anime = "anime",
+	diary = "diary",
 
 	// 追番统计
-	animeTotal = 'animeTotal',
-	animeWatching = 'animeWatching',
-	animeCompleted = 'animeCompleted',
-	animeStatusWatching = 'animeStatusWatching',
-	animeStatusCompleted = 'animeStatusCompleted',
+	animeTotal = "animeTotal",
+	animeWatching = "animeWatching",
+	animeCompleted = "animeCompleted",
+	animeStatusWatching = "animeStatusWatching",
+	animeStatusCompleted = "animeStatusCompleted",
 
 	// 短文页面
-	diarySubtitle = 'diarySubtitle',
-	diaryCount = 'diaryCount',
-	diaryImage = 'diaryImage',
-	diaryReply = 'diaryReply',
-	diaryTips = 'diaryTips',
-	diaryMinutesAgo = 'diaryMinutesAgo',
-	diaryHoursAgo = 'diaryHoursAgo',
-	diaryDaysAgo = 'diaryDaysAgo',
+	diarySubtitle = "diarySubtitle",
+	diaryCount = "diaryCount",
+	diaryImage = "diaryImage",
+	diaryReply = "diaryReply",
+	diaryTips = "diaryTips",
+	diaryMinutesAgo = "diaryMinutesAgo",
+	diaryHoursAgo = "diaryHoursAgo",
+	diaryDaysAgo = "diaryDaysAgo",
 
 	// 404页面
-	notFound = 'notFound',
-	notFoundTitle = 'notFoundTitle',
-	notFoundDescription = 'notFoundDescription',
-	backToHome = 'backToHome',
+	notFound = "notFound",
+	notFoundTitle = "notFoundTitle",
+	notFoundDescription = "notFoundDescription",
+	backToHome = "backToHome",
 
 	// 音乐播放器
-	playlist = 'playlist',
+	playlist = "playlist",
+
+	// 工具箱
+	toolbox = "toolbox",
+	toolboxDescription = "toolboxDescription",
+	toolboxSubtitle = "toolboxSubtitle",
+	toolboxSearchPlaceholder = "toolboxSearchPlaceholder",
+	toolboxNoResults = "toolboxNoResults",
 }
 
 export default I18nKey;

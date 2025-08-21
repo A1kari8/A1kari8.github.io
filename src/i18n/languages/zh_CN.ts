@@ -69,4 +69,7 @@ export const zh_CN: Translation = {
 
 	// 音乐播放器
 	[Key.playlist]: "播放列表",
+
+	[Key.toolbox]: "工具箱",
+	[Key.toolboxDescription]: "常用小工具",
 };

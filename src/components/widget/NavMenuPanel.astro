@@ -10,23 +10,93 @@ interface Props {
 const links = Astro.props.links;
 ---
 <div id="nav-menu-panel" class:list={["float-panel float-panel-closed absolute transition-all fixed right-4 px-2 py-2"]}>
-    {links.map((link) => (
-        <a href={link.external ? link.url : url(link.url)} class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
-            hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
-        "
-           target={link.external ? "_blank" : null}
-        >
-            <div class="transition text-black/75 dark:text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]">
-                {link.name}
-            </div>
-            {!link.external && <Icon name="material-symbols:chevron-right-rounded"
-                  class="transition text-[1.25rem] text-[var(--primary)]"
-            >
-            </Icon>}
-            {link.external && <Icon name="fa6-solid:arrow-up-right-from-square"
-                  class="transition text-[0.75rem] text-black/25 dark:text-white/25 -translate-x-1"
-            >
-            </Icon>}
-        </a>
+    {links.map((link, index) => (
+        <div class="nav-menu-item">
+            {link.submenu ? (
+                <div class="submenu-container">
+                    <button class="submenu-toggle group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8 w-full text-left
+                        hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
+                    ">
+                        <div class="transition text-black/75 dark:text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]">
+                            {link.name}
+                        </div>
+                        <Icon name="material-symbols:keyboard-arrow-down" 
+                              class="transition text-[1.25rem] text-[var(--primary)] submenu-arrow"
+                        />
+                    </button>
+                    <div class="submenu-items hidden pl-4 mt-2">
+                        {link.submenu.map((subItem) => {
+                            // 根据子菜单项名称选择对应的图标
+                            let iconName = "material-symbols:code";
+                            if (subItem.name === "颜色转换器") {
+                                iconName = "material-symbols:palette-outline";
+                            } else if (subItem.name === "JSON 分析器") {
+                                iconName = "material-symbols:code-rounded";
+                            } else if (subItem.name === "正则表达式测试器") {
+                                iconName = "material-symbols:code";
+                            }
+                            
+                            return (
+                                <a href={subItem.external ? subItem.url : url(subItem.url)} 
+                                   class="group flex justify-between items-center py-2.5 pl-4 pr-2 rounded-lg gap-4
+                                       hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition-all duration-200
+                                   "
+                                   target={subItem.external ? "_blank" : null}
+                                >
+                                    <div class="flex items-center gap-3">
+                                        <Icon name={iconName} class="text-lg text-[var(--primary)]" />
+                                        <span class="transition text-neutral-600 dark:text-neutral-300 font-medium group-hover:text-[var(--primary)] group-active:text-[var(--primary)]">
+                                            {subItem.name}
+                                        </span>
+                                    </div>
+                                    {!subItem.external && <Icon name="material-symbols:chevron-right-rounded"
+                                          class="transition text-[1rem] text-[var(--primary)] opacity-60"
+                                    />}
+                                    {subItem.external && <Icon name="fa6-solid:arrow-up-right-from-square"
+                                          class="transition text-[0.75rem] text-neutral-400 dark:text-neutral-500 opacity-50"
+                                    />}
+                                </a>
+                            );
+                        })}
+                    </div>
+                </div>
+            ) : (
+                <a href={link.external ? link.url : url(link.url)} class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
+                    hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
+                "
+                   target={link.external ? "_blank" : null}
+                >
+                    <div class="transition text-black/75 dark:text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]">
+                        {link.name}
+                    </div>
+                    {!link.external && <Icon name="material-symbols:chevron-right-rounded"
+                          class="transition text-[1.25rem] text-[var(--primary)]"
+                    />}
+                    {link.external && <Icon name="fa6-solid:arrow-up-right-from-square"
+                          class="transition text-[0.75rem] text-black/25 dark:text-white/25 -translate-x-1"
+                    />}
+                </a>
+            )}
+        </div>
     ))}
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 处理子菜单的展开/收起
+    document.querySelectorAll('.submenu-toggle').forEach(toggle => {
+        toggle.addEventListener('click', () => {
+            const submenuItems = toggle.parentElement.querySelector('.submenu-items');
+            const arrow = toggle.querySelector('.submenu-arrow');
+            
+            if (submenuItems.classList.contains('hidden')) {
+                submenuItems.classList.remove('hidden');
+                arrow.style.transform = 'rotate(180deg)';
+            } else {
+                submenuItems.classList.add('hidden');
+                arrow.style.transform = 'rotate(0deg)';
+            }
+        });
+    });
+});
+</script>
