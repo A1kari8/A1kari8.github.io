@@ -112,34 +112,35 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Home,
 		LinkPreset.Archive,
 		// 支持自定义导航栏链接,并且支持多级菜单,3.1版本新加
+		// {
+		// 	name: "Links",
+		// 	url: "/links/",
+		// 	children: [
+		// 		{
+		// 			name: "GitHub",
+		// 			url: "https://github.com/matsuzaka-yuki/Mizuki",
+		// 			external: true,
+		// 		},
+		// 		{
+		// 			name: "Bilibili",
+		// 			url: "https://space.bilibili.com/701864046",
+		// 			external: true,
+		// 		},
+		// 		{
+		// 			name: "Gitee",
+		// 			url: "https://gitee.com/matsuzakayuki/Mizuki",
+		// 			external: true,
+		// 		},
+		// 	],
+		// },
+		// {
+		// 	name: "My",
+		// 	url: "/content/",
+		// 	children: [LinkPreset.Anime, LinkPreset.Diary, LinkPreset.Gallery],
+		// },
+
 		{
-			name: "Links",
-			url: "/links/",
-			children: [
-				{
-					name: "GitHub",
-					url: "https://github.com/matsuzaka-yuki/Mizuki",
-					external: true,
-				},
-				{
-					name: "Bilibili",
-					url: "https://space.bilibili.com/701864046",
-					external: true,
-				},
-				{
-					name: "Gitee",
-					url: "https://gitee.com/matsuzakayuki/Mizuki",
-					external: true,
-				},
-			],
-		},
-		{
-			name: "My",
-			url: "/content/",
-			children: [LinkPreset.Anime, LinkPreset.Diary, LinkPreset.Gallery],
-		},
-		{
-			name: "About",
+			name: "关于",
 			url: "/content/",
 			children: [LinkPreset.About, LinkPreset.Friends],
 		},
@@ -156,16 +157,16 @@ export const profileConfig: ProfileConfig = {
 		// 	icon: "fa6-brands:bilibili",
 		// 	url: "https://space.bilibili.com/701864046",
 		// },
-		// {
-		// 	name: "Gitee",
-		// 	icon: "mdi:git",
-		// 	url: "https://gitee.com/matsuzakayuki",
-		// },
-		// {
-		// 	name: "GitHub",
-		// 	icon: "fa6-brands:github",
-		// 	url: "https://github.com/matsuzaka-yuki",
-		// },
+		{
+			name: "Gitee",
+			icon: "mdi:git",
+			url: "https://gitee.com/Alkaid114514",
+		},
+		{
+			name: "GitHub",
+			icon: "fa6-brands:github",
+			url: "https://github.com/A1kari8",
+		},
 	],
 	// Umami统计部份，记得在layout插入Umami的head标签
 	umami: {
@@ -207,7 +208,7 @@ export const announcementConfig: AnnouncementConfig = {
 };
 
 export const musicPlayerConfig: MusicPlayerConfig = {
-	enable: true, // Enable music player feature
+	enable: false,
 };
 
 /**

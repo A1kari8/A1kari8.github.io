@@ -1,10 +1,12 @@
+export type { SearchResult };
+
 declare global {
 	interface HTMLElementTagNameMap {
-		'table-of-contents': HTMLElement & {
+		"table-of-contents": HTMLElement & {
 			init?: () => void;
 		};
 	}
-	
+
 	interface Window {
 		// Define swup type directly since @swup/astro doesn't export AstroIntegration
 		swup: any;
@@ -21,6 +23,8 @@ declare global {
 			};
 			language: {
 				setLocal: (language: string) => void;
+				getLocal: () => string;
+				translateLocal: boolean;
 			};
 			setAutoDiscriminateLocalLanguage: () => void;
 			ignore: {
@@ -37,6 +41,8 @@ declare global {
 				start: () => void;
 			};
 			execute: () => void;
+			reset: () => void;
+			to: string;
 		};
 		mobileTOCInit?: () => void;
 	}
