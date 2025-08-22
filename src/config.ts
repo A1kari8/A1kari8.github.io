@@ -138,12 +138,28 @@ export const navBarConfig: NavBarConfig = {
 		// 	url: "/content/",
 		// 	children: [LinkPreset.Anime, LinkPreset.Diary, LinkPreset.Gallery],
 		// },
-
+		LinkPreset.Friends,
 		{
 			name: "关于",
 			url: "/content/",
-			children: [LinkPreset.About, LinkPreset.Friends],
+			children: [LinkPreset.About],
 		},
+		// {
+		// 	name: "工具箱",
+		// 	url: "/toolbox/",
+		// 	children: [
+		// 		{
+		// 			name: "颜色转换",
+		// 			url: "/toolbox/color/",
+		// 			external: false,
+		// 		},
+		// 		{
+		// 			name: "JSON解析",
+		// 			url: "/toolbox/json/",
+		// 			external: false,
+		// 		},
+		// 	],
+		// },
 	],
 };
 
