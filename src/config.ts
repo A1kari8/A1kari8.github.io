@@ -142,6 +142,7 @@ export const navBarConfig: NavBarConfig = {
 		{
 			name: "关于",
 			url: "/content/",
+			icon: "material-symbols:info-rounded",
 			children: [LinkPreset.About],
 		},
 		// {

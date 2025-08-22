@@ -78,6 +78,7 @@ export enum LinkPreset {
 export type NavBarLink = {
 	name: string;
 	url: string;
+	icon?: string;
 	external?: boolean;
 	children?: (NavBarLink | LinkPreset)[]; // 支持子菜单，可以是NavBarLink或LinkPreset
 };
