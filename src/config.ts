@@ -29,7 +29,7 @@ export const siteConfig: SiteConfig = {
 		fixed: false, // 对访问者隐藏主题色选择器
 	},
 	translate: {
-		enable: true, // 启用翻译功能
+		enable: false, // 启用翻译功能
 		service: "client.edge", // 使用 Edge 浏览器翻译服务
 		defaultLanguage: getTranslateLanguageFromConfig(SITE_LANG), // 根据站点语言自动设置默认翻译语言
 		showSelectTag: false, // 不显示默认语言选择下拉菜单，使用自定义按钮
@@ -167,18 +167,12 @@ export const navBarConfig: NavBarConfig = {
 		{
 			name: "其他",
 			url: "#",
+			icon: "material-symbols:database",
 			children: [
 				{
-					name: "项目展示",
-					url: "/projects/",
-				},
-				{
-					name: "技能展示",
+					name: "技能",
 					url: "/skills/",
-				},
-				{
-					name: "时间线",
-					url: "/timeline/",
+					icon: "material-symbols:data-usage-rounded",
 				},
 			],
 		},

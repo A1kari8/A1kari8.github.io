@@ -5,7 +5,7 @@ pinned: false
 description: A simple example of a Markdown blog post with Mermaid.
 tags: [Markdown, Blogging, Mermaid]
 category: Examples
-draft: false
+draft: true
 ---
 # Complete Guide to Markdown with Mermaid Diagrams
 
@@ -14,9 +14,6 @@ This article demonstrates how to create various complex diagrams using Mermaid i
 ## Flowchart Example
 
 Flowcharts are excellent for representing processes or algorithm steps.
-
-
-
 
 ```mermaid
 graph TD

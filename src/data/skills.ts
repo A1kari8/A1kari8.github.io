@@ -7,7 +7,7 @@ export interface Skill {
 	description: string;
 	icon: string; // Iconify icon name
 	category: 'frontend' | 'backend' | 'database' | 'tools' | 'other';
-	level: 'beginner' | 'intermediate' | 'advanced' | 'expert';
+	level?: 'beginner' | 'intermediate' | 'advanced' | 'expert';
 	experience: {
 		years: number;
 		months: number;
@@ -18,16 +18,44 @@ export interface Skill {
 }
 
 export const skillsData: Skill[] = [
-	// Frontend Skills
+	{
+		id: 'csharp',
+		name: 'C#',
+		description: '最喜欢的语言',
+		icon: 'logos:c-sharp',
+		category: 'backend',
+		level: 'intermediate',
+		experience: { years: 2, months: 8 },
+		color: '#178600'
+	},
+	{
+		id: 'java',
+		name: 'Java',
+		description: '广泛使用的计算机编程语言，拥有跨平台、面向对象、泛型编程的特性',
+		icon: 'logos:java',
+		category: 'backend',
+		level: 'intermediate',
+		experience: { years: 1, months: 6 },
+		color: '#b07219'
+	},
+	{
+		id: 'kotlin',
+		name: 'Kotlin',
+		description: '在Java虚拟机上执行的静态类型编程语言',
+		icon: 'logos:kotlin-icon',
+		category: 'backend',
+		level: 'beginner',
+		experience: { years: 1, months: 2 },
+		color: '#A97BFF'
+	},
 	{
 		id: 'javascript',
 		name: 'JavaScript',
 		description: '现代JavaScript开发，包括ES6+语法、异步编程、模块化开发等。',
 		icon: 'logos:javascript',
-		category: 'frontend',
-		level: 'advanced',
-		experience: { years: 3, months: 6 },
-		projects: ['mizuki-blog', 'portfolio-website', 'data-visualization-tool'],
+		category: 'backend',
+		level: 'intermediate',
+		experience: { years: 3, months: 1 },
 		color: '#F7DF1E'
 	},
 	{
@@ -35,58 +63,21 @@ export const skillsData: Skill[] = [
 		name: 'TypeScript',
 		description: '类型安全的JavaScript超集，提升代码质量和开发效率。',
 		icon: 'logos:typescript-icon',
-		category: 'frontend',
-		level: 'advanced',
+		category: 'backend',
+		level: 'intermediate',
 		experience: { years: 2, months: 8 },
-		projects: ['mizuki-blog', 'portfolio-website', 'task-manager-app'],
 		color: '#3178C6'
 	},
 	{
-		id: 'react',
-		name: 'React',
-		description: '构建用户界面的JavaScript库，包括Hooks、Context、状态管理等。',
-		icon: 'logos:react',
-		category: 'frontend',
-		level: 'advanced',
-		experience: { years: 2, months: 10 },
-		projects: ['portfolio-website', 'task-manager-app'],
-		color: '#61DAFB'
-	},
-	{
-		id: 'vue',
-		name: 'Vue.js',
-		description: '渐进式JavaScript框架，易学易用，适合快速开发。',
-		icon: 'logos:vue',
-		category: 'frontend',
+		id: 'cpp',
+		name: 'C++',
+		description: 'C++是一种被广泛使用的计算机程序设计语言。',
+		icon: 'logos:c-plusplus',
+		category: 'backend',
 		level: 'intermediate',
-		experience: { years: 1, months: 8 },
-		projects: ['data-visualization-tool'],
-		color: '#4FC08D'
+		experience: { years: 1, months: 1 },
+		color: '#f34b7d'
 	},
-	{
-		id: 'astro',
-		name: 'Astro',
-		description: '现代静态站点生成器，支持多框架集成和优秀的性能。',
-		icon: 'logos:astro-icon',
-		category: 'frontend',
-		level: 'advanced',
-		experience: { years: 1, months: 2 },
-		projects: ['mizuki-blog'],
-		color: '#FF5D01'
-	},
-	{
-		id: 'tailwindcss',
-		name: 'Tailwind CSS',
-		description: '实用优先的CSS框架，快速构建现代化用户界面。',
-		icon: 'logos:tailwindcss-icon',
-		category: 'frontend',
-		level: 'advanced',
-		experience: { years: 2, months: 0 },
-		projects: ['mizuki-blog', 'portfolio-website'],
-		color: '#06B6D4'
-	},
-
-	// Backend Skills
 	{
 		id: 'nodejs',
 		name: 'Node.js',
@@ -94,8 +85,7 @@ export const skillsData: Skill[] = [
 		icon: 'logos:nodejs-icon',
 		category: 'backend',
 		level: 'intermediate',
-		experience: { years: 2, months: 3 },
-		projects: ['data-visualization-tool', 'e-commerce-platform'],
+		experience: { years: 2, months: 9 },
 		color: '#339933'
 	},
 	{
@@ -104,56 +94,10 @@ export const skillsData: Skill[] = [
 		description: '通用编程语言，适用于Web开发、数据分析、机器学习等。',
 		icon: 'logos:python',
 		category: 'backend',
-		level: 'intermediate',
+		level: 'beginner',
 		experience: { years: 1, months: 10 },
 		color: '#3776AB'
 	},
-	{
-		id: 'express',
-		name: 'Express.js',
-		description: '快速、极简的Node.js Web应用框架。',
-		icon: 'simple-icons:express',
-		category: 'backend',
-		level: 'intermediate',
-		experience: { years: 1, months: 8 },
-		projects: ['data-visualization-tool'],
-		color: '#000000'
-	},
-
-	// Database Skills
-	{
-		id: 'postgresql',
-		name: 'PostgreSQL',
-		description: '强大的开源关系型数据库管理系统。',
-		icon: 'logos:postgresql',
-		category: 'database',
-		level: 'intermediate',
-		experience: { years: 1, months: 5 },
-		projects: ['e-commerce-platform'],
-		color: '#336791'
-	},
-	{
-		id: 'mongodb',
-		name: 'MongoDB',
-		description: '面向文档的NoSQL数据库，灵活的数据模型。',
-		icon: 'logos:mongodb-icon',
-		category: 'database',
-		level: 'intermediate',
-		experience: { years: 1, months: 2 },
-		color: '#47A248'
-	},
-	{
-		id: 'firebase',
-		name: 'Firebase',
-		description: 'Google的移动和Web应用开发平台，提供实时数据库和认证服务。',
-		icon: 'simple-icons:firebase',
-		category: 'database',
-		level: 'intermediate',
-		experience: { years: 0, months: 10 },
-		projects: ['task-manager-app'],
-		color: '#FFCA28'
-	},
-
 	// Tools
 	{
 		id: 'git',
@@ -161,40 +105,45 @@ export const skillsData: Skill[] = [
 		description: '分布式版本控制系统，代码管理和团队协作必备工具。',
 		icon: 'logos:git-icon',
 		category: 'tools',
-		level: 'advanced',
 		experience: { years: 3, months: 0 },
 		color: '#F05032'
 	},
 	{
 		id: 'vscode',
-		name: 'VS Code',
+		name: 'Visual Studio Code',
 		description: '轻量级但功能强大的代码编辑器，丰富的插件生态。',
 		icon: 'logos:visual-studio-code',
 		category: 'tools',
-		level: 'expert',
-		experience: { years: 3, months: 6 },
+		experience: { years: 3, months: 1 },
 		color: '#007ACC'
 	},
 	{
-		id: 'docker',
-		name: 'Docker',
-		description: '容器化平台，简化应用部署和环境管理。',
-		icon: 'logos:docker-icon',
+		id: 'idea',
+		name: 'IntelliJ IDEA',
+		description: '适用于专业开发的卓越 IDE,适用于 Java 和 Kotlin',
+		icon: 'logos:intellij-idea',
 		category: 'tools',
-		level: 'intermediate',
-		experience: { years: 1, months: 0 },
-		color: '#2496ED'
+		experience: { years: 3, months: 0 },
+		color: '#007ACC'
 	},
 	{
-		id: 'figma',
-		name: 'Figma',
-		description: '协作式界面设计工具，用于UI/UX设计和原型制作。',
-		icon: 'logos:figma',
+		id: 'rider',
+		name: 'Rider',
+		description: '全球最受喜爱的 .NET 和游戏开发 IDE',
+		icon: 'logos:rider',
 		category: 'tools',
-		level: 'intermediate',
-		experience: { years: 1, months: 6 },
-		color: '#F24E1E'
-	}
+		experience: { years: 2, months: 8 },
+		color: '#007ACC'
+	},
+	{
+		id: 'fedora',
+		name: 'Fedora Linux',
+		description: 'Fedora是商业化的RHEL的上游源码',
+		icon: 'logos:fedora',
+		category: 'tools',
+		experience: { years: 0, months: 2 },
+		color: '#007ACC'
+	},
 ];
 
 // 获取技能统计信息

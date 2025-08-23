@@ -154,12 +154,12 @@ const allIcons = skillsData.map(skill => skill.icon).filter(Boolean);
                       <h3 class="text-xl font-semibold text-black/90 dark:text-white/90">
                         {skill.name}
                       </h3>
-                      <span class={`px-2 py-1 text-xs rounded-full ${getLevelColor(skill.level)}`}>
+                      {skill.level && <span class={`px-2 py-1 text-xs rounded-full ${getLevelColor(skill.level)}`}>
                         {i18n(skill.level === 'expert' ? I18nKey.skillsExpert :
                               skill.level === 'advanced' ? I18nKey.skillsAdvanced :
                               skill.level === 'intermediate' ? I18nKey.skillsIntermediate :
                               I18nKey.skillsBeginner)}
-                      </span>
+                      </span>}
                     </div>
                     <p class="text-black/60 dark:text-white/60 mb-3 text-sm">
                       {skill.description}
@@ -171,12 +171,12 @@ const allIcons = skillsData.map(skill => skill.icon).filter(Boolean);
                           {skill.experience.years}{i18n(I18nKey.skillYears)}{skill.experience.months > 0 ? ` ${skill.experience.months}${i18n(I18nKey.skillMonths)}` : ''}
                         </span>
                       </div>
-                      <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                      {skill.level && <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                         <div 
                             class="h-2 rounded-full transition-all duration-300"
                             style={`width: ${getLevelWidth(skill.level)}; background-color: ${skill.color || 'rgb(99 102 241)'}`}
                           ></div>
-                      </div>
+                      </div>}
                     </div>
                     {skill.certifications && skill.certifications.length > 0 && (
                       <div class="flex flex-wrap gap-1">
@@ -229,12 +229,12 @@ const allIcons = skillsData.map(skill => skill.icon).filter(Boolean);
                           <h3 class="text-lg font-semibold text-black/90 dark:text-white/90 truncate">
                             {skill.name}
                           </h3>
-                          <span class={`px-2 py-1 text-xs rounded-full shrink-0 ml-2 ${getLevelColor(skill.level)}`}>
+                          {skill.level && <span class={`px-2 py-1 text-xs rounded-full shrink-0 ml-2 ${getLevelColor(skill.level)}`}>
                             {i18n(skill.level === 'expert' ? I18nKey.skillsExpert :
                                   skill.level === 'advanced' ? I18nKey.skillsAdvanced :
                                   skill.level === 'intermediate' ? I18nKey.skillsIntermediate :
                                   I18nKey.skillsBeginner)}
-                          </span>
+                          </span>}
                         </div>
                         <p class="text-black/60 dark:text-white/60 mb-2 text-sm line-clamp-2">
                           {skill.description}
@@ -246,12 +246,12 @@ const allIcons = skillsData.map(skill => skill.icon).filter(Boolean);
                               {skill.experience.years}{i18n(I18nKey.skillYears)}{skill.experience.months > 0 ? ` ${skill.experience.months}${i18n(I18nKey.skillMonths)}` : ''}
                             </span>
                           </div>
-                          <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                          {skill.level && <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
                             <div 
                               class="h-1.5 rounded-full transition-all duration-300"
                               style={`width: ${getLevelWidth(skill.level)}; background-color: ${skill.color || 'rgb(99 102 241)'}`}
                             ></div>
-                          </div>
+                          </div>}
                         </div>
                         {skill.projects && skill.projects.length > 0 && (
                           <div class="text-xs text-black/60 dark:text-white/60">
