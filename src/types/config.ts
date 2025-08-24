@@ -44,6 +44,9 @@ export type SiteConfig = {
 				pauseTime: number; // 完整显示后的暂停时间（毫秒）
 			};
 		};
+		navbar?: {
+			transparentMode?: "semi" | "full"; // 导航栏透明模式："semi" 半透明加圆角，"full" 完全透明
+		};
 		credit: {
 			enable: boolean;
 			text: string;
