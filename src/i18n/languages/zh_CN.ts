@@ -120,7 +120,7 @@ export const zh_CN: Translation = {
 	[Key.projectsSource]: "源代码",
 
 	// 技能展示页面
-	[Key.skills]: "技能展示",
+	[Key.skills]: "技能",
 	[Key.skillsSubtitle]: "我的技术技能和专业知识",
 	[Key.skillsFrontend]: "前端开发",
 	[Key.skillsBackend]: "语言&框架",
