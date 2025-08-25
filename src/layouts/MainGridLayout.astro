@@ -1,10 +1,10 @@
 ---
-import type { MarkdownHeading } from "astro";
-import { Icon } from "astro-icon/components";
 import BackToTop from "@components/control/BackToTop.astro";
 import Footer from "@components/Footer.astro";
 import Navbar from "@components/Navbar.astro";
 import SideBar from "@components/widget/SideBar.astro";
+import type { MarkdownHeading } from "astro";
+import { Icon } from "astro-icon/components";
 import ImageWrapper from "../components/misc/ImageWrapper.astro";
 import IconifyLoader from "../components/misc/IconifyLoader.astro";
 import TypewriterText from "../components/TypewriterText.astro";
@@ -43,7 +43,7 @@ const isBannerSrcObject = (
 };
 
 // 获取banner图片的辅助函数
-const getBannerImages = (): { desktop: string | string[]; mobile: string | string[] } => {
+const getBannerImages = () => {
 	if (isBannerSrcObject(siteConfig.banner.src)) {
 		return {
 			desktop:
@@ -244,7 +244,7 @@ const mainContentClass = `
     )}
     
     <!-- Water waves effect -->
-    <div class="waves absolute -bottom-[1px] h-[10vh] max-h-[9.375rem] min-h-[3.125rem] w-full md:h-[15vh]" id="header-waves">
+    <div class="waves absolute -bottom-[1px] h-[10vh] max-h-[9.375rem] min-h-[3.125rem] w-full md:h-[15vh]" id="header-waves" style="transform: translateZ(0); will-change: fill;">
         <svg
             class="waves"
             xmlns="http://www.w3.org/2000/svg"
@@ -252,6 +252,7 @@ const mainContentClass = `
             viewBox="0 20 150 32"
             preserveAspectRatio="none"
             shape-rendering="auto"
+            style="transform: translateZ(0); backface-visibility: hidden;"
         >
             <defs>
                 <path
@@ -260,34 +261,34 @@ const mainContentClass = `
                 >
                 </path>
             </defs>
-            <g class="parallax">
+            <g class="parallax" style="transform: translateZ(0);">
                 <use
                     xlink:href="#gentle-wave"
                     x="48"
                     y="0"
                     class="opacity-25 fill-[var(--page-bg)]"
-                    style="animation-delay: -2s; animation-duration: 7s;"
+                    style="animation-delay: -2s; animation-duration: 7s; will-change: transform;"
                 ></use>
                 <use
                     xlink:href="#gentle-wave"
                     x="48"
                     y="3"
                     class="opacity-50 fill-[var(--page-bg)]"
-                    style="animation-delay: -3s; animation-duration: 10s;"
+                    style="animation-delay: -3s; animation-duration: 10s; will-change: transform;"
                 ></use>
                 <use
                     xlink:href="#gentle-wave"
                     x="48"
                     y="5"
                     class="opacity-75 fill-[var(--page-bg)]"
-                    style="animation-delay: -4s; animation-duration: 13s;"
+                    style="animation-delay: -4s; animation-duration: 13s; will-change: transform;"
                 ></use>
                 <use
                     xlink:href="#gentle-wave"
                     x="48"
                     y="7"
                     class="fill-[var(--page-bg)]"
-                    style="animation-delay: -5s; animation-duration: 20s;"
+                    style="animation-delay: -5s; animation-duration: 20s; will-change: transform;"
                 ></use>
             </g>
         </svg>
@@ -298,7 +299,7 @@ const mainContentClass = `
 <div class={`absolute w-full z-30 pointer-events-none ${mobileNonHomeBannerClass ? 'mobile-main-no-banner' : ''} ${!siteConfig.banner.enable ? 'no-banner-layout' : ''}`} style={`top: ${finalMainPanelTop}`}>
     <!-- The pointer-events-none here prevent blocking the click event of the TOC -->
     <div class="relative max-w-[var(--page-width)] mx-auto pointer-events-auto">
-        <div id="main-grid" class={`transition duration-1000 w-full left-0 right-0 grid ${gridCols} grid-rows-[auto_1fr_auto] lg:grid-rows-[auto] mx-auto gap-4 px-0 md:px-4 ${!mobileShowSidebar ? 'mobile-no-sidebar' : ''}`}
+        <div id="main-grid" class={`transition duration-700 w-full left-0 right-0 grid ${gridCols} grid-rows-[auto_1fr_auto] lg:grid-rows-[auto] mx-auto gap-4 px-0 md:px-4 ${!mobileShowSidebar ? 'mobile-no-sidebar' : ''}`}
         >
             <!-- Banner image credit -->
             {hasBannerCredit && <a href={siteConfig.banner.credit.url} id="banner-credit" target="_blank" rel="noopener" aria-label="Visit image source"
@@ -670,7 +671,7 @@ const mainContentClass = `
 /* 手机端非首页隐藏banner - 改进的分阶段动画 */
 @media (max-width: 1023px) {
     #banner-wrapper {
-        transition: transform 0.3s ease-out, opacity 0.2s ease-out;
+        transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease-out;
         transform-origin: top center;
         /* 硬件加速优化 */
         will-change: transform, opacity;
@@ -684,13 +685,13 @@ const mainContentClass = `
         transform: translateY(-100%) translateZ(0) !important;
         opacity: 0 !important;
         pointer-events: none !important;
-        /* 优化过渡时间，减少卡顿 */
-        transition: transform 0.3s ease-out, opacity 0.2s ease-out !important;
+        /* 快速消失 */
+        transition: transform 0.3s ease-in, opacity 0.2s ease-in !important;
     }
     
-    /* 手机端非首页时主内容区域从顶部开始 - 移除延迟，减少卡顿 */
+    /* 手机端非首页时主内容区域从顶部开始 - 延迟出现的动画 */
     .absolute.w-full.z-30 {
-        transition: top 0.3s ease-out;
+        transition: top 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s;
         /* 硬件加速优化 */
         will-change: top;
         transform: translateZ(0);
@@ -701,7 +702,7 @@ const mainContentClass = `
         top: 5.5rem !important;
         min-height: calc(100vh - 5.5rem) !important;
         /* 内容区域快速上移 */
-        transition: top 0.3s ease-out !important;
+        transition: top 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s !important;
     }
 }
 
@@ -891,8 +892,13 @@ const mainContentClass = `
 /* 水波纹显示优化 */
 .waves {
     /* 确保水波纹完整显示 */
-    overflow: visible !important;
+    overflow: visible;
     z-index: 5;
+    /* 硬件加速，确保与背景同步渲染 */
+    transform: translateZ(0);
+    will-change: transform;
+    /* 确保与页面背景在同一合成层 */
+    contain: layout style paint;
 }
 
 .waves svg {
@@ -900,6 +906,35 @@ const mainContentClass = `
     width: 100%;
     height: 100%;
     display: block;
+    /* SVG硬件加速 */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* 波浪填充色主题切换优化 */
+.waves use {
+    /* 确保填充色与页面背景同步更新 */
+    will-change: fill;
+}
+
+/* 波浪与背景同步切换优化 - 解决交界线闪烁 */
+#header-waves {
+    /* 确保波浪容器与页面背景在同一合成层 */
+    isolation: isolate;
+    /* 强制重绘，确保与body背景同步 */
+    contain: layout style paint;
+    /* 精确对齐 */
+    margin-bottom: -1px;
+}
+
+/* 主题切换时的额外保护 */
+.theme-changing #header-waves,
+.theme-changing #header-waves svg,
+.theme-changing #header-waves use {
+    /* 在主题切换期间禁用所有可能的渲染延迟 */
+    will-change: auto;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 /* 移动端水波纹特殊优化 */
