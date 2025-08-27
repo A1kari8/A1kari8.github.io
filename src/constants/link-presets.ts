@@ -21,7 +21,7 @@ export const LinkPresets: { [key in LinkPreset]: NavBarLink } = {
 	[LinkPreset.Friends]: {
 		name: i18n(I18nKey.friends),
 		url: "/friends/",
-		icon: "material-symbols:assignment-ind",
+		icon: "mdi:link-variant",
 	},
 	[LinkPreset.Anime]: {
 		name: i18n(I18nKey.anime),
