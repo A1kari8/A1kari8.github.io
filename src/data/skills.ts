@@ -7,7 +7,7 @@ export interface Skill {
 	description: string;
 	icon: string; // Iconify icon name
 	category: "frontend" | "backend" | "database" | "tools" | "other";
-	level: "beginner" | "intermediate" | "advanced" | "expert";
+	level?: "beginner" | "intermediate" | "advanced" | "expert";
 	experience: {
 		years: number;
 		months: number;
@@ -27,6 +27,16 @@ export const skillsData: Skill[] = [
 		level: 'intermediate',
 		experience: { years: 2, months: 8 },
 		color: '#178600'
+	},
+	{
+		id: 'cpp',
+		name: 'C++',
+		description: 'C++是一种被广泛使用的计算机程序设计语言。',
+		icon: 'logos:c-plusplus',
+		category: 'backend',
+		level: 'intermediate',
+		experience: { years: 1, months: 1 },
+		color: '#f34b7d'
 	},
 	{
 		id: 'java',
@@ -67,16 +77,6 @@ export const skillsData: Skill[] = [
 		level: 'intermediate',
 		experience: { years: 2, months: 8 },
 		color: '#3178C6'
-	},
-	{
-		id: 'cpp',
-		name: 'C++',
-		description: 'C++是一种被广泛使用的计算机程序设计语言。',
-		icon: 'logos:c-plusplus',
-		category: 'backend',
-		level: 'intermediate',
-		experience: { years: 1, months: 1 },
-		color: '#f34b7d'
 	},
 	{
 		id: 'nodejs',
@@ -124,7 +124,7 @@ export const skillsData: Skill[] = [
 		icon: 'logos:intellij-idea',
 		category: 'tools',
 		experience: { years: 3, months: 0 },
-		color: '#007ACC'
+		color: '#087CFA'
 	},
 	{
 		id: 'rider',
@@ -133,7 +133,7 @@ export const skillsData: Skill[] = [
 		icon: 'logos:rider',
 		category: 'tools',
 		experience: { years: 2, months: 8 },
-		color: '#007ACC'
+		color: '#F17C2D'
 	},
 	{
 		id: 'fedora',
@@ -141,8 +141,26 @@ export const skillsData: Skill[] = [
 		description: 'Fedora是商业化的RHEL的上游源码',
 		icon: 'logos:fedora',
 		category: 'tools',
-		experience: { years: 0, months: 2 },
-		color: '#007ACC'
+		experience: { years: 0, months: 3 },
+		color: '#294172'
+	},
+	{
+		id: 'debian',
+		name: 'Debian',
+		description: '完全由自由软件组成的类UNIX操作系统',
+		icon: 'logos:debian',
+		category: 'tools',
+		experience: { years: 2, months: 1 },
+		color: '#D80150'
+	},
+	{
+		id: 'ubuntu',
+		name: 'Ubuntu',
+		description: '基于Debian，以桌面应用为主的Linux发行版',
+		icon: 'logos:ubuntu',
+		category: 'tools',
+		experience: { years: 2, months: 8 },
+		color: '#EA4F06'
 	},
 ];
 

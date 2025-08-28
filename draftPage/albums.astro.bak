@@ -1,8 +1,8 @@
 ---
-import I18nKey from "../i18n/i18nKey";
-import { i18n } from "../i18n/translation";
-import MainGridLayout from "../layouts/MainGridLayout.astro";
-import { scanAlbums } from "../utils/album-scanner";
+import I18nKey from "../src/i18n/i18nKey";
+import { i18n } from "../src/i18n/translation";
+import MainGridLayout from "../src/layouts/MainGridLayout.astro";
+import { scanAlbums } from "../src/utils/album-scanner";
 
 // 获取所有相册
 const albumsData = await scanAlbums();

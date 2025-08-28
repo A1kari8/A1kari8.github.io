@@ -127,25 +127,19 @@ export const timelineData: TimelineItem[] = [
 	// 	color: '#059669',
 	// 	featured: true
 	// },
-	// {
-	// 	id: 'internship-experience',
-	// 	title: '软件开发实习生',
-	// 	description: '在大学期间的实习经历，参与了Web应用开发和数据库设计工作。',
-	// 	type: 'work',
-	// 	startDate: '2021-07-01',
-	// 	endDate: '2021-09-30',
-	// 	location: '北京',
-	// 	organization: 'StartupTech',
-	// 	position: 'Software Development Intern',
-	// 	skills: ['JavaScript', 'Vue.js', 'Node.js', 'MySQL'],
-	// 	achievements: [
-	// 		'完成了用户管理系统的开发',
-	// 		'学习了敏捷开发流程',
-	// 		'获得了实习优秀表现奖'
-	// 	],
-	// 	icon: 'material-symbols:work',
-	// 	color: '#EA580C'
-	// },
+	{
+		id: 'current-study',
+		title: '人工智能专业在读',
+		description: '',
+		type: 'work',
+		startDate: '2024-08-23',
+		endDate: '?',
+		location: '哈尔滨',
+		organization: '哈尔滨工业大学',
+		position: 'Software Development Intern',
+		icon: 'material-symbols:school',
+		color: '#014B6E'
+	},
 	// {
 	// 	id: 'hackathon-winner',
 	// 	title: '黑客马拉松比赛获奖',
