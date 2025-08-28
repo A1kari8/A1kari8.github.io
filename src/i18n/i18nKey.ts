@@ -43,12 +43,19 @@ enum I18nKey {
 	anime = "anime",
 	diary = "diary",
 
-	// 追番统计
+	// 番剧页面
+	animeTitle = "animeTitle",
+	animeSubtitle = "animeSubtitle",
+	animeList = "animeList",
 	animeTotal = "animeTotal",
 	animeWatching = "animeWatching",
 	animeCompleted = "animeCompleted",
+	animeAvgRating = "animeAvgRating",
 	animeStatusWatching = "animeStatusWatching",
 	animeStatusCompleted = "animeStatusCompleted",
+	animeStatusPlanned = "animeStatusPlanned",
+	animeYear = "animeYear",
+	animeStudio = "animeStudio",
 
 	// 短文页面
 	diarySubtitle = "diarySubtitle",
@@ -69,33 +76,14 @@ enum I18nKey {
 	// 音乐播放器
 	playlist = "playlist",
 
-	// 工具箱
-	toolbox = "toolbox",
-	toolboxDescription = "toolboxDescription",
-	toolboxSubtitle = "toolboxSubtitle",
-	toolboxSearchPlaceholder = "toolboxSearchPlaceholder",
-	toolboxNoResults = "toolboxNoResults",
-
-	// Gallery
-	gallery = "gallery",
-	gallerySubtitle = "gallerySubtitle",
-	galleryGroups = "galleryGroups",
-	galleryCreateGroup = "galleryCreateGroup",
-	galleryGroupName = "galleryGroupName",
-	galleryGroupDescription = "galleryGroupDescription",
-	galleryGroupCover = "galleryGroupCover",
-	galleryUploadImages = "galleryUploadImages",
-	galleryImageCount = "galleryImageCount",
-	galleryImagesCount = "galleryImagesCount",
-	galleryViewAll = "galleryViewAll",
-	galleryEdit = "galleryEdit",
-	galleryDelete = "galleryDelete",
-	gallerySort = "gallerySort",
-	galleryComments = "galleryComments",
-	galleryAddComment = "galleryAddComment",
-	galleryNoGroups = "galleryNoGroups",
-	galleryNoImages = "galleryNoImages",
-	galleryCreateFirst = "galleryCreateFirst",
+	// 相册页面
+	albums = "albums",
+	albumsSubtitle = "albumsSubtitle",
+	albumsEmpty = "albumsEmpty",
+	albumsEmptyDesc = "albumsEmptyDesc",
+	albumsBackToList = "albumsBackToList",
+	albumsPhotoCount = "albumsPhotoCount",
+	albumsPhotosCount = "albumsPhotosCount",
 
 	// 项目展示页面
 	projects = "projects",

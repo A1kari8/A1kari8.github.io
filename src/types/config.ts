@@ -74,8 +74,7 @@ export enum LinkPreset {
 	Friends = 3,
 	Anime = 4,
 	Diary = 5,
-	Toolbox = 7,
-	Gallery = 6,
+
 	Projects = 7,
 	Skills = 8,
 	Timeline = 9,
@@ -84,7 +83,6 @@ export enum LinkPreset {
 export type NavBarLink = {
 	name: string;
 	url: string;
-	icon?: string;
 	external?: boolean;
 	icon?: string; // 菜单项图标
 	children?: (NavBarLink | LinkPreset)[]; // 支持子菜单，可以是NavBarLink或LinkPreset
