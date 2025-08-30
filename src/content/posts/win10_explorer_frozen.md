@@ -9,11 +9,11 @@ category: Win系统优化
 
 在管理员Powershell中，输入以下两条命令：
 
-```powershell
+```powershell wrap=false
 $manifest = (Get-AppxPackage Microsoft.WindowsStore).InstallLocation + '\AppxManifest.xml' ; Add-AppxPackage -DisableDevelopmentMode -Register $manifest
 ```
 
-```powershell
+```powershell wrap=false
 Get-AppXPackage -AllUsers |Where-Object {$_.InstallLocation -like "*SystemApps*"}
 ```
 

@@ -25,7 +25,7 @@ remove-Appxpackage
 
 再执行以下命令
 
-```powershell
+```powershell wrap=false
 add-appxpackage -register "C:\Program Files\WindowsApps\*Store*\AppxManifest.xml" -disabledevelopmentmode
 ```
 
