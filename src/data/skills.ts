@@ -22,7 +22,7 @@ export const skillsData: Skill[] = [
 		id: 'csharp',
 		name: 'C#',
 		description: '最喜欢的语言',
-		icon: 'logos:c-sharp',
+		icon: 'devicon:csharp',
 		category: 'backend',
 		level: 'intermediate',
 		experience: { years: 2, months: 8 },
