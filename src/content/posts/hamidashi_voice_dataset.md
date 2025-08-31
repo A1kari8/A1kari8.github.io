@@ -119,7 +119,7 @@ out:close()
 
 运行该脚本即可得到`text_output.json`
 
-### 音频格式转换与筛选
+## 音频格式转换与筛选
 
 将该脚本与[dkjson.lua](https://github.com/LuaDist/dkjson/blob/master/dkjson.lua)放置在与`script`目录同级
 
@@ -194,7 +194,7 @@ end
 
 运行脚本后我们便有了所有需要的资源，可以拿着它们炼TTS啦
 
-### 生成GPTSoVits数据集使用的`slicer.list`
+## 生成GPTSoVits数据集使用的`slicer.list`
 
 同样放置在同级目录
 
@@ -245,7 +245,7 @@ output:close()
 
 之后就可以拿去训练GPTSoVits了
 
-### 顺便贴一下跟AI对线一小时得到的Regex（没用了）
+## 顺便贴一下跟AI对线一小时得到的Regex（没用了）
 
 ```regexp
 /{["']vo["'],\s*file=["']([^"']+)["'],\s*ch=["']([^"']+)["']}[\s\S]*?ja=\s*\{\{\s*\{\s*["']([^"']+)["']/g
