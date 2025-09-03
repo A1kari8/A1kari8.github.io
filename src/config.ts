@@ -51,6 +51,7 @@ export const siteConfig: SiteConfig = {
 				"/assets/desktop-banner/4.webp",
 				"/assets/desktop-banner/5.webp",
 				"/assets/desktop-banner/6.webp",
+				"/assets/desktop-banner/7.png",
 			], // 桌面横幅图片
 			mobile: [
 				"/assets/desktop-banner/1.webp",
@@ -59,6 +60,7 @@ export const siteConfig: SiteConfig = {
 				"/assets/desktop-banner/4.webp",
 				"/assets/desktop-banner/5.webp",
 				"/assets/desktop-banner/6.webp",
+				"/assets/desktop-banner/7.png",
 			], // 移动横幅图片
 		}, // 使用本地横幅图片
 
