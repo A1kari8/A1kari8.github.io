@@ -24,6 +24,7 @@
     "@expressive-code/core": "^0.41.3",
     "@expressive-code/plugin-collapsible-sections": "^0.41.3",
     "@expressive-code/plugin-line-numbers": "^0.41.3",
+    "@fastify/deepmerge": "^3.1.0",
     "@fontsource-variable/jetbrains-mono": "^5.2.6",
     "@fontsource/roboto": "^5.2.6",
     "@iconify-json/fa6-brands": "^1.2.6",
@@ -34,10 +35,12 @@
     "@swup/astro": "^1.7.0",
     "@tailwindcss/typography": "^0.5.16",
     "astro": "5.13.5",
+    "astro-compress": "^2.3.8",
     "astro-expressive-code": "^0.41.3",
     "astro-icon": "^1.1.5",
     "hastscript": "^9.0.1",
     "katex": "^0.16.22",
+    "linkedom": "^0.18.9",
     "markdown-it": "^14.1.0",
     "mdast-util-to-string": "^4.0.0",
     "overlayscrollbars": "^2.11.5",
@@ -59,6 +62,7 @@
     "svelte": "^5.38.6",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.9.2",
+    "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
