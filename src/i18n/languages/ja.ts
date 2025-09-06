@@ -37,4 +37,6 @@ export const ja: Translation = {
 	[Key.lastUpdatedAt]: "最終更新日",
 
 	[Key.license]: "ライセンス",
+
+	[Key.friends]: "友達",
 };

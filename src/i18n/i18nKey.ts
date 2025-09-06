@@ -34,6 +34,8 @@ enum I18nKey {
 	lastUpdatedAt = 'lastUpdatedAt',
 
 	license = "license",
+
+	friends = "friends",
 }
 
 export default I18nKey;
