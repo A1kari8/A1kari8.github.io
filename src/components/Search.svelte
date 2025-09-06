@@ -86,6 +86,14 @@ const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 	}
 };
 
+const resetSearch = () => {
+    keywordDesktop = "";
+    keywordMobile = "";
+    setPanelVisibility(false, true);
+    setPanelVisibility(false, false);
+    result = [];
+};
+
 onMount(() => {
 	const initializeSearch = () => {
 		initialized = true;
@@ -123,6 +131,24 @@ onMount(() => {
 			}
 		}, 2000); // Adjust timeout as needed
 	}
+
+    window.addEventListener("popstate", resetSearch);
+    // 监听 pushState/replaceState
+    const _pushState = history.pushState;
+    history.pushState = function () {
+        _pushState.apply(this, arguments);
+        resetSearch();
+    };
+    const _replaceState = history.replaceState;
+    history.replaceState = function () {
+        _replaceState.apply(this, arguments);
+        resetSearch();
+    };
+    return () => {
+        window.removeEventListener("popstate", resetSearch);
+        history.pushState = _pushState;
+        history.replaceState = _replaceState;
+    };
 });
 
 $: if (initialized && keywordDesktop) {
