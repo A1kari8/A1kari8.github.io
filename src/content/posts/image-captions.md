@@ -4,7 +4,7 @@ published: 2025-03-13T00:00:00+00:00
 description: Guide to using the image caption feature.
 tags: [Markdown, Blogging, Demo]
 category: Examples
-draft: false
+draft: true
 ---
 
 ## About Image Captions

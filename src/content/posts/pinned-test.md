@@ -5,7 +5,7 @@ description: 'This is a test post to demonstrate the pinned feature.'
 image: ''
 tags: ['Test', 'Pinned']
 category: 'Test'
-draft: false
+draft: true
 lang: ''
 pinned: true
 ---

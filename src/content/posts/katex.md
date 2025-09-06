@@ -4,7 +4,7 @@ published: 2025-02-02T00:00:00+00:00
 description: How math looks in Markdown using KaTeX.
 tags: [Markdown, Blogging, Demo]
 category: Examples
-draft: false
+draft: true
 ---
 
 ## Inline Math Mode
