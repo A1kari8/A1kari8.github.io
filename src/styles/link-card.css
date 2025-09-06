@@ -3,13 +3,27 @@
 }
 
 .link-card {
-    @apply flex min-h-32 overflow-hidden rounded-xl transition-colors !no-underline !m-0 !p-0
+    @apply flex flex-row flex-nowrap min-h-32 overflow-hidden rounded-xl transition-colors !no-underline !m-0 !p-0
     bg-[var(--card-bg)] hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)]
     ring-1 ring-[var(--btn-plain-bg-hover)] active:ring-[var(--btn-plain-bg-active)];
+    display: flex !important;
+    width: 100% !important;
+}
+
+/* 防止全局样式影响，保证卡片 hover/active 时高度不变，无虚线（卡片本身和所有子元素都去除 border-bottom） */
+.link-card, .link-card * {
+    border-bottom: none !important;
+}
+
+.link-card * {
+    text-decoration: none !important;
+    outline: none !important;
+    background: transparent;
+    transition-property: background, color, border, box-shadow, outline;
 }
 
 .link-card__info {
-    @apply w-3/4 flex-1 pl-6 pr-4 py-4 flex flex-col gap-y-2 relative;
+    @apply flex-1 pl-6 pr-4 py-4 flex flex-col gap-y-2 relative;
 }
 
 .link-card__title {
@@ -60,11 +74,11 @@
 }
 
 .link-card__thumbnail {
-    @apply w-1/4 md:max-w-64 pr-6 pt-4;
+    @apply w-48 flex-shrink-0 pt-4 pr-4 pb-4 flex items-center;
 }
 
 .link-card__image {
-    @apply h-24 w-48 !my-0 object-contain md:object-cover !rounded-none pointer-events-none;
+    @apply w-full h-auto object-cover !my-0 !rounded-none pointer-events-none;
 }
 
 .link-card__thumbnail--default > .link-card__image {
