@@ -12,6 +12,10 @@ const postsCollection = defineCollection({
 		category: z.string().optional().nullable().default(""),
 		lang: z.string().optional().default(""),
 		pinned: z.boolean().optional().default(false),
+		author: z.string().optional(),
+		sourceLink: z.string().optional(),
+		licenseName: z.string().optional(),
+		licenseUrl: z.string().optional(),
 
 		/* For internal use */
 		prevTitle: z.string().default(""),
