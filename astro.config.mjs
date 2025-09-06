@@ -28,7 +28,7 @@ import fuwariLinkCard from "./src/plugins/fuwari-link-card.ts";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://fuwari.vercel.app/",
+	site: "https://a1kari8.github.io/",
 	base: "/",
 	trailingSlash: "always",
 	integrations: [
