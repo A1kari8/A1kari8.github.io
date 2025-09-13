@@ -52,10 +52,10 @@ export default defineConfig({
 		icon({
 			include: {
 				"preprocess: vitePreprocess(),": ["*"],
-				"fa6-brands": ["*"],
-				"fa6-regular": ["*"],
-				"fa6-solid": ["*"],
-				"mdi": ["*"],
+				"fa6-brands": ["github","creative-commons"],
+				"fa6-regular": ["address-card"],
+				"fa6-solid": ["arrow-rotate-left","snowflake","angle-right","arrow-up-right-from-square","chevron-right","arrow-up-right-from-square"],
+				"mdi": ["link-variant"],
 			},
 		}),
 		expressiveCode({
