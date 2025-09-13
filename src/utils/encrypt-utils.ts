@@ -1,4 +1,4 @@
-﻿import { promises as fs } from "node:fs";
+import { promises as fs } from "node:fs";
 import * as path from "node:path";
 import * as openpgp from "openpgp";
 
@@ -41,9 +41,9 @@ export async function encryptForMultipleRecipientsFromFolder(
 		}
 	}
 
-	if (allPublicKeys.length === 0) {
-		throw new Error(`No public keys found for permission levels${perm}+`);
-	}
+    if (allPublicKeys.length === 0) {
+        throw new Error(`No public keys found for permission levels${perm}+`);
+    }
 
 	console.log(
 		`Encrypting for permission level${perm}+ with ${allPublicKeys.length} public keys`,
@@ -52,8 +52,8 @@ export async function encryptForMultipleRecipientsFromFolder(
 	// 加密
 	const message = await openpgp.createMessage({ text: messageText });
 
-	return await openpgp.encrypt({
-		message,
-		encryptionKeys: allPublicKeys,
-	});
+    return await openpgp.encrypt({
+        message,
+        encryptionKeys: allPublicKeys,
+    });
 }
