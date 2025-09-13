@@ -32,9 +32,12 @@ export async function GET(context: APIContext) {
 				pubDate: post.data.published,
 				description: post.data.description || "",
 				link: url(`/posts/${post.slug}/`),
-				content: sanitizeHtml(parser.render(cleanedContent), {
-					allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
-				}),
+				content:
+					post.data.permission === 0
+						? sanitizeHtml(parser.render(cleanedContent), {
+								allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
+							})
+						: "<p>该文章为加密文章，阅读请移步博客网站</p>",
 			};
 		}),
 		customData: `<language>${siteConfig.lang}</language>`,
