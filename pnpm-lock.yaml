@@ -92,6 +92,9 @@ importers:
       open-graph-scraper:
         specifier: ^6.10.0
         version: 6.10.0
+      openpgp:
+        specifier: ^6.2.2
+        version: 6.2.2
       overlayscrollbars:
         specifier: ^2.11.5
         version: 2.11.5
@@ -3861,6 +3864,10 @@ packages:
   opencollective-postinstall@2.0.3:
     resolution: {integrity: sha512-8AV/sCtuzUeTo8gQK5qDZzARrulB3egtLzFgteqB2tcT4Mw7B8Kt7JcDHmltjz6FOAHsvTevk70gZEbhM4ZS9Q==}
     hasBin: true
+
+  openpgp@6.2.2:
+    resolution: {integrity: sha512-P/dyEqQ3gfwOCo+xsqffzXjmUhGn4AZTOJ1LCcN21S23vAk+EAvMJOQTsb/C8krL6GjOSBxqGYckhik7+hneNw==}
+    engines: {node: '>= 18.0.0'}
 
   overlayscrollbars@2.11.5:
     resolution: {integrity: sha512-vTUfCtjJbTjiarrxl9qdK04ZxlQdB4ugXfiqctVZytYDXH259OM4whROMGDE6T8uCYmSYPqiOFIKZ1erVkJnFg==}
@@ -9803,6 +9810,8 @@ snapshots:
       is-wsl: 2.2.0
 
   opencollective-postinstall@2.0.3: {}
+
+  openpgp@6.2.2: {}
 
   overlayscrollbars@2.11.5: {}
 

@@ -36,6 +36,13 @@ enum I18nKey {
 	license = "license",
 
 	friends = "friends",
+
+	requirePermissionTitle = "requirePermissionTitle",
+	requirePermissionDesc = "requirePermissionDesc",
+	keyUnlock = "keyUnlock",
+	keyUnlocking = "keyUnlocking",
+	keyIncorrect = "keyIncorrect",
+	keyDecryptError = "keyDecryptError",
 }
 
 export default I18nKey;

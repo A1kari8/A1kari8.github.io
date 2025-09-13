@@ -16,6 +16,7 @@ const postsCollection = defineCollection({
 		sourceLink: z.string().optional(),
 		licenseName: z.string().optional(),
 		licenseUrl: z.string().optional(),
+		permission: z.number().optional().default(0),
 
 		/* For internal use */
 		prevTitle: z.string().default(""),
