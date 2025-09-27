@@ -54,7 +54,7 @@ $$
 C = C_0 - C_1 - C_2 - \cdots - C_n
 $$
 
-$C$指的是包围了所有区域的一个抽象闭曲线
+$C$是要求的不含奇点的闭曲线
 
 ![闭曲线](./assets/compound_closed_circuit.svg)
 
@@ -74,15 +74,15 @@ $$
 
 $$
 \begin{aligned}
-\oint _C \frac{dz}{z^2-z} &= \oint _{C_1} \frac{dz}{z^2-z} + \oint _{C_2} \frac{dz}{z^2-z} \\ 
+\oint _C \frac{dz}{z^2-z} &= \oint _{C_1} \frac{dz}{z^2-z} + \oint _{C_2} \frac{dz}{z^2-z} \\
 &\text{目前只要明白这行即可，后续步骤需要用到柯西积分公式}\\
 &= \oint_{C_1} \frac{dz}{z-1} - \oint_{C_1} \frac{dz}{z} + \oint_{C_2} \frac{dz}{z} - \oint_{C_2} \frac{dz}{z-1} \\
-&= 0 -2\pi i + 2\pi i - 0 \\ 
+&= 0 -2\pi i + 2\pi i - 0 \\
 &= 0
 \end{aligned}
 $$
 
-这里的$C$放在上面的[复合闭路定理](#复合闭路定理)里其实是$C_0$，因为它之中含有奇点，并非包含完整的区域
+这里的$C$放在上面的[复合闭路定理](#复合闭路定理)里其实是$C_0$
 
 ![奇点积分](./assets/singularity_int.svg)
 

@@ -1,0 +1,46 @@
+---
+title: '[复变函数] 泰勒级数'
+published: 2025-09-27 16:37:00
+tags: [复变函数,数学]
+category: 大学数学
+draft: false
+---
+
+## 泰勒级数
+
+$$
+f(z) = \sum_{n=0}^{\infty} \frac{f^{(n)}(z_0)}{n!} (z - z_0)^n
+$$
+
+## 常用的泰勒级数
+
+$$
+\begin{aligned}
+\frac{1}{1+z} = \sum_{n=0}^{\infty} (-1)^n z^n \quad |z| < 1 \\
+\frac{1}{1-z} = \sum_{n=0}^{\infty} z^n \quad |z| < 1
+\end{aligned}
+$$
+
+### 自然对数
+
+$$
+\ln(1+z) = \sum_{n=1}^{\infty} (-1)^{n-1} \frac{z^n}{n} \quad |z| < 1
+$$
+
+### 指数函数
+
+$$
+e^z = \sum_{n=0}^{\infty} \frac{z^n}{n!}
+$$
+
+### 正弦函数
+
+$$
+\sin z = \sum_{n=0}^{\infty} (-1)^n \frac{z^{2n+1}}{(2n+1)!}
+$$
+
+### 余弦函数
+
+$$
+\cos z = \sum_{n=0}^{\infty} (-1)^n \frac{z^{2n}}{(2n)!}
+$$
