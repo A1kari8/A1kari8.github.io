@@ -2,7 +2,7 @@
 title: "[ICS大作业] 第一章 概述"
 published: 2025-09-30 23:40:00
 tags: [Linux,Fedora,C]
-category: 大学计算机
+category: ICS
 draft: false
 ---
 
