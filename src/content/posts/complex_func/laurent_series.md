@@ -31,21 +31,60 @@ $$
 - 内收敛半径$R_1$：从奇点到内侧边界的距离，用负幂项求得
 - 外收敛半径$R_2$：从奇点到外侧边界的距离，用正幂项求得
 
-### 求一个函数的洛朗级数如何确定负幂项
+### 求一个函数的洛朗级数
 
-e.g. 求$f(z) = \frac{1}{z(z-1)}$在$0 < |z| < 1$的洛朗级数
+e.g. 求$f(z) = \frac{1}{(z-i)(z-2)}$在$1 < |z| < 2$的洛朗级数
+
+#### 第一步 裂项
+
+[裂项技巧](#裂项技巧覆盖法)
 
 $$
 \begin{aligned}
-f(z) &= \frac{1}{z(z-1)} = \frac{1}{z} \cdot \frac{1}{z-1} = \frac{1}{z} \cdot \left(-\frac{1}{1-z}\right) = -\frac{1}{z} \sum_{n=0}^{\infty} z^n \quad (|z| < 1) \quad \text{利用几何级数} \\
-&= -\sum_{n=0}^{\infty} z^{n-1} = -\sum_{n=-1}^{\infty} z^n
+\frac{1}{(z-i)(z-2)} &= \frac{A}{z-i} + \frac{B}{z-2} \\
+A &= \frac{1}{i-2} \\
+B &= \frac{1}{2-i} \\
+\frac{1}{(z-i)(z-2)} &= \frac{1}{i-2} \cdot \frac{1}{z-i} + \frac{1}{2-i} \cdot \frac{1}{z-2}
 \end{aligned}
 $$
 
-#### 为什么$\frac{1}{z}$是负幂项
+#### 第二步 确定每一项的奇点在圆环内侧还是外侧
 
-此函数有两个奇点$z=0,1$，而我们要求洛朗级数的环域是$0 < |z| < 1$
+- $\frac{1}{z-i}$的奇点$z=i$在圆环内侧，所以$\frac{1}{z-i}$是负幂项
+- $\frac{1}{z-2}$的奇点$z=2$在圆环外侧，所以$\frac{1}{z-2}$是正幂项
 
-这个环域的**内环**包围了奇点$z=0$，而奇点$z=1$在环域外
+#### 第三步 展开每一项
 
-所以我们要**绕开**奇点$z=0$，而$\frac{1}{z}$正好是产生奇点$z=0$的项，因此$\frac{1}{z}$是负幂项
+*负幂项的自变量为$\frac{1}{z}$，正幂项的自变量为$z$*
+
+之所以需要化为$\frac{1}{z}$，是为了将展开后的收敛域"翻转"至边界的外侧
+
+正幂项内侧收敛，负幂项外侧收敛，两侧一夹就形成了环形收敛域
+
+$$
+\begin{aligned}
+f(z) &= \frac{1}{(z-i)(z-2)} = \frac{1}{i-2} \cdot \frac{1}{z-i} + \frac{1}{2-i} \cdot \frac{1}{z-2} \\
+&= \frac{1}{i-2} \cdot \frac{1}{z} \cdot \frac{1}{1 - \frac{i}{z}} + \frac{1}{2-i} \cdot \left(-\frac{1}{2-z}\right) \\
+&= \frac{1}{i-2} \cdot \frac{1}{z} \sum_{n=0}^{\infty} \left(\frac{i}{z}\right)^n + \frac{1}{2-i} \sum_{n=0}^{\infty} \left(\frac{z}{2}\right)^n \quad (|z| > 1, |z| < 2) \quad \text{利用几何级数} \\
+&= \sum_{n=0}^{\infty} \frac{i^n}{(i-2)} \cdot \frac{1}{z^{n+1}} + \sum_{n=0}^{\infty} \frac{z^n}{(2-i) 2^n} \\
+&= \sum_{n=1}^{\infty} \frac{i^{n-1}}{(i-2)} \cdot \frac{1}{z^n} + \sum_{n=0}^{\infty} \frac{z^n}{(2-i) 2^n}
+\end{aligned}
+$$
+
+### 裂项技巧：覆盖法
+
+$$
+\frac{P(x)}{(x-a_1)(x-a_2)\dots(x-a_n)} = \frac{A_1}{x-a_1} + \frac{A_2}{x-a_2} + \dots + \frac{A_n}{x-a_n}
+$$
+
+若要求$A_k$，则将等式两边同乘以$(x-a_k)$
+
+令$x=a_k$，此时除了$A_k$外，其他项均得0
+
+所以
+
+$$
+A_k = \frac{P(a_k)}{(a_k - a_1)(a_k - a_2) \dots (a_k - a_{k-1})(a_k - a_{k+1}) \dots (a_k - a_n)}
+$$
+
+由此可得每个系数$A_k$的值
