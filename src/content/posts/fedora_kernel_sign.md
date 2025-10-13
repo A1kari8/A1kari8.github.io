@@ -2,7 +2,7 @@
 title: "[Fedora 42]自签名自定义内核，启用安全启动"
 published: 2025-08-04 09:30:06
 tags: [Linux,Fedora]
-category: Linux
+category: Linux/Fedora
 ---
 
 为了压住天选5pro上的火龙R9 7940HX，不得不用[asus-linux](http://asus-linux.org/)的asusctl，想要启用功耗控制的话还要用移植到fedora的cachyos内核
