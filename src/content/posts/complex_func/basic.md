@@ -2,7 +2,7 @@
 title: "[复变函数] 复数基础"
 published: 2025-09-01 22:02:12
 tags: [复变函数,数学]
-category: 大学数学
+category: 复变函数
 ---
 
 ## 欧拉公式

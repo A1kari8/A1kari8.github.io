@@ -2,7 +2,7 @@
 title: "[复变函数] 奇点、极点与零点"
 published: 2025-10-13 21:15:00
 tags: [复变函数,数学]
-category: 大学数学
+category: 复变函数
 ---
 
 :::warning
@@ -75,7 +75,7 @@ $$
 
 :::note
 
-充要条件：$z_0$是$f(z)$的**$m$阶零点** $\Leftrightarrow$ $\frac{1}{f(z)}$在$z_0$处是 **$m$阶极点**
+充要条件：$z_0$是$f(z)$的 **$m$ 阶零点** $\Leftrightarrow$ $\frac{1}{f(z)}$在$z_0$处是 **$m$阶极点**
 
 :::
 

@@ -2,7 +2,7 @@
 title: "[复变函数] 留数"
 published: 2025-10-13 22:33:00
 tags: [复变函数,数学]
-category: 大学数学
+category: 复变函数
 ---
 
 :::warning

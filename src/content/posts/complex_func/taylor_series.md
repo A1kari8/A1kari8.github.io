@@ -2,7 +2,7 @@
 title: '[复变函数] 泰勒级数'
 published: 2025-09-27 16:37:00
 tags: [复变函数,数学]
-category: 大学数学
+category: 复变函数
 draft: false
 ---
 

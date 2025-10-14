@@ -2,7 +2,7 @@
 title: "[复变函数] 调和函数"
 published: 2025-09-26 21:00:00
 tags: [复变函数,数学]
-category: 大学数学
+category: 复变函数
 ---
 
 ## 拉普拉斯方程

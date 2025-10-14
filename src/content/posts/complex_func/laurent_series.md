@@ -2,7 +2,7 @@
 title: '[复变函数] 洛朗级数'
 published: 2025-09-27 17:02:00
 tags: [复变函数,数学]
-category: 大学数学
+category: 复变函数
 draft: false
 ---
 
