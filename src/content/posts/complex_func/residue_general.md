@@ -32,7 +32,7 @@ $$
 从而将积分变量从$\theta$变为$z$，并利用留数定理计算积分
 
 $$
-\int_{0}^{2\pi} R(\cos{\theta}, \sin{\theta}) d\theta = 2\pi i \sum_{k}^{p} \text{Res}(f(z),z_k)
+\boxed{\int_{0}^{2\pi} R(\cos{\theta}, \sin{\theta}) d\theta = 2\pi i \sum_{k}^{p} \text{Res}(f(z),z_k)}
 $$
 
 $z_k$是$f(z)$在**单位圆**内的所有孤立奇点
@@ -69,16 +69,13 @@ $$
 \int_{-\infty}^{+\infty} \frac{\cos{\lambda x}}{g(x)} dx
 $$
 
-可以将$\cos{\lambda x}$表示为复指数的形式：
+可以将原式补齐$i\sin{\lambda x}$再利用$\mathbf{Re}化成欧拉公式的形式$：
 
 $$
-\cos{\lambda x} = \frac{e^{i\lambda x} + e^{-i\lambda x}}{2}
+\begin{aligned}
+\int_{-\infty}^{+\infty} \frac{\cos{\lambda x}}{g(x)} dx &= \int_{-\infty}^{+\infty} \frac{ \mathbf{Re} \left ( \cos{\lambda x} + i\sin{\lambda x} \right )}{g(x)} dx \\[1.5em]
+&= \mathbf{Re} \left ( \int_{-\infty}^{+\infty} \frac{e^{i\lambda x}}{g(x)} dx \right )
+\end{aligned}
 $$
 
-从而得到
-
-$$
-\int_{-\infty}^{+\infty} \frac{\cos{\lambda x}}{g(x)} dx = \frac{1}{2} \left( \int_{-\infty}^{+\infty} \frac{e^{i\lambda x}}{g(x)} dx + \int_{-\infty}^{+\infty} \frac{e^{-i\lambda x}}{g(x)} dx \right)
-$$
-
-然后使用第三种形式计算两个积分即可
+然后利用第三种形式计算积分即可

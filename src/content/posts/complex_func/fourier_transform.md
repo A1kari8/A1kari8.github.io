@@ -5,9 +5,11 @@ tags: [复变函数,数学]
 category: 复变函数
 ---
 
-先从傅里叶级数说起
+~~先从傅里叶级数说起~~
 
-## 傅里叶级数
+说什么说，根本就不考
+
+<!--## 傅里叶级数
 
 上学期的微积分课程中学过实数表示的傅里叶级数
 
@@ -29,7 +31,7 @@ $$
 
 其中，$n \omega$即为每个弦波的频率，$c_n$为傅里叶系数，也就是每个频率成分的权重，或者叫振幅
 
-但是如果我想表示一个非周期函数该怎么办呢？
+但是如果我想表示一个非周期函数该怎么办呢？-->
 
 ## 傅里叶变换
 <!--
@@ -79,7 +81,7 @@ $$
 F(\omega) = \int_{-\infty}^{\infty} f(t) e^{(-i \omega t)} dt
 $$
 
-简写为$F(\omega) = \mathcal{F}[f(t)]$
+简写为$F(\omega) = \mathscr{F}[f(t)]$
 
 ### 逆变换
 
@@ -89,7 +91,7 @@ $$
 f(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\omega) e^{(i \omega t)} d\omega
 $$
 
-简写为$f(t) = \mathcal{F}^{-1}[F(\omega)]$
+简写为$f(t) = \mathscr{F}^{-1}[F(\omega)]$
 
 ### 条件
 
@@ -103,7 +105,7 @@ $$
 
 有些时候人们需要考虑物理量在空间或时间上高度集中的现象，狄拉克函数$\delta(t)$就是用来描述这种现象的数学工具
 
-设$x$轴上点$x=x_0$处集中了质量为一单位的物质，在其他位置都没有物质分布，则$x$轴上的物质密度函数$\rho(x)$可以表示为：
+<!--设$x$轴上点$x=x_0$处集中了质量为一单位的物质，在其他位置都没有物质分布，则$x$轴上的物质密度函数$\rho(x)$可以表示为：
 
 用$m[a,b]$表示区间$[a,b]$内的物质总量，$\Delta = b - a$
 
@@ -123,7 +125,7 @@ $$
 m(-\infty, +\infty) = \int_{-\infty}^{\infty} \rho(x) dx = 1
 $$
 
-狄拉克函数即为上述这类集中分布密度函数加以抽象概括并标准化后的结果，定义如下：
+狄拉克函数即为上述这类集中分布密度函数加以抽象概括并标准化后的结果，-->定义如下：
 
 $$
 \begin{aligned}
@@ -183,12 +185,9 @@ $$
 
 $$
 \begin{aligned}
-\mathcal{F}[\delta(t)] &= 1 \\[1em]
-\mathcal{F}^{-1}[1] &= \delta(t) \\[1em]
-\mathcal{F}[1] &= 2\pi \delta(\omega) \\[1em]
-\mathcal{F}^{-1}[2\pi \delta(\omega) ] &= 1 \\[1em]
-\mathcal{F}[e^{i \omega_0 t}] &= 2\pi \delta(\omega - \omega_0) \\[1em]
-\mathcal{F}^{-1}[2\pi \delta(\omega - \omega_0)] &= e^{i \omega_0 t}
+\mathscr{F}[\delta(t)] &= 1 \quad \mathscr{F}^{-1}[1] = \delta(t) \\[1em]
+\mathscr{F}[1] &= 2\pi \delta(\omega) \quad \mathscr{F}^{-1}[2\pi \delta(\omega) ] = 1 \\[1em]
+\mathscr{F}[e^{i \omega_0 t}] &= 2\pi \delta(\omega - \omega_0) \quad \mathscr{F}^{-1}[2\pi \delta(\omega - \omega_0)] = e^{i \omega_0 t}
 \end{aligned}
 $$
 
@@ -200,7 +199,7 @@ $$
 1, \quad t > 0 \\
 -1, \quad t < 0
 \end{cases} \\[1em]
-\mathcal{F}[\text{sgn}(t)] = \frac{2}{i\omega}
+\mathscr{F}[\text{sgn}(t)] = \frac{2}{i\omega}
 \end{aligned}
 $$
 
@@ -208,32 +207,36 @@ $$
 
 核心就是将函数分解成上述几种已知的结论的组合，然后利用[傅里叶变换的性质](#傅里叶变换的性质)求解
 
+### 三角函数的傅里叶变换
+
+用欧拉公式然后套已知变换对
+
 ## 傅里叶变换的性质
 
 ### 线性性质
 
 $$
-\mathcal{F}[a f(t) + b g(t)] = a \mathcal{F}[f(t)] + b \mathcal{F}[g(t)]
+\mathscr{F}[a f(t) + b g(t)] = a \mathscr{F}[f(t)] + b \mathscr{F}[g(t)]
 $$
 
 逆变换也有
 
 ### 对称性质
 
-已知$F(\omega) = \mathcal{F}[f(t)]$，则有
+已知$F(\omega) = \mathscr{F}[f(t)]$，则有
 
 $$
-\mathcal{F}[F(t)] = 2\pi f(-\omega)
+\mathscr{F}[F(t)] = 2\pi f(-\omega)
 $$
 
 ### 位移性质
 
-设$\mathcal{F}[f(t)] = F(\omega)$，则有
+设$\mathscr{F}[f(t)] = F(\omega)$，则有
 
 $$
 \begin{aligned}
-\mathcal{F}[f(t \pm t_0)] = e^{\pm i \omega t_0} \mathcal{F}[f(t)] \\[1em]
-\mathcal{F}^{-1}[F(\omega \pm \omega_0)] = e^{\mp i \omega_0 t} f(t)
+\mathscr{F}[f(t \pm t_0)] = e^{\pm i \omega t_0} \mathscr{F}[f(t)] \\[1em]
+\mathscr{F}^{-1}[F(\omega \pm \omega_0)] = e^{\mp i \omega_0 t} f(t)
 \end{aligned}
 $$
 
@@ -241,12 +244,12 @@ $$
 
 ### 坐标缩放性质
 
-设$a$是非零实数，$\mathcal{F}[f(t)] = F(\omega)$，则有
+设$a$是非零实数，$\mathscr{F}[f(t)] = F(\omega)$，则有
 
 $$
 \begin{aligned}
-\mathcal{F}[f(a t)] = \frac{1}{|a|} F\left(\frac{\omega}{a}\right) \\[1em]
-\mathcal{F}^{-1}[F(a \omega)] = |a| f(a t)  
+\mathscr{F}[f(a t)] = \frac{1}{|a|} F\left(\frac{\omega}{a}\right) \\[1em]
+\mathscr{F}^{-1}[F(a \omega)] = |a| f(a t)  
 \end{aligned}
 $$
 
@@ -254,9 +257,20 @@ $$
 
 生活中常见的现象：音频加速播放时，声音变得尖细（频率变高），而慢速播放时，声音变得低沉（频率变低）
 
+### 微分性质
+
+设$\mathscr{F}[f(t)] = F(\omega)$，则有
+
+$$
+\mathscr{F}[f^{(n)}(t)] = (i\omega)^n F(\omega) \\[1.5em]
+\mathscr{F}^{-1}[F^{(n)}(\omega)] = (-i t)^n f(t)
+$$
+
+这个性质在求解微分方程时会大量用到
+
 ### 乘积定理
 
-设$F_1(\omega) = \mathcal{F}[f_1(t)]$，$F_2(\omega) = \mathcal{F}[f_2(t)]$，则有
+设$F_1(\omega) = \mathscr{F}[f_1(t)]$，$F_2(\omega) = \mathscr{F}[f_2(t)]$，则有
 
 $$
 \begin{aligned}
@@ -269,7 +283,7 @@ $\overline{F(\omega)}$表示$F(\omega)$的复共轭函数
 
 ### 帕萨瓦尔定理
 
-设$F(\omega) = \mathcal{F}[f(t)]$，则有
+设$F(\omega) = \mathscr{F}[f(t)]$，则有
 
 $$
 \int_{-\infty}^{\infty} |f(t)|^2 dt = \frac{1}{2\pi} \int_{-\infty}^{\infty} |F(\omega)|^2 d\omega
@@ -281,9 +295,119 @@ $$
 
 3b1b的这个视频讲得挺好 [【官方双语】那么……什么是卷积？](https://www.bilibili.com/video/BV1Vd4y1e7pj/)
 
+### 定义
+
+$$
+(f * g)(t) = \int_{-\infty}^{\infty} f(\tau) g(t - \tau) d\tau
+$$
+
+$f*g$表示函数$f$和$g$的卷积
+
+但是这个计算太麻烦了，好在傅里叶变换有个性质
+
+### 卷积定理
+
+设$\mathscr{F}[f(t)] = F(\omega)$，$\mathscr{F}[g(t)] = G(\omega)$，则有
+
+$$
+\mathscr{F}[f * g] = F(\omega) G(\omega) \\[1.5em]
+\mathscr{F}[f \cdot g] = \frac{1}{2\pi} F(\omega) * G(\omega)
+$$
+
+也就是说，时域的卷积对应频域的乘积，只要先变换再相乘，最后逆变换就能得到卷积结果
+
+### 卷积的性质
+
+1. 交换律：$f * g = g * f$
+2. 结合律：$f *(g* h) = (f * g) * h$
+3. 分配律：$f *(g + h) = f* g + f* h$、
+
+设$g(t) = f_1(t) * f_2(t)$，则有
+
+#### 平移不变性质
+
+$$
+f_1(t-\alpha) * f_2(t-\beta) = g(t - \alpha - \beta)
+$$
+
+#### 坐标缩放
+
+$$
+f_1(a t) * f_2(a t) = \frac{1}{|a|} g(a t)
+$$
+
+### 傅里叶变换求微分方程
+
+利用傅里叶变换的微分性质，可以将微分方程转化为代数方程，从而简化求解过程
+
+$$
+\begin{aligned}
+\text{设} \quad & f^{(n)}(t) + a_{n-1} f^{(n-1)}(t) + \cdots + a_1 f'(t) + a_0 f(t) = g(t) \\[1.5em]
+\text{则} \quad & (i\omega)^n F(\omega) + a_{n-1} (i\omega)^{n-1} F(\omega) + \cdots + a_1 (i\omega) F(\omega) + a_0 F(\omega) = G(\omega) \\[1.5em]
+\text{解得} \quad & F(\omega) = \frac{G(\omega)}{(i\omega)^n + a_{n-1} (i\omega)^{n-1} + \cdots + a_1 (i\omega) + a_0} \\[1.5em]
+\text{最后逆变换} \quad & f(t) = \mathscr{F}^{-1}[F(\omega)]
+\end{aligned}
+$$
+
 ## 可能会用到的
 
-### 钟形脉冲函数的傅里叶变换
+### 常见傅里叶变换对
+
+#### 三角函数
+
+$$
+\begin{aligned}
+\mathscr{F}[\cos{(\omega_0 t)}] &= \pi \left[ \delta(\omega - \omega_0) + \delta(\omega + \omega_0) \right] \\[2em]
+\mathscr{F}[\sin{(\omega_0 t)}] &= i \pi \left[ \delta(\omega + \omega_0) - \delta(\omega - \omega_0) \right]
+\end{aligned}
+$$
+
+#### 指数衰减函数
+
+单边的
+
+$$
+f(t) = \begin{cases}
+e^{-a t}, \quad t \geq 0 \\
+0, \quad t < 0
+\end{cases} \qquad (a > 0) \\[2.5em]
+F(\omega) = \frac{1}{a + i \omega}
+$$
+
+双边的
+
+$$
+f(t) = e^{-a |t|} \qquad (a > 0) \\[2.5em]
+F(\omega) = \frac{2a}{a^2 + \omega^2}
+$$
+
+>指数衰减函数和三角函数的变换计算其实很简单，不用硬背
+>
+>之后这几个就是纯折磨，现算都是神人了
+
+#### 符号函数
+
+$$
+f(t) = \text{sgn}(t) = \begin{cases}
+1, \quad t > 0 \\
+-1, \quad t < 0
+\end{cases} \\[2.5em]
+F(\omega) = \frac{2}{i \omega}
+$$
+
+#### 单位阶跃函数
+
+基于符号函数
+
+$$
+f(t) = \begin{cases}
+1, \quad t \geq 0 \\
+0, \quad t < 0
+\end{cases} \\[2.5em]
+F(\omega) = \pi \delta(\omega) + \frac{1}{i \omega}
+$$
+
+#### 钟形脉冲函数
 
 设钟形脉冲函数为：
 
@@ -297,13 +421,7 @@ $$
 F(\omega) = E \exp{\left(-\frac{\omega^2}{4\beta}\right)} \sqrt{\frac{\pi}{\beta}}
 $$
 
-### 狄利克雷积分
-
-$$
-\int_{0}^{\infty} \frac{\sin{x}}{x} dx = \frac{\pi}{2}
-$$
-
-### 矩形单脉冲函数的傅里叶变换
+#### 矩形单脉冲函数
 
 $$
 f(t) = \begin{cases}
@@ -311,4 +429,10 @@ E, \quad |t| \leq \frac{\tau}{2} \\
 0, \quad |t| > \frac{\tau}{2}
 \end{cases} \qquad (E > 0, \tau > 0) \\[2.5em]
 F(\omega) = \frac{2E}{\omega} \sin{\left(\frac{\omega \tau}{2}\right)}
+$$
+
+### 狄利克雷积分
+
+$$
+\int_{0}^{\infty} \frac{\sin{x}}{x} dx = \frac{\pi}{2}
 $$

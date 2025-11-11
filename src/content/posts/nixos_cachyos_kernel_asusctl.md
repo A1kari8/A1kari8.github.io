@@ -6,11 +6,9 @@ category: Linux/NixOS
 draft: false
 ---
 
-`asusctl`的功耗控制功能是依赖特殊的内核功能的，默认的内核并不支持，经过一番搜索，在NixOS Discourse上找到了一位大佬对Arch Linux上`linux-g14`内核的[打包配置](https://discourse.nixos.org/t/integrating-the-linux-g14-kernel-into-nixos-kernels-broader-asus-laptop-support/63350)，但是是需要自行编译的，在笔记本上编译内核压力实在有点大了
+`asusctl`的功耗控制功能是依赖特殊的内核功能的，默认的内核并不支持，经过一番搜索，在NixOS Discourse上找到了一位大佬对Arch Linux上`linux-g14`内核的[打包配置](https://discourse.nixos.org/t/integrating-the-linux-g14-kernel-into-nixos-kernels-broader-asus-laptop-support/63350)，但是需要自行编译，在笔记本上编译内核压力实在有点大了
 
-之后突然想起之前用Fedora的时候，asus-linux上[推荐使用CachyOS内核](https://asus-linux.org/guides/fedora-guide/)，就猜想是不是CachyOS内核已经有了功耗控制需要的功能
-
-于是上网搜索找到了这个NixOS上的CachyOS内核项目，没想到还真的能启用功耗控制
+但其实CachyOS的内核已经集成了这些补丁，直接用CachyOS内核就可以了，Chaotic项目还提供了CachyOS内核的Nix二进制缓存
 
 [https://www.nyx.chaotic.cx/](https://www.nyx.chaotic.cx/)
 

@@ -6,6 +6,8 @@ category: 复变函数
 draft: false
 ---
 
+这篇的常见级数主要在洛朗级数中使用，复变的考试不会再考泰勒级数了
+
 ## 泰勒级数
 
 $$
@@ -27,20 +29,22 @@ $$
 \ln(1+z) = \sum_{n=1}^{\infty} (-1)^{n-1} \frac{z^n}{n} \quad |z| < 1
 $$
 
-### 指数函数
+### 自然指数函数
 
 $$
-e^z = \sum_{n=0}^{\infty} \frac{z^n}{n!}
+e^z = \sum_{n=0}^{\infty} \frac{z^n}{n!} \quad |z| < \infty
 $$
 
 ### 正弦函数
 
 $$
-\sin z = \sum_{n=0}^{\infty} (-1)^n \frac{z^{2n+1}}{(2n+1)!}
+\sin z = \sum_{n=0}^{\infty} (-1)^n \frac{z^{2n+1}}{(2n+1)!} \quad |z| < \infty
 $$
 
 ### 余弦函数
 
 $$
-\cos z = \sum_{n=0}^{\infty} (-1)^n \frac{z^{2n}}{(2n)!}
+\cos z = \sum_{n=0}^{\infty} (-1)^n \frac{z^{2n}}{(2n)!} \quad |z| < \infty
 $$
+
+正弦、余弦和自然指数函数的收敛域非常棒，展开洛朗级数的时候直接无脑展开
