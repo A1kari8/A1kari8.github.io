@@ -23,6 +23,33 @@ $$
 f(t) = \mathscr{L}^{-1}[F(s)] = \sum_{k=1}^{n} \text{Res} \left( F(s) e^{st}, s_k \right)
 $$
 
+## 常见拉普拉斯变换对
+
+| $f(t)$ | $F(s)$ | 条件 |
+|--------|--------|------|
+| 1 | $\frac{1}{s}$ | $\mathbf{Re}(s) > 0$ |
+| $\delta(t)$ | 1 | 无 |
+| $u(t)$ | $\frac{1}{s}$ | $\mathbf{Re}(s) > 0$ |
+| $t^n$ | $\frac{\Gamma(n+1)}{s^{n+1}}$ | $\mathbf{Re}(s) > 0$ |
+| $e^{kt}$ | $\frac{1}{s - k}$ | $\mathbf{Re}(s) > k$ |
+| $\sin{(k t)}$ | $\frac{k}{s^2 + k^2}$ | $\mathbf{Re}(s) > 0$ |
+| $\cos{(k t)}$ | $\frac{s}{s^2 + k^2}$ | $\mathbf{Re}(s) > 0$ |
+
+### 微积分跳过不讲但现在还考的伽玛函数
+
+$$
+\Gamma(n) = \int_{0}^{\infty} t^{n-1} e^{-t} dt
+$$
+
+有以下性质
+
+$$
+\Gamma(n+1) = n \Gamma(n) \quad (n > 0) \\[1.5em]
+\Gamma(1) = 1 \\[1.5em]
+\Gamma\left(\frac{1}{2}\right) = \sqrt{\pi} \\[1.5em]
+\Gamma(n+1) = n! \quad (n \in \mathbb{N})
+$$
+
 ## 拉普拉斯变换存在定理
 
 $f(t)$的增长速度不超过某个指数函数
@@ -46,7 +73,8 @@ $c_0$称为$f(t)$的增长指数
 设$\mathscr{L}[f(t)] = F(s)$，则有
 
 $$
-\mathscr{L}[f^{(n)}(t)] = s^n F(s) - s^{n-1} f(0) - s^{n-2} f'(0) - \dots - f^{(n-1)}(0)
+\mathscr{L}[f^{(n)}(t)] = s^n F(s) - s^{n-1} f(0) - s^{n-2} f'(0) - \dots - f^{(n-1)}(0) \\[1.5em]
+F^{(n)}(s) = \mathscr{L} \left[ (-t)^n f(t) \right]
 $$
 
 这个性质在求解微分方程时会大量用到

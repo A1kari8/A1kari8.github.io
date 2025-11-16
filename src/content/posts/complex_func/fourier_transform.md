@@ -101,6 +101,19 @@ $$
 2. **有限个间断点**：函数$f(t)$在任何有限区间内只有有限个间断点
 3. **有限个极值点**：函数$f(t)$在任何有限区间内只有有限个极值点
 
+## 常见傅里叶变换对
+
+| $f(t)$ | $F(\omega)$ | 条件 |
+| --- | --- | --- |
+| $\delta(t)$ | $1$ | - |
+| $1$ | $2\pi \delta(\omega)$ | - |
+| $e^{i \omega_0 t}$ | $2\pi \delta(\omega - \omega_0)$ | - |
+| $\text{sgn}(t)$ | $\frac{2}{i \omega}$ | - |
+| $u(t)$ | $\pi \delta(\omega) + \frac{1}{i \omega}$ | - |
+| $E e^{-\beta t^2}$ | $E \exp{\left(-\frac{\omega^2}{4\beta}\right)} \sqrt{\frac{\pi}{\beta}}$ | $E > 0, \beta > 0$ |
+
+表格写不下了，更多见[可能会用到的](#可能会用到的)
+
 ## 单位脉冲函数（狄拉克函数）
 
 有些时候人们需要考虑物理量在空间或时间上高度集中的现象，狄拉克函数$\delta(t)$就是用来描述这种现象的数学工具
@@ -267,6 +280,20 @@ $$
 $$
 
 这个性质在求解微分方程时会大量用到
+
+### 积分性质
+
+设$\mathscr{F}[f(t)] = F(\omega)$，则有
+
+$$
+\mathscr{F} \left[ \int_{-\infty}^{t} f(\tau) d\tau \right] = \frac{F(\omega)}{i \omega} + \pi F(0) \delta(\omega)
+$$
+
+当$\lim_{t \to -\infty} \int_{-\infty}^{t} f(\tau) d\tau \to 0$时，有
+
+$$
+\mathscr{F} \left[ \int_{-\infty}^{t} f(\tau) d\tau \right] = \frac{F(\omega)}{i \omega}
+$$
 
 ### 乘积定理
 
