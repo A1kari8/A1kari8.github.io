@@ -261,8 +261,7 @@ $$
 
 $$
 \begin{aligned}
-\mathscr{F}[f(a t)] = \frac{1}{|a|} F\left(\frac{\omega}{a}\right) \\[1em]
-\mathscr{F}^{-1}[F(a \omega)] = |a| f(a t)  
+\mathscr{F}[f(a t)] = \frac{1}{|a|} F\left(\frac{\omega}{a}\right)
 \end{aligned}
 $$
 
