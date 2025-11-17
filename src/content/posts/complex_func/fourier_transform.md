@@ -111,6 +111,7 @@ $$
 | $\text{sgn}(t)$ | $\frac{2}{i \omega}$ | - |
 | $u(t)$ | $\pi \delta(\omega) + \frac{1}{i \omega}$ | - |
 | $E e^{-\beta t^2}$ | $E \exp{\left(-\frac{\omega^2}{4\beta}\right)} \sqrt{\frac{\pi}{\beta}}$ | $E > 0, \beta > 0$ |
+| $\frac{1}{t}$ | $-i \pi \text{sgn}(\omega)$ | - |
 
 表格写不下了，更多见[可能会用到的](#可能会用到的)
 
@@ -226,6 +227,8 @@ $$
 
 ## 傅里叶变换的性质
 
+以下均设$\mathscr{F}[f(t)] = F(\omega)$
+
 ### 线性性质
 
 $$
@@ -236,15 +239,13 @@ $$
 
 ### 对称性质
 
-已知$F(\omega) = \mathscr{F}[f(t)]$，则有
+把频域函数当作时域函数进行变换
 
 $$
 \mathscr{F}[F(t)] = 2\pi f(-\omega)
 $$
 
 ### 位移性质
-
-设$\mathscr{F}[f(t)] = F(\omega)$，则有
 
 $$
 \begin{aligned}
@@ -253,25 +254,21 @@ $$
 \end{aligned}
 $$
 
-位移会影响频域的相位（乘$e^{\pm i \omega t_0}$后辐角改变），但不会改变振幅（乘$e^{\pm i \omega t_0}$后模没变）
+<!--位移会影响频域的相位（乘$e^{\pm i \omega t_0}$后辐角改变），但不会改变振幅（乘$e^{\pm i \omega t_0}$后模没变）-->
 
 ### 坐标缩放性质
-
-设$a$是非零实数，$\mathscr{F}[f(t)] = F(\omega)$，则有
 
 $$
 \begin{aligned}
 \mathscr{F}[f(a t)] = \frac{1}{|a|} F\left(\frac{\omega}{a}\right)
-\end{aligned}
+\end{aligned} \qquad (a \neq 0, a \in \mathbb{R})
 $$
 
-如果$f(t)$的图像变**窄**，则$F(\omega)$的图像变**宽**变**矮**；反之若$f(t)$的图像变**宽**，则$F(\omega)$的图像变**窄**变**高**
+<!--如果$f(t)$的图像变**窄**，则$F(\omega)$的图像变**宽**变**矮**；反之若$f(t)$的图像变**宽**，则$F(\omega)$的图像变**窄**变**高**
 
-生活中常见的现象：音频加速播放时，声音变得尖细（频率变高），而慢速播放时，声音变得低沉（频率变低）
+生活中常见的现象：音频加速播放时，声音变得尖细（频率变高），而慢速播放时，声音变得低沉（频率变低）-->
 
 ### 微分性质
-
-设$\mathscr{F}[f(t)] = F(\omega)$，则有
 
 $$
 \mathscr{F}[f^{(n)}(t)] = (i\omega)^n F(\omega) \\[1.5em]
@@ -281,8 +278,6 @@ $$
 这个性质在求解微分方程时会大量用到
 
 ### 积分性质
-
-设$\mathscr{F}[f(t)] = F(\omega)$，则有
 
 $$
 \mathscr{F} \left[ \int_{-\infty}^{t} f(\tau) d\tau \right] = \frac{F(\omega)}{i \omega} + \pi F(0) \delta(\omega)
@@ -308,8 +303,6 @@ $$
 $\overline{F(\omega)}$表示$F(\omega)$的复共轭函数
 
 ### 帕萨瓦尔定理
-
-设$F(\omega) = \mathscr{F}[f(t)]$，则有
 
 $$
 \int_{-\infty}^{\infty} |f(t)|^2 dt = \frac{1}{2\pi} \int_{-\infty}^{\infty} |F(\omega)|^2 d\omega
@@ -337,10 +330,10 @@ $f*g$表示函数$f$和$g$的卷积
 
 $$
 \mathscr{F}[f * g] = F(\omega) G(\omega) \\[1.5em]
-\mathscr{F}[f \cdot g] = \frac{1}{2\pi} F(\omega) * G(\omega)
+\mathscr{F}[f \cdot g] = F(\omega) * G(\omega)
 $$
 
-也就是说，时域的卷积对应频域的乘积，只要先变换再相乘，最后逆变换就能得到卷积结果
+<!--也就是说，时域的卷积对应频域的乘积，只要先变换再相乘，最后逆变换就能得到卷积结果-->
 
 ### 卷积的性质
 
@@ -414,7 +407,7 @@ $$
 #### 符号函数
 
 $$
-f(t) = \text{sgn}(t) = \begin{cases}
+\text{sgn}(t) = \begin{cases}
 1, \quad t > 0 \\
 -1, \quad t < 0
 \end{cases} \\[2.5em]
@@ -426,7 +419,7 @@ $$
 基于符号函数
 
 $$
-f(t) = \begin{cases}
+u(t) = \begin{cases}
 1, \quad t \geq 0 \\
 0, \quad t < 0
 \end{cases} \\[2.5em]

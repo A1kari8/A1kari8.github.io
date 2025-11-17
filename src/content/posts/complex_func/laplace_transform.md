@@ -64,27 +64,31 @@ $c_0$称为$f(t)$的增长指数
 
 ## 拉普拉斯变换的性质
 
+以下均设$\mathscr{L}[f(t)] = F(s)$
+
 ### 线性性质
 
 不多说了
 
 ### 微分性质
 
-设$\mathscr{L}[f(t)] = F(s)$，则有
-
 $$
-\mathscr{L}[f^{(n)}(t)] = s^n F(s) - s^{n-1} f(0) - s^{n-2} f'(0) - \dots - f^{(n-1)}(0) \\[1.5em]
+\boxed{
+\mathscr{L}[f^{(n)}(t)] = s^n F(s) - s^{n-1} f(0) - s^{n-2} f'(0) - \dots - f^{(n-1)}(0)
+}\\[1.5em]
+\boxed{
 F^{(n)}(s) = \mathscr{L} \left[ (-t)^n f(t) \right]
+}
 $$
 
 这个性质在求解微分方程时会大量用到
 
 ### 积分性质
 
-设$\mathscr{L}[f(t)] = F(s)$，则有
-
 $$
+\boxed{
 \mathscr{L} \left[ \int_{0}^{t} f(\tau) d\tau \right] = \frac{F(s)}{s}
+}
 $$
 
 更一般的式子
@@ -96,7 +100,9 @@ $$
 像函数的积分性质
 
 $$
-\int_s^{\infty} F(u) du = \mathscr{L} \left[ \frac{f(t)}{t} \right]
+\boxed{
+    \mathscr{L} \left[ \frac{f(t)}{t} \right] = \int_s^{\infty} F(u) du
+}
 $$
 
 也有更一般的形式
@@ -107,41 +113,64 @@ $$
 
 ### 位移性质
 
-设$\mathscr{L}[f(t)] = F(s)$，则有
-
 $$
+\boxed{
 \mathscr{L}[e^{a t} f(t)] = F(s - a) \qquad (\mathbf{Re}(s-a) > c_0)
+}
 $$
 
 $c_0$为$f(t)$的[**增长指数**](#拉普拉斯变换存在定理)
 
 ### 延迟性质
 
-设$\mathscr{L}[f(t)] = F(s)$，又$t < 0$时$f(t) = 0$，则有
-
 $$
+\boxed{
 \begin{aligned}
-\mathscr{L} \left[ f(t - \tau) \right] &= e^{-a\tau} F(s) \qquad \\[1.5em]
-\mathscr{L}^{-1} \left[ e^{-s\tau} F(s) \right] &= f(t - \tau) \qquad (\tau \geq 0)
+&\mathscr{L} \left[ f(t - a) u(t - a) \right] = e^{-a s} F(s) \qquad \\[1.5em]
+&\mathscr{L}^{-1} \left[ e^{-s a} F(s) \right] = f(t - a) u(t - a)
 \end{aligned}
+}
 $$
 
-利用单位阶跃函数可以写成
+### 缩放性质
 
 $$
-\mathscr{L} \left[ f(t - \tau) u(t - \tau) \right] = e^{-s\tau} F(s)
+\boxed{
+\mathscr{L}[f(a t)] = \frac{1}{a} F\left(\frac{s}{a}\right)
+} \qquad (a > 0)
 $$
-
-这样就不用限制$\tau \geq 0$了
 
 ## 拉普拉斯的性质(2)
 
 ### 初值定理
 
-若$\mathscr{L}[f(t)] = F(s)$，且$\lim\limits_{t \to 0^+} sF(s)$存在，则有
+$\lim\limits_{t \to 0^+} sF(s)$存在，则有
 
 $$
-\lim\limits_{t \to 0^+} f(t) = \lim\limits_{s \to \infty} sF(s)
+f(0^+) = \lim\limits_{s \to \infty} sF(s)
 $$
 
 ### 终值定理
+
+$\lim\limits_{t \to \infty} f(t)$存在，且$F(s)$的极点均位于$s$平面的左半平面，则有
+
+$$
+f(\infty) = \lim\limits_{s \to 0} sF(s)
+$$
+
+## 卷积定理
+
+设$\mathscr{L}[f(t)] = F(s)$，$\mathscr{L}[g(t)] = G(s)$，则有
+
+### 拉普拉斯变换的卷积定义
+
+$$
+f(t) * g(t) = \int_{0}^{t} f(\tau) g(t - \tau) d\tau
+$$
+
+### 拉普拉斯变换的卷积定理
+
+$$
+\mathscr{L}[f * g] = F(s) G(s) \\[1.5em]
+\mathscr{L}[f \cdot g] =  F(s) * G(s)
+$$  
