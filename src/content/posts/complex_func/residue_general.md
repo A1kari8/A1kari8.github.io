@@ -53,15 +53,17 @@ $z_k$是$f(z)$在**上半平面**内的所有孤立奇点
 
 ## 第三种
 
+$f(x)$的分母至少比分子高出一阶
+
 $$
 \int_{-\infty}^{+\infty} f(x) e^{i\lambda x} dx
 $$
 
 $$
-\int_{-\infty}^{+\infty} f(x) e^{i\lambda x} dx = 2\pi i \sum_{k}^{p} \text{Res}(f(z)e^{i\lambda z},z_k)
+\int_{-\infty}^{+\infty} f(x) e^{i\lambda x} dx = 2\pi i \sum_{k}^{p} \text{Res}(f(z)e^{i\lambda z},z_k) + \pi i \sum_{k}^{q} \text{Res}(f(x)e^{i\lambda x},x_k)
 $$
 
-$z_k$是$f(z)$在**上半平面**内的所有孤立奇点，且$\lambda > 0$
+$z_k$是$f(z)$在**上半平面**内的所有孤立奇点，$x_k$是实轴上的一阶极点，且$\lambda > 0$
 
 有时候可能遇到比较隐蔽的形式，比如
 

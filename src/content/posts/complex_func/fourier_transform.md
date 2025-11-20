@@ -330,8 +330,10 @@ $f*g$表示函数$f$和$g$的卷积
 
 $$
 \mathscr{F}[f * g] = F(\omega) G(\omega) \\[1.5em]
-\mathscr{F}[f \cdot g] = F(\omega) * G(\omega)
+\mathscr{F}[f \cdot g] = \frac{1}{2\pi} F(\omega) * G(\omega)
 $$
+
+因为傅里叶变换的多种约定形式，这块可能会有不同，我这里的是教材上给的形式
 
 <!--也就是说，时域的卷积对应频域的乘积，只要先变换再相乘，最后逆变换就能得到卷积结果-->
 
