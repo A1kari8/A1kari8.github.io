@@ -15,6 +15,26 @@ $$
 f^{\prime}(z_0) = \frac{f(z_0+\Delta z)-f(z_0)}{\Delta z}
 $$
 
+### 复变函数导数的几种表示形式
+
+$$
+\begin{aligned}
+f^{\prime}(z) &= \frac{\partial u}{\partial x} + i \frac{\partial v}{\partial x} \\[1.5em]
+&= \frac{\partial v}{\partial y} - i \frac{\partial u}{\partial y}
+\end{aligned}
+$$
+
+第二种的计算过程
+
+$$
+\begin{aligned}
+f^{\prime}(z) &= \lim_{\Delta z \to 0} \frac{f(z+i\Delta y)-f(z)}{i\Delta y} \\[1.5em]
+&= \frac{1}{i} \cdot \frac{\partial f}{\partial y} \\[1.5em]
+&= \frac{1}{i} \left( \frac{\partial u}{\partial y} + i \frac{\partial v}{\partial y} \right) \\[1.5em]
+&= \frac{\partial v}{\partial y} - i \frac{\partial u}{\partial y}
+\end{aligned}
+$$
+
 ## 解析
 
 ### 解析与可导的区别
@@ -52,3 +72,13 @@ $$
 ## 解析的一个必要条件
 
 若$\omega = u(x,y) + iv(x,y)$是解析函数，则$\frac{\partial\omega}{\partial \bar z}=0$，即$\omega$只用$z$就可表示
+
+## 将解析函数$f(x+iy)$化成$f(z)$的方法
+
+令$y=0$
+
+$$
+f(x+yi) = f(x) = \text{关于}x\text{的函数}
+$$
+
+将$x$替换成$z$即可得到$f(z)$
