@@ -1,7 +1,7 @@
 ---
 title: "[ICS大作业] 第二章 预处理"
 published: 2025-10-1 10:53:00
-tags: [Linux,Fedora,C]
+tags: [Linux,C]
 category: ICS
 draft: false
 ---
@@ -20,33 +20,33 @@ draft: false
 ## 2.2 预处理命令
 
 ```shell
-gcc(或clang) -E hello.c -o hello.i
+cpp hello.c -o hello.i
 ```
 
-![截图](./preprocess.jpg)
+![截图](./preprocess.png)
 
 ## 2.3 Hello的预处理结果解析
 
 因生成文件过大无法贴出全部内容，以下为部分内容解析
 
 ```c
+# 0 "hello.c"
+# 0 "<built-in>"
+# 0 "<命令行>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<命令行>" 2
 # 1 "hello.c"
-# 1 "<built-in>" 1
-# 1 "<built-in>" 3
-# 406 "<built-in>" 3
-# 1 "<command line>" 1
-# 1 "<built-in>" 2
-# 1 "hello.c" 2
 
 ...
 
 ```
 
-- `# 1 "hello.c"`：表示接下来的代码来自`hello.c`文件的第1行
-- `# 1 "<built-in>" 1`：表示接下来的代码来自内置头文件的第1行，`1`表示这是一个系统头文件
-- `# 1 "<command line>" 1`：表示接下来的代码来自命令行参数的第1行
-- `# 1 "<built-in>" 2`：表示接下来的代码来自内置头文件的第2行，`2`表示这是一个用户头文件
-- `# 1 "hello.c" 2`：表示接下来的代码再次来自`hello.c`文件的第2行，`2`表示这是一个用户头文件
+- **`# 0 "hello.c"`**: 表示接下来的代码来自 `hello.c` 文件的第 0 行
+- **`# 0 "<built-in>"`**: 表示接下来的代码来自编译器内置代码的第 0 行
+- **`# 0 "<命令行>"`**: 表示接下来的代码来自命令行参数（宏定义）的第 0 行
+- **`# 1 "/usr/include/stdc-predef.h" 1 3 4`**: 表示接下来的代码来自 `/usr/include/stdc-predef.h` 文件的第 1 行，标志 `1` 表示文件包含开始，标志 `3` 表示这是系统头文件
+- **`# 0 "<命令行>" 2`**: 表示接下来的代码回到命令行参数的第 0 行，标志 `2` 表示文件包含结束
+- **`# 1 "hello.c"`**: 表示接下来的代码来自 `hello.c` 文件的第 1 行
 
 ```c
 # 1 "/usr/include/stdio.h" 1 3 4
@@ -75,6 +75,10 @@ gcc(或clang) -E hello.c -o hello.i
 翻到文件末尾，可以看到`hello.c`中的代码：
 
 ```c
+# 10 "hello.c" 2
+
+
+# 11 "hello.c"
 int main(int argc,char *argv[]){
  int i;
 

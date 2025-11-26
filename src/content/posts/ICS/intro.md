@@ -1,7 +1,7 @@
 ---
 title: "[ICS大作业] 第一章 概述"
 published: 2025-09-30 23:40:00
-tags: [Linux,Fedora,C]
+tags: [Linux,C]
 category: ICS
 draft: false
 ---
@@ -28,14 +28,14 @@ draft: false
 
 - CPU: AMD Ryzen 9 7940HX
 - RAM: 16GB DDR5
-- OS: Fedora Linux 42
+- OS: Arch Linux
 
 ### 工具
 
 - 编辑器: Visual Studio Code
-- LSP: clangd version 20.1.8 (Fedora 20.1.8-4.fc42)
-- 编译器: gcc (GCC) 15.2.1 20250808 (Red Hat 15.2.1-1) clang version 20.1.8 (Fedora 20.1.8-4.fc42)
-- 调试器: GNU gdb (Fedora Linux) 16.3-1.fc42
+- LSP: clangd version 21.1.5
+- 编译器: gcc (GCC) 15.2.1 20251112
+- 调试器: GNU gdb (GDB) 16.3
 
 ## 1.3 中间结果
 

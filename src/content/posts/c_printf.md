@@ -1,5 +1,5 @@
 ---
-title: C/C++ printf() 的使用
+title: C printf() 的使用
 published: 2023-12-15 18:19:25
 tags: [C++,C]
 category: Programming
@@ -14,7 +14,7 @@ category: Programming
 
 `%c` 一个字符
 
-`%d` 有符号十进制整数
+`%d` 有符号十进制整数，`%ld`/`%lld`为长整型
 
 `%e` 浮点数、e-记数法
 
@@ -33,6 +33,3 @@ category: Programming
 `%x` 使用十六进制数字0f的无符号十六进制整数
 
 `%%` 打印一个百分号
-
-> [!TIP]
-> ps: 使用`printf()`打印`std::string`可能出现乱码，可使用`std::string.c_str()`

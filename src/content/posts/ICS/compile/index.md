@@ -1,7 +1,7 @@
 ---
 title: "[ICS大作业] 第三章 编译"
 published: 2025-10-1 10:53:00
-tags: [Linux,Fedora,C]
+tags: [Linux,C]
 category: ICS
 draft: false
 ---
@@ -20,10 +20,10 @@ draft: false
 ## 3.2 编译命令
 
 ```shell
-gcc/clang -S hello.i -o hello.s
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/cc1 hello.i -o hello.s
 ```
 
-![截图](./compile.jpg)
+![截图](./compile.png)
 
 ## 3.3 Hello的编译结果解析
 
