@@ -1,0 +1,379 @@
+---
+title: "[概率论] 速记表"
+published: 2025-11-27 20:01:00
+tags: [概率论,数学]
+category: 概率论
+---
+
+## 独立性条件
+
+$$
+\begin{aligned}
+P(AB) = P(A)P(B) \\
+f(x,y) = f_X(x) f_Y(y) \\
+F(x,y) = F_X(x) F_Y(y) \\  
+\end{aligned}
+$$
+
+## 全概率公式
+
+$$
+P(B) = \sum_{i=1}^{n} P(A_i) P(B|A_i)
+$$
+
+## 贝叶斯公式
+
+$$
+P(A_i|B) = \frac{P(A_i) P(B|A_i)}{\sum_{j=1}^{n} P(A_j) P(B|A_j)}
+$$
+
+## 离散分布
+
+### 二项分布
+
+$$
+X \sim B(n,p) \\[1em]
+E(X) = np \\[1em]
+D(X) = np(1-p)
+$$
+
+### 泊松分布
+
+$$
+X \sim Po(\lambda) \\[1em]
+f(x) = \frac{\lambda^x e^{-\lambda}}{x!} \quad x = 0,1,2,\ldots \\[1em]
+E(X) = \lambda \\[1em]
+D(X) = \lambda
+$$
+
+### 几何分布
+
+$$
+X \sim G(p) \\[1em]
+E(X) = \frac{1}{p} \\[1em]
+D(X) = \frac{1-p}{p^2}
+$$
+
+### 超几何分布
+
+$$
+X \sim H(N,M,n) \\[1em]
+E(X) = n \frac{M}{N} \\[1em]
+D(X) = n \frac{M}{N} \frac{N-M}{N} \frac{N-n}{N-1}
+$$
+
+## 泊松近似二项分布
+
+当$n$很大且$p$很小时，$np = \lambda$，则有
+
+$$
+P(X=k) \approx \frac{\lambda^k e^{-\lambda}}{k!}
+$$
+
+查表得
+
+## 连续分布
+
+### 正态分布
+
+$$
+X \sim N(\mu, \sigma^2) \\[1em]
+f(x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( -\frac{(x-\mu)^2}{2 \sigma^2} \right) \\[1em]
+E(X) = \mu \\[1em]
+D(X) = \sigma^2
+$$
+
+### 指数分布
+
+$$
+X \sim E(\lambda) \\[1em]
+f(x) = \lambda e^{-\lambda x} \quad x \geq 0 \\[1em]
+F(x) = 1 - e^{-\lambda x} \quad x \geq 0 \\[1em]
+E(X) = \frac{1}{\lambda} \\[1em]
+D(X) = \frac{1}{\lambda^2}
+$$
+
+### 均匀分布
+
+$$
+X \sim U(a,b) \\[1em]
+f(x) = \frac{1}{b-a} \\[1em]
+E(X) = \frac{a+b}{2} \\[1em]
+D(X) = \frac{(b-a)^2}{12}
+$$
+
+## 二维正态分布
+
+$$
+\begin{aligned}
+f(x,y) &= \frac{1}{2 \pi \sigma_X \sigma_Y \sqrt{1-\rho^2}} \exp \left( -\frac{1}{2(1-\rho^2)} \left[ \frac{(x-\mu_X)^2}{\sigma_X^2} - \frac{2 \rho (x-\mu_X)(y-\mu_Y)}{\sigma_X \sigma_Y} + \frac{(y-\mu_Y)^2}{\sigma_Y^2} \right] \right) \\[1em]
+E(X) &= \mu_X \\[1em]
+E(Y) &= \mu_Y \\[1em]
+D(X) &= \sigma_X^2 \\[1em]
+D(Y) &= \sigma_Y^2 \\[1em]
+Cov(X,Y) &= \rho \sigma_X \sigma_Y
+\end{aligned}
+$$
+
+## 二维随机变量的函数公式法
+
+$y = g(x)$ 在$(a,b)$ 单调, $x = h(y)$ 为其反函数, 则
+
+$$
+f_Y(y) = f_X(h(y)) |h'(y)|, \quad y \in (\min \left \{g(a), g(b) \right \} , \max \left \{g(a), g(b) \right \})
+$$
+
+## 数字特征
+
+### 期望
+
+$$
+E(X) = \int_{-\infty}^{+\infty} x f(x) \, dx
+$$
+
+### 方差
+
+$$
+D(X) = E[(X - E(X))^2] = \boxed{E(X^2) - [E(X)]^2}
+$$
+
+### 协方差
+
+$$
+Cov(X,Y) = E[(X - E(X))(Y - E(Y))] = \boxed{E(XY) - E(X)E(Y)}
+$$
+
+### 相关系数
+
+$$
+\rho_{XY} = \frac{Cov(X,Y)}{\sqrt{D(X)} \sqrt{D(Y)}}
+$$
+
+## 大数定律
+
+### 切比雪夫不等式
+
+纯套公式，看见$P(|X - E(X)| \geq \varepsilon)$的形式就想这个，有的时候期望是0会比较隐蔽，如果给的是$<$号，就用1减去
+
+$$
+P(|X - E(X)| \geq \varepsilon) \leq \frac{D(X)}{\varepsilon^2} \\[1em]
+$$
+
+### 伯努利大数定律
+
+看见$n$重伯努利试验的时候用，$Y_n$表示成功次数，$p$表示成功概率
+
+$$
+\lim_{n \to \infty} P \left( \left| \frac{Y_n}{n} - p \right| \ge \varepsilon \right) = 0
+$$
+
+### 切比雪夫大数定律
+
+如果有大量同分布且独立的随机变量$X_1, X_2, \ldots, X_n$就用这个
+
+$$
+\lim_{n \to \infty} P \left( \left| \frac{1}{n} \sum_{i=1}^{n} X_i - \mu \right| \ge \varepsilon \right) = 0
+$$
+
+### 辛钦大数定律
+
+其实跟切比雪夫大数定律是一样的，只不过放宽了条件，只要有相同的期望就行，不要求方差相等
+，实际上是因为上面的切比雪夫大数定律的推论证明的过程中假定了方差相等
+
+## 中心极限定理
+
+### 独立同分布中心极限定理
+
+独立同分布的随机变量$X_1, X_2, \ldots, X_n$，期望为$\mu$，方差为$\sigma^2$，则当$n$充分大时，随机变量就近似服从正态分布
+
+### 棣莫弗-拉普拉斯中心极限定理（n重伯努利试验）
+
+$n$重伯努利分布$B(n,p)$近似服从正态分布$N(np, np(1-p))$
+
+## 三大分布
+
+### 卡方分布
+
+有$n$个相互独立的标准正态分布随机变量$X_1, X_2, \ldots, X_n$，则随机变量
+$$
+Y = \sum_{i=1}^{n} X_i^2 \sim \chi^2(n)
+$$
+
+$\chi^2(n)$表示自由度为$n$的卡方分布
+
+### t分布
+
+由$X \sim N(0,1)$和$Y \sim \chi^2(n)$构成
+
+$$
+T = \frac{X}{\sqrt{Y/n}} \sim t(n)
+$$
+
+$t(n)$表示自由度为$n$的t分布
+
+### F分布
+
+由$X \sim \chi^2(n_1)$和$Y \sim \chi^2(n_2)$构成
+
+$$
+F = \frac{(X/n_1)}{(Y/n_2)} \sim F(n_1, n_2)
+$$
+
+$F(n_1, n_2)$表示自由度为$(n_1, n_2)$的F分布，$n_1$叫第一自由度，$n_2$叫第二自由度
+
+## 统计量
+
+### k阶矩
+
+$$
+A_k = \frac{1}{n} \sum_{i=1}^{n} X_i^k
+$$
+
+$k=1$时为样本均值
+
+### k阶中心距
+
+$$
+B_k = \frac{1}{n} \sum_{i=1}^{n} (X_i - \overline{X})^k
+$$
+
+$k=2$时不是样本方差，称为样本二阶中心距，表示为$S^{*2}$
+
+#### 样本方差
+
+$$
+S^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \overline{X})^2
+$$
+
+这才是样本方差，注意是除以$n-1$，而不是$n$
+
+:::warning
+接下来这两个必须得背，基本上是没法现推出来的
+:::
+
+### 样本方差的分布
+
+$$
+\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1)
+$$
+
+可用这个稍微变形得到样本二阶中心距的分布
+
+### 样本标准差的分布
+
+$$
+\frac{(\overline{X} - \mu)\sqrt{n}}{S} \sim t(n-1)
+$$
+
+## 参数估计
+
+### 矩估计法
+
+算一、二...阶矩$\alpha_1，\alpha_2, \ldots$，然后解方程组就能得到参数估计值，注意利用题里给的已知信息如均值、方差等，矩中间接包含了这些信息可用于解方程
+
+### 最大似然估计法
+
+先写出似然函数$L(\theta)$
+
+$$
+L(\theta) = \prod_{i=1}^{n} f(x_i; \theta)
+$$
+
+如果似然函数不连续，则应根据极大值出现在区间端点的原则，分别求出各个端点处的函数值，再比较大小，取最大值对应的$\theta$值
+
+其余情况，取对数似然函数并对$\theta$求导，令导数为0，解方程得到参数估计值
+
+$$
+\text{解该方程} \quad \frac{d}{d\theta} \ln L(\theta) = 0
+$$
+
+## 估计评定
+
+### 无偏性
+
+算估计量的均值，如果正好等于$\theta$，则该估计量是无偏的
+
+$$
+E(\hat{\theta}) = \theta
+$$
+
+### 有效性
+
+需要无偏性作为前提，如果不是无偏的谈有效性没意义
+
+设有两个估计$\theta_1$和$\theta_2$，如果对于所有的$\theta$都有
+
+$$
+D_{\theta}(\theta_1) \le D_{\theta}(\theta_2)
+$$
+
+且至少有一个参数值$\theta$使小于号成立，则称估计量$\theta_1$比估计量$\theta_2$更有效
+
+直观上理解就是方差更小的估计量更有效
+
+### 相合性
+
+有$n$个估计量$\hat{\theta}_n$，如果
+
+$$
+\forall \varepsilon > 0, \quad \lim_{n \to \infty} P(|\hat{\theta}_n - \theta| \ge \varepsilon) = 0
+$$
+
+则称估计量$\hat{\theta}_n$是参数$\theta$的相合（一致）估计量
+
+## 区间估计
+
+$1-\alpha$叫置信水平，$\alpha$叫显著性水平
+
+区间估计就三种情况：
+
+### 已知$\sigma^2$求$\mu$
+
+用正态分布
+
+$$
+u = \frac{\overline{x} - \mu}{\sigma / \sqrt{n}} \sim N(0,1)\\[1em]
+P \left( -u_{\alpha/2} \le u \le u_{\alpha/2} \right) = 1 - \alpha
+$$
+
+把已知的全代入解出$\mu$的范围就是置信区间，$u_{\alpha/2}$通过查表得到
+
+### 未知$\sigma^2$求$\mu$
+
+用t分布
+
+$$
+t = \frac{\overline{x} - \mu}{s / \sqrt{n}} \sim t(n-1)\\[1em]
+P \left( -t_{\alpha/2}(n-1) \le t \le t_{\alpha/2}(n-1) \right) = 1 - \alpha
+$$
+
+同样都代进去查表
+
+### 求$\sigma^2$
+
+用卡方分布
+
+$$
+\chi^2 = \frac{(n-1)s^2}{\sigma^2} \sim \chi^2(n-1)\\[1em]
+P \left(  \chi^2_{1-\alpha/2}(n-1) \le \chi^2 \le \chi^2_{\alpha/2}(n-1)  \right) = 1 - \alpha
+$$
+
+## 双样本均值差的区间估计
+
+### 已知$\sigma_1^2$ = $\sigma_2^2$求$\mu_1 - \mu_2$
+
+用t分布
+
+$$
+\large t = \frac{(\overline{x}_1 - \overline{x}_2) - (\mu_1 - \mu_2)}{\sqrt{\dfrac{\sigma_1^2}{n_1} + \dfrac{\sigma_2^2}{n_2}}} \sim t(n_1 + n_2 - 2 )\\[1em]
+P \left( -t_{\alpha/2}(n_1 + n_2 - 2) \le t \le t_{\alpha/2}(n_1 + n_2 - 2) \right) = 1 - \alpha
+$$
+
+### 求$\dfrac{\sigma_1^2}{\sigma_2^2}$
+
+用F分布
+
+$$
+\large F = \dfrac{s_1^2 / \sigma_1^2}{s_2^2 / \sigma_2^2} \sim F(n_1 - 1, n_2 - 1)\\[1em]
+P \left( F_{1-\alpha/2}(n_1 - 1, n_2 - 1) \le F \le F_{\alpha/2}(n_1 - 1, n_2 - 1) \right) = 1 - \alpha
+$$
