@@ -1,7 +1,7 @@
 ---
 title: C printf() 的使用
 published: 2023-12-15 18:19:25
-tags: [C++,C]
+tags: [C]
 category: Programming
 # cover: https://img-blog.csdnimg.cn/20200107215639651.png
 ---

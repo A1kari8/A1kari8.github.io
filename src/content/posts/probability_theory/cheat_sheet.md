@@ -131,10 +131,23 @@ $$
 E(X) = \int_{-\infty}^{+\infty} x f(x) \, dx
 $$
 
+#### 期望运算
+
+$$
+E[aX + bY + c] = aE(X) + bE(Y) + c
+$$
+
 ### 方差
 
 $$
-D(X) = E[(X - E(X))^2] = \boxed{E(X^2) - [E(X)]^2}
+D(X) = E[(X - E(X))^2] = \boxed{E(X^2) - [E(X)]^2} \\[1em]
+D(X) = \int_{-\infty}^{+\infty} (x - E(X))^2 f(x) \, dx
+$$
+
+#### 方差运算
+
+$$
+D[aX + bY + c] = a^2 D(X) + b^2 D(Y) + 2ab Cov(X,Y)
 $$
 
 ### 协方差
@@ -287,6 +300,8 @@ $$
 \text{解该方程} \quad \frac{d}{d\theta} \ln L(\theta) = 0
 $$
 
+总之是求让$L(\theta)$最大的$\theta$值作为估计$\hat{\theta}$
+
 ## 估计评定
 
 ### 无偏性
@@ -377,3 +392,23 @@ $$
 \large F = \dfrac{s_1^2 / \sigma_1^2}{s_2^2 / \sigma_2^2} \sim F(n_1 - 1, n_2 - 1)\\[1em]
 P \left( F_{1-\alpha/2}(n_1 - 1, n_2 - 1) \le F \le F_{\alpha/2}(n_1 - 1, n_2 - 1) \right) = 1 - \alpha
 $$
+
+## 二级结论
+
+### 标准正态分布的矩
+
+#### 奇数阶矩
+
+因为$\phi(x)$是偶函数，所以奇数阶矩全为0
+
+$$
+E(X^{2k+1}) = 0
+$$
+
+#### 偶数阶矩
+
+$$
+E(X^{2k}) = (2k-1)!! = \frac{(2k)!}{2^k k!}
+$$
+
+> !!是双阶乘，5!! = 5 × 3 × 1

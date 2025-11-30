@@ -7,7 +7,7 @@ category: Linux/Fedora
 
 为了压住天选5pro上的火龙R9 7940HX，不得不用[asus-linux](http://asus-linux.org/)的asusctl，想要启用功耗控制的话还要用移植到fedora的cachyos内核
 
-最近正好赶上战地6公测，要求启用安全启动。但是移植的cachyos内核是无签名的，只能自签名后导入MOK
+但是对fedora来说是第三方的cachyos内核是无签名的，只能自签名后导入MOK
 
 ## 使用pesign生成签名密钥
 
@@ -53,10 +53,10 @@ sudo mv /boot/vmlinuz-$(uname -r).signed /boot/vmlinuz-$(uname -r)
 
 ```
 
-## 更新grub
+<!-- ## 更新grub
 
 ```shell
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
-```
+``` -->
 
 最后在BIOS设置中开启安全启动

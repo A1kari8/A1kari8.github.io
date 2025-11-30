@@ -3,6 +3,7 @@ title: "在Fedora上无需编译安装ROS/ROS2"
 published: 2025-09-13 21:57:06
 tags: [Linux,Fedora,ROS,HITCRT]
 category: Linux/Fedora
+draft: true
 ---
 
 ## 起因
