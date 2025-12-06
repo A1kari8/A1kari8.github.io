@@ -211,7 +211,7 @@ locale-gen
 创建`/etc/locale.conf`，写入以下内容
 
 ```plain
-LANG=zh_CN.UTF-8
+LANG=en_US.UTF-8
 ```
 
 ## 设置主机名
