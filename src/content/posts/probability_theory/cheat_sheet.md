@@ -151,6 +151,12 @@ $$
 E[aX + bY + c] = aE(X) + bE(Y) + c
 $$
 
+当$X$和$Y$独立时，有
+
+$$
+E(XY) = E(X) E(Y)
+$$
+
 ### 方差
 
 $$
@@ -177,6 +183,12 @@ $$
 $$
 
 ## 大数定律
+
+### 马尔可夫不等式
+
+$$
+P(X \geq \varepsilon) \leq \frac{E(X)}{\varepsilon}
+$$
 
 ### 切比雪夫不等式
 
@@ -228,6 +240,13 @@ $$
 
 $\chi^2(n)$表示自由度为$n$的卡方分布
 
+#### 概率怎么看
+
+$$
+P(\chi^2 (n) > \chi^2_{\alpha}(n)) = \alpha \\[1em]
+\chi^2_{\alpha}(n) \text{通过查表得到}
+$$
+
 ### $t$分布
 
 由$X \sim N(0,1)$和$Y \sim \chi^2(n)$构成
@@ -238,6 +257,11 @@ $$
 
 $t(n)$表示自由度为$n$的t分布
 
+$$
+P(t(n) > t_{\alpha}(n)) = \alpha \\[1em]
+t_{\alpha}(n) \text{通过查表得到}
+$$
+
 ### $F$分布
 
 由$X \sim \chi^2(n_1)$和$Y \sim \chi^2(n_2)$构成
@@ -247,6 +271,11 @@ F = \frac{(X/n_1)}{(Y/n_2)} \sim F(n_1, n_2)
 $$
 
 $F(n_1, n_2)$表示自由度为$(n_1, n_2)$的F分布，$n_1$叫第一自由度，$n_2$叫第二自由度
+
+$$
+P(F(n_1, n_2) > F_{\alpha}(n_1, n_2)) = \alpha \\[1em]
+F_{\alpha}(n_1, n_2) \text{通过查表得到}
+$$
 
 ## 统计量
 
@@ -362,7 +391,7 @@ $1-\alpha$叫置信水平，$\alpha$叫显著性水平
 
 $$
 u = \frac{\overline{x} - \mu}{\sigma / \sqrt{n}} \sim N(0,1)\\[1em]
-P \left( -u_{\alpha/2} \le u \le u_{\alpha/2} \right) = 1 - \alpha
+P \left( -u_{\alpha/2} < u < u_{\alpha/2} \right) = 1 - \alpha
 $$
 
 把已知的全代入解出$\mu$的范围就是置信区间，$u_{\alpha/2}$通过查表得到
@@ -373,7 +402,7 @@ $$
 
 $$
 t = \frac{\overline{x} - \mu}{s / \sqrt{n}} \sim t(n-1)\\[1em]
-P \left( -t_{\alpha/2}(n-1) \le t \le t_{\alpha/2}(n-1) \right) = 1 - \alpha
+P \left( -t_{\alpha/2}(n-1) < t < t_{\alpha/2}(n-1) \right) = 1 - \alpha
 $$
 
 同样都代进去查表
@@ -384,7 +413,7 @@ $$
 
 $$
 \chi^2 = \frac{(n-1)s^2}{\sigma^2} \sim \chi^2(n-1)\\[1em]
-P \left(  \chi^2_{1-\alpha/2}(n-1) \le \chi^2 \le \chi^2_{\alpha/2}(n-1)  \right) = 1 - \alpha
+P \left(  \chi^2_{1-\alpha/2}(n-1) < \chi^2 < \chi^2_{\alpha/2}(n-1)  \right) = 1 - \alpha
 $$
 
 ## 双样本均值差的区间估计
@@ -395,7 +424,7 @@ $$
 
 $$
 \large t = \frac{(\overline{x}_1 - \overline{x}_2) - (\mu_1 - \mu_2)}{\sqrt{\dfrac{\sigma_1^2}{n_1} + \dfrac{\sigma_2^2}{n_2}}} \sim t(n_1 + n_2 - 2 )\\[1em]
-P \left( -t_{\alpha/2}(n_1 + n_2 - 2) \le t \le t_{\alpha/2}(n_1 + n_2 - 2) \right) = 1 - \alpha
+P \left( -t_{\alpha/2}(n_1 + n_2 - 2) < t < t_{\alpha/2}(n_1 + n_2 - 2) \right) = 1 - \alpha
 $$
 
 ### 求$\dfrac{\sigma_1^2}{\sigma_2^2}$
@@ -404,7 +433,7 @@ $$
 
 $$
 \large F = \dfrac{s_1^2 / \sigma_1^2}{s_2^2 / \sigma_2^2} \sim F(n_1 - 1, n_2 - 1)\\[1em]
-P \left( F_{1-\alpha/2}(n_1 - 1, n_2 - 1) \le F \le F_{\alpha/2}(n_1 - 1, n_2 - 1) \right) = 1 - \alpha
+P \left( F_{1-\alpha/2}(n_1 - 1, n_2 - 1) < F < F_{\alpha/2}(n_1 - 1, n_2 - 1) \right) = 1 - \alpha
 $$
 
 ## 二级结论
