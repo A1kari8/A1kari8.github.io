@@ -115,6 +115,21 @@ Cov(X,Y) &= \rho \sigma_X \sigma_Y
 \end{aligned}
 $$
 
+## 分布函数与概率密度函数
+
+### 分布函数需要满足的条件
+
+1. $F(x)$单调不减
+2. $F(-\infty) = 0, \quad F(+\infty) = 1$
+3. $F(x)$**右连续**
+
+### 概率密度函数需要满足的条件
+
+1. $f(x) \geq 0$ 恒大于等于0
+2. $\int_{-\infty}^{+\infty} f(x) \, dx = 1$ 积分为1
+3. $F(x) = \int_{-\infty}^{x} f(t) \, dt$
+4. $f(x) = \frac{d}{dx} F(x)$
+
 ## 随机变量的函数
 
 ### 公式法
@@ -130,7 +145,8 @@ $$
 ### 卷积法
 
 $$
-f_{X+Y}(z) = \int_{-\infty}^{+\infty} f_X(x) f_Y(z-x) \, dx
+f_{X+Y}(z) = \int_{-\infty}^{+\infty} f_X(x) f_Y(z-x) \, dx \\[1em]
+f_{X+Y}(z) = \int_{-\infty}^{+\infty} f_{X,Y}(x, z-x) \, dx
 $$
 
 ### 二重积分法
@@ -337,6 +353,8 @@ $$
 
 如果似然函数不连续，则应根据极大值出现在区间端点的原则，分别求出各个端点处的函数值，再比较大小，取最大值对应的$\theta$值
 
+若似然函数中无$x$，则根据$x$的取值范围，直接写出$\theta$的取值范围，取最大值对应的$\theta$值
+
 其余情况，取对数似然函数并对$\theta$求导，令导数为0，解方程得到参数估计值
 
 $$
@@ -436,7 +454,7 @@ $$
 P \left( F_{1-\alpha/2}(n_1 - 1, n_2 - 1) < F < F_{\alpha/2}(n_1 - 1, n_2 - 1) \right) = 1 - \alpha
 $$
 
-## 二级结论
+## 重要结论
 
 ### 标准正态分布的矩
 
@@ -468,4 +486,12 @@ $$
 
 $$
 f_{aX}(\omega) = \frac{1}{|a|} f_X \left( \frac{\omega}{a} \right)
+$$
+
+### 高斯积分
+
+$$
+\int_{-\infty}^{+\infty} e^{- \lambda x^2} \,dx = \sqrt{\frac{\pi}{\lambda}} \quad (\lambda > 0) \\[1em]
+\int_{-\infty}^{+\infty} e^{- \lambda x^2} \,dx = \Gamma \left( \frac{1}{2} \right) \lambda^{-\frac{1}{2}} \quad (\lambda > 0) \\[1em]
+\Gamma \left( \frac{1}{2} \right) = \sqrt{\pi} \qquad n\Gamma(n) = \Gamma(n+1)
 $$
