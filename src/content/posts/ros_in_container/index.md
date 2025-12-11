@@ -80,9 +80,9 @@ distrobox enter <实例名称>
 
 ### 用户设置
 
-默认进入容器后是以UID 10000作为用户，会导致在宿主机上无法直接操作vscode创建的文件夹，可以在连接容器的配置中指定UID
+默认进入容器后是以UID 10000作为用户，会导致在宿主机上无法直接操作vscode创建的文件夹，可以在连接容器的配置中指定用户名
 
-连接到容器后，按`Ctrl+Shift+P`，输入`Dev Containers: Open Attached Container Configuration File`，选择打开对应的配置文件（应该就一个，没得选），添加内容
+连接到容器后，按`Ctrl+Shift+P`，找到`Dev Containers: Open Attached Container Configuration File`，选择打开对应的配置文件（应该就一个，没得选），添加内容
 
 ```json
 "remoteUser": "<宿主机用户名>"
@@ -90,7 +90,7 @@ distrobox enter <实例名称>
 
 ### 连接容器时启用ROS环境
 
-按照这项修改后vscode中的clangd和cmake即可正常识别ROS相关的头文件和库
+按照这项修改后vscode中的clangd和cmake即可正常找到ROS相关的头文件和库
 
 修改容器使用的shell对应的rc文件（`~/.bashrc`，`~/.zshrc`等），在最后添加
 

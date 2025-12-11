@@ -40,7 +40,7 @@ $$
 ### 泊松分布
 
 $$
-X \sim Po(\lambda) \\[1em]
+X \sim Po(\lambda) \quad \text{或者是} P(\lambda) \\[1em]
 f(x) = \frac{\lambda^x e^{-\lambda}}{x!} \quad x = 0,1,2,\ldots \\[1em]
 E(X) = \lambda \\[1em]
 D(X) = \lambda
@@ -102,6 +102,17 @@ E(X) = \frac{a+b}{2} \\[1em]
 D(X) = \frac{(b-a)^2}{12}
 $$
 
+## 独立可加性
+
+$$
+\begin{aligned}
+\text{正态分布} \quad &N(\mu_1, \sigma_1^2) + N(\mu_2, \sigma_2^2) = N(\mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2) \\[1em]
+\text{泊松分布} \quad &Po(\lambda_1) + Po(\lambda_2) = Po(\lambda_1 + \lambda_2) \\[1em]
+\text{概率相同的二项分布} \quad &B(n_1, p) + B(n_2, p) = B(n_1 + n_2, p) \\[1em]
+\text{卡方分布} \quad &\chi^2(n_1) + \chi^2(n_2) = \chi^2(n_1 + n_2)
+\end{aligned}
+$$
+
 ## 二维正态分布
 
 $$
@@ -158,7 +169,8 @@ $$
 ### 期望
 
 $$
-E(X) = \int_{-\infty}^{+\infty} x f(x) \, dx
+E(X) = \int_{-\infty}^{+\infty} x f(x) \, dx \\[1em]
+E(X_{discrete}) = \sum_{i} x_i p_i
 $$
 
 #### 期望运算
@@ -177,7 +189,8 @@ $$
 
 $$
 D(X) = E[(X - E(X))^2] = \boxed{E(X^2) - [E(X)]^2} \\[1em]
-D(X) = \int_{-\infty}^{+\infty} (x - E(X))^2 f(x) \, dx
+D(X) = \int_{-\infty}^{+\infty} (x - E(X))^2 f(x) \, dx \\[1em]
+D(X_{discrete}) = \sum_{i} (x_i - E(X))^2 p_i
 $$
 
 #### 方差运算
@@ -189,7 +202,10 @@ $$
 ### 协方差
 
 $$
-Cov(X,Y) = E[(X - E(X))(Y - E(Y))] = \boxed{E(XY) - E(X)E(Y)}
+Cov(X,Y) = E[(X - E(X))(Y - E(Y))] = \boxed{E(XY) - E(X)E(Y)} \\[1em]
+Cov(aX+b, cY+d) = ac Cov(X,Y) \\[1em]
+Cov(X_1 + X_2, Y_1 + Y_2) = Cov(X_1, Y_1) + Cov(X_1, Y_2) + Cov(X_2, Y_1) + Cov(X_2, Y_2) \\[1em]
+D(X) = Cov(X,X)
 $$
 
 ### 相关系数
@@ -332,13 +348,15 @@ $$
 S^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \overline{X})^2
 $$
 
-这才是样本方差，注意是除以$n-1$，而不是$n$
+这才是样本方差，注意是除以$n-1$，而不是$n$，它是$\sigma^2$的**无偏估计**
 
 :::warning
 接下来这两个必须得背，基本上是没法现推出来的
 :::
 
-### 样本方差的分布
+### 正态总体样本方差的分布
+
+必须是**正态分布**才能用
 
 $$
 \frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1)
@@ -346,7 +364,7 @@ $$
 
 可用这个稍微变形得到样本**二阶中心距**的分布
 
-### 样本标准差的分布
+### 正态总体样本标准差的分布
 
 $$
 \frac{(\overline{X} - \mu)\sqrt{n}}{S} \sim t(n-1)
