@@ -36,11 +36,11 @@ distrobox create --name <实例名称> --additional-flags "--device nvidia.com/g
 这里nvidia的带cudnn-runtime的镜像了，如果你不需要可以直接用ubuntu的官方镜像
 
 :::warning
-另外使用nvidia的镜像时会弹广告，这个广告内容会被旧版的`distrobox`当成命令执行导致报错，所以记得更新`distrobox`到最新版
+使用nvidia的镜像时会弹广告，这个广告内容会被旧版的`distrobox`当成命令执行导致报错，所以记得更新`distrobox`到最新版
 :::
 
 :::tip
-至于为什么不用`distrobox`的`--nvidia`参数启用nvidia独显，是因为它会将宿主机的`libicudata`挂载进容器，会导致容器中无法安装`libicu-dev`，但这个库是ROS的依赖
+至于为什么不用`distrobox`的`--nvidia`参数启用nvidia独显，因为它会把宿主机的`libicudata`挂载进容器，导致容器中无法安装`libicu-dev`
 :::
 
 ## 进入容器
