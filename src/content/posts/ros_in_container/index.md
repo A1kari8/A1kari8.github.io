@@ -33,7 +33,13 @@ sudo systemctl restart docker
 distrobox create --name <实例名称> --additional-flags "--device nvidia.com/gpu=all" --image docker.io/nvidia/cuda:12.9.1-cudnn-runtime-ubuntu22.04
 ```
 
-这里nvidia的带cudnn-runtime的镜像了，如果你不需要可以直接用ubuntu的官方镜像
+这里就用nvidia的带cudnn-runtime的镜像了，如果你不需要可以直接用ubuntu的官方镜像
+
+如果不需要nvidia独显，无需添加`--additional-flags "--device nvidia.com/gpu=all"`
+
+:::tip
+如果担心容器和宿主机共享home会污染环境，可以用`--home /path`指定容器home的位置，而且这个只是用户目录本身，Documents目录等仍然会映射到宿主机对应位置
+:::
 
 :::warning
 使用nvidia的镜像时会弹广告，这个广告内容会被旧版的`distrobox`当成命令执行导致报错，所以记得更新`distrobox`到最新版
@@ -50,6 +56,49 @@ distrobox enter <实例名称>
 ```
 
 之后像正常使用Ubuntu一样安装ROS就好了
+
+## VsCode连接容器进行开发
+
+无需在容器中安装vscode
+
+### 安装插件
+
+在宿主机的vscode中安装`Dev Containers`插件
+
+![Dev Containers插件](./dev.png)
+
+### 修改设置
+
+打开vscode设置->扩展->开发容器
+
+- `dev.containers.dockerPath`值改为`podman`（如果你用的是docker就不用改）
+- `dev.containers.dockerSocketPath`值改为`/var/run/podman.sock`
+
+### 连接容器
+
+点击vscode左下角远程图标->附加到正在运行的容器（提前`distrobox enter`）
+
+### 用户设置
+
+默认进入容器后是以UID 10000作为用户，会导致在宿主机上无法直接操作vscode创建的文件夹，可以在连接容器的配置中指定UID
+
+连接到容器后，按`Ctrl+Shift+P`，输入`Dev Containers: Open Attached Container Configuration File`，选择打开对应的配置文件（应该就一个，没得选），添加内容
+
+```json
+"remoteUser": "<宿主机用户名>"
+```
+
+### 连接容器时启用ROS环境
+
+按照这项修改后vscode中的clangd和cmake即可正常识别ROS相关的头文件和库
+
+修改容器使用的shell对应的rc文件（`~/.bashrc`，`~/.zshrc`等），在最后添加
+
+> 当然得是容器实际使用的rc文件，如果你在创建容器时用`--home /path`指定了其他位置作为容器的home的话就得是`/path`下的
+
+```bash
+source /opt/ros/<ros版本>/setup.<shell类型>
+```
 
 ## 常见问题
 
