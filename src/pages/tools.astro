@@ -1,0 +1,604 @@
+---
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+import I18nKey from "../i18n/i18nKey";
+import { i18n } from "../i18n/translation";
+---
+
+<MainGridLayout title={i18n(I18nKey.tools)} description="图片混淆和还原工具">
+    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
+        <div class="card-base z-10 px-6 md:px-9 py-6 relative w-full">
+            <!-- 页面标题 -->
+            <div class="mb-6">
+                <h1 class="text-3xl font-bold text-90 mb-3">工具箱</h1>
+                <p class="text-50 text-sm md:text-base mb-4">
+                    实用工具集合
+                </p>
+                <!-- 隐私声明 -->
+                <p class="text-xs md:text-sm text-[var(--primary)]">
+                    <strong>隐私说明：</strong>所有工具均在浏览器本地运行
+                </p>
+            </div>
+
+            <!-- 标签页导航 -->
+            <div class="mb-6 border-b-2 border-[var(--line-color)]">
+                <nav class="flex gap-1 overflow-x-auto -mb-0.5" role="tablist">
+                    <button
+                        class="tab-button px-6 py-3 text-sm font-medium rounded-t-[var(--radius-large)] transition-all whitespace-nowrap
+                               border-2 border-transparent border-b-0
+                               hover:bg-[var(--btn-regular-bg)]
+                               data-[active=true]:bg-[var(--btn-regular-bg)] 
+                               data-[active=true]:border-[var(--line-color)] 
+                               data-[active=true]:border-b-[var(--card-bg)]
+                               data-[active=true]:text-[var(--primary)]
+                               text-50"
+                        data-tab="image-obfuscation"
+                        data-active="true"
+                        role="tab"
+                    >
+                        <span class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                            图片混淆
+                        </span>
+                    </button>
+                    <!-- 为未来的工具预留位置 -->
+                    <!-- <button class="tab-button ..." data-tab="other-tool">其他工具</button> -->
+                </nav>
+            </div>
+
+            <!-- 标签页内容 -->
+            <div id="image-obfuscation" class="tab-content" data-tab="image-obfuscation">
+                <div class="space-y-6">
+                <!-- 文件上传区域 -->
+                <div class="space-y-3">
+                    <label for="imageInput" class="block text-sm font-medium text-75">
+                        选择图片
+                    </label>
+                    <div class="relative">
+                        <input
+                            type="file"
+                            id="imageInput"
+                            accept="image/png,image/jpeg,image/jpg,image/webp"
+                            class="block w-full text-sm rounded-[var(--radius-large)] cursor-pointer
+                                   bg-[var(--btn-regular-bg)] transition
+                                   border-2 border-[var(--line-color)]
+                                   file:mr-4 file:py-3 file:px-4
+                                   file:rounded-l-[var(--radius-large)] file:border-0
+                                   file:text-sm file:font-medium file:transition
+                                   file:bg-[var(--btn-regular-bg-hover)] hover:file:bg-[var(--btn-regular-bg-active)]
+                                   file:text-[var(--btn-content)] file:cursor-pointer
+                                   text-75"
+                        />
+                    </div>
+                </div>
+
+                <!-- 密钥输入区域 -->
+                <div class="space-y-3">
+                    <label for="keyInput" class="block text-sm font-medium text-75">
+                        密钥
+                    </label>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <input
+                            type="text"
+                            id="keyInput"
+                            placeholder="输入密钥或点击生成随机密钥"
+                            class="flex-1 px-4 py-3 rounded-[var(--radius-large)] 
+                                   bg-[var(--btn-regular-bg)] transition
+                                   border-2 border-[var(--line-color)]
+                                   focus:border-[var(--primary)] focus:outline-none
+                                   text-75 placeholder:text-30"
+                        />
+                        <button
+                            id="generateKeyBtn"
+                            class="btn-regular px-6 py-3 rounded-[var(--radius-large)] font-medium
+                                   whitespace-nowrap active:scale-95">
+                            生成随机密钥
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 空间填充曲线选择 -->
+                <div class="space-y-3">
+                    <label class="block text-sm font-medium text-75">
+                        空间填充曲线
+                    </label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="flex items-center gap-3 p-4 rounded-[var(--radius-large)] bg-[var(--btn-regular-bg)] transition cursor-pointer border-2 border-[var(--line-color)] hover:border-[var(--primary)] has-[:checked]:border-[var(--primary)] has-[:checked]:bg-[var(--primary)]/5">
+                            <input
+                                type="radio"
+                                name="curveType"
+                                value="gilbert"
+                                id="curveGilbert"
+                                checked
+                                class="w-5 h-5 text-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)] bg-[var(--card-bg)] transition cursor-pointer"
+                            />
+                            <div class="flex-1">
+                                <div class="text-sm font-medium text-75">Gilbert 曲线</div>
+                                <div class="text-xs text-50 mt-0.5">推荐使用</div>
+                            </div>
+                        </label>
+                        <label class="flex items-center gap-3 p-4 rounded-[var(--radius-large)] bg-[var(--btn-regular-bg)] transition cursor-pointer border-2 border-[var(--line-color)] hover:border-[var(--primary)] has-[:checked]:border-[var(--primary)] has-[:checked]:bg-[var(--primary)]/5">
+                            <input
+                                type="radio"
+                                name="curveType"
+                                value="morton"
+                                id="curveMorton"
+                                class="w-5 h-5 text-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)] bg-[var(--card-bg)] transition cursor-pointer"
+                            />
+                            <div class="flex-1">
+                                <div class="text-sm font-medium text-75">Morton 码</div>
+                                <div class="text-xs text-50 mt-0.5">Z 型曲线</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 操作按钮 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <button
+                        id="obfuscateBtn"
+                        class="btn-card px-6 py-4 rounded-[var(--radius-large)] font-medium
+                               border-2 border-[var(--line-color)] active:scale-95
+                               disabled:opacity-50 disabled:cursor-not-allowed transition-all
+                               hover:border-[var(--primary)]">
+                        <span class="text-75 flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                            混淆图片
+                        </span>
+                    </button>
+                    <button
+                        id="restoreBtn"
+                        class="btn-card px-6 py-4 rounded-[var(--radius-large)] font-medium
+                               border-2 border-[var(--line-color)] active:scale-95
+                               disabled:opacity-50 disabled:cursor-not-allowed transition-all
+                               hover:border-[var(--primary)]">
+                        <span class="text-75 flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                            </svg>
+                            还原图片
+                        </span>
+                    </button>
+                </div>
+
+                <!-- 状态信息 -->
+                <div id="statusMessage" class="text-sm text-center py-2 px-4 rounded-[var(--radius-large)] hidden font-medium"></div>
+
+                <!-- 预览区域 -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
+                    <!-- 原图预览 -->
+                    <div class="space-y-3">
+                        <h3 class="text-lg font-medium text-75 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            原图预览
+                        </h3>
+                        <div class="relative border-2 border-[var(--line-color)] rounded-[var(--radius-large)] 
+                                    overflow-hidden bg-[var(--btn-regular-bg)] min-h-[240px] 
+                                    flex items-center justify-center transition hover:border-[var(--primary)]/50 group">
+                            <canvas id="originalCanvas" class="hidden max-w-full max-h-[400px] w-auto h-auto"></canvas>
+                            <div id="originalPlaceholder" class="text-50 text-sm text-center p-8">
+                                <svg class="w-16 h-16 mx-auto mb-3 text-30 transition group-hover:text-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                <p>未选择图片</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 结果预览 -->
+                    <div class="space-y-3">
+                        <h3 class="text-lg font-medium text-75 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            处理结果
+                        </h3>
+                        <div class="relative border-2 border-[var(--line-color)] rounded-[var(--radius-large)]
+                                    overflow-hidden bg-[var(--btn-regular-bg)] min-h-[240px]
+                                    flex items-center justify-center transition hover:border-[var(--primary)]/50 group">
+                            <canvas id="resultCanvas" class="hidden max-w-full max-h-[400px] w-auto h-auto"></canvas>
+                            <div id="resultPlaceholder" class="text-50 text-sm text-center p-8">
+                                <svg class="w-16 h-16 mx-auto mb-3 text-30 transition group-hover:text-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                                <p>等待处理</p>
+                            </div>
+                        </div>
+                        <button
+                            id="downloadBtn"
+                            class="w-full btn-regular px-4 py-3 rounded-[var(--radius-large)] font-medium 
+                                   hidden active:scale-95 transition-all">
+                            <span class="flex items-center justify-center gap-2 text-75">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                </svg>
+                                下载结果图片
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            </div> <!-- 关闭标签页内容 -->
+        </div>
+    </div>
+</MainGridLayout>
+
+<script>
+    // 标签页切换功能
+    function initTabs() {
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.getAttribute('data-tab');
+                
+                // 移除所有激活状态
+                tabButtons.forEach(btn => btn.setAttribute('data-active', 'false'));
+                tabContents.forEach(content => content.classList.add('hidden'));
+                
+                // 激活当前标签
+                button.setAttribute('data-active', 'true');
+                const targetContent = document.getElementById(targetTab);
+                if (targetContent) {
+                    targetContent.classList.remove('hidden');
+                }
+            });
+        });
+    }
+
+    // 使用动态导入来加载 WASM 模块
+    let wasmModule: any = null;
+    let wasmInitialized = false;
+    let currentImageData: Uint8Array | null = null;
+    let currentFileName = '';
+
+    // 动态导入 WASM 模块
+    async function loadWasmModule() {
+        try {
+            const module = await import('../../wasm/pixobfus/pixobfus.js');
+            return module;
+        } catch (error) {
+            console.error('Failed to load WASM module:', error);
+            throw error;
+        }
+    }
+
+    // 初始化 WASM
+    async function initWasm() {
+        if (!wasmInitialized) {
+            try {
+                if (!wasmModule) {
+                    wasmModule = await loadWasmModule();
+                }
+                await wasmModule.default();
+                wasmInitialized = true;
+            } catch (error) {
+                console.error('Failed to initialize WASM:', error);
+                showStatus('WASM 初始化失败: ' + String(error), 'error');
+                throw error;
+            }
+        }
+        return wasmModule;
+    }
+    
+    // 获取选择的曲线类型
+    function getUseGilbert(): boolean {
+        const gilbertRadio = document.getElementById('curveGilbert') as HTMLInputElement;
+        return gilbertRadio?.checked ?? true;
+    }
+    
+    // 绑定所有事件监听器
+    function bindEventListeners() {
+        // 生成随机密钥
+        const generateKeyBtn = document.getElementById('generateKeyBtn');
+        
+        if (generateKeyBtn) {
+            generateKeyBtn.addEventListener('click', async () => {
+                try {
+                    await initWasm();
+                    const phrase = wasmModule.generate_random_phrase();
+                    const keyInput = document.getElementById('keyInput') as HTMLInputElement;
+                    if (keyInput) {
+                        keyInput.value = phrase;
+                    }
+                } catch (error) {
+                    console.error('Failed to generate key:', error);
+                    showStatus('生成密钥失败: ' + String(error), 'error');
+                }
+            });
+        }
+        
+        // 处理图片选择
+        const imageInput = document.getElementById('imageInput');
+        if (imageInput) {
+            imageInput.addEventListener('change', async (e) => {
+                const input = e.target as HTMLInputElement;
+                const file = input.files?.[0];
+                
+                if (!file) return;
+                
+                try {
+                    currentFileName = file.name;
+                    currentImageData = await imageToUint8Array(file);
+                    
+                    const img = await loadImage(file);
+                    const canvas = document.getElementById('originalCanvas') as HTMLCanvasElement;
+                    const placeholder = document.getElementById('originalPlaceholder');
+                    
+                    if (!canvas || !placeholder) return;
+                    
+                    drawImageOnCanvas(canvas, img);
+                    canvas.classList.remove('hidden');
+                    placeholder.classList.add('hidden');
+                    
+                    // 隐藏结果区域
+                    const resultCanvas = document.getElementById('resultCanvas') as HTMLCanvasElement;
+                    const resultPlaceholder = document.getElementById('resultPlaceholder');
+                    const downloadBtn = document.getElementById('downloadBtn');
+                    
+                    if (resultCanvas) resultCanvas.classList.add('hidden');
+                    if (resultPlaceholder) resultPlaceholder.classList.remove('hidden');
+                    if (downloadBtn) downloadBtn.classList.add('hidden');
+                } catch (error) {
+                    console.error('Failed to load image:', error);
+                    showStatus('图片加载失败', 'error');
+                }
+            });
+        }
+        
+        // 混淆图片
+        const obfuscateBtn = document.getElementById('obfuscateBtn') as HTMLButtonElement;
+        
+        if (obfuscateBtn) {
+            obfuscateBtn.addEventListener('click', async () => {
+                if (!currentImageData) {
+                    showStatus('请先选择一张图片', 'error');
+                    return;
+                }
+                
+                const keyInput = document.getElementById('keyInput') as HTMLInputElement;
+                const key = keyInput.value.trim();
+                
+                if (!key) {
+                    showStatus('请输入密钥', 'error');
+                    return;
+                }
+                
+                try {
+                    // 禁用按钮
+                    obfuscateBtn.disabled = true;
+                    const restoreBtn = document.getElementById('restoreBtn') as HTMLButtonElement;
+                    if (restoreBtn) restoreBtn.disabled = true;
+                    
+                    await initWasm();
+                    
+                    const useGilbert = getUseGilbert();
+                    const resultData = wasmModule.obfuscate_image(currentImageData, key, useGilbert);
+                    
+                    const resultCanvas = document.getElementById('resultCanvas') as HTMLCanvasElement;
+                    const resultPlaceholder = document.getElementById('resultPlaceholder');
+                    const downloadBtn = document.getElementById('downloadBtn');
+                    
+                    if (!resultCanvas || !resultPlaceholder || !downloadBtn) return;
+                    
+                    await displayResultImage(resultData, resultCanvas);
+                    
+                    resultCanvas.classList.remove('hidden');
+                    resultPlaceholder.classList.add('hidden');
+                    downloadBtn.classList.remove('hidden');
+                    
+                    // 保存结果数据供下载使用
+                    (downloadBtn as any).__resultData = resultData;
+                    (downloadBtn as any).__fileName = currentFileName.replace(/\.[^/.]+$/, '_obfuscated.png');
+                    
+                } catch (error) {
+                    console.error('Failed to obfuscate image:', error);
+                    showStatus('图片混淆失败: ' + String(error), 'error');
+                } finally {
+                    // 重新启用按钮
+                    obfuscateBtn.disabled = false;
+                    const restoreBtn = document.getElementById('restoreBtn') as HTMLButtonElement;
+                    if (restoreBtn) restoreBtn.disabled = false;
+                }
+            });
+        }
+        
+        // 还原图片
+        const restoreBtn = document.getElementById('restoreBtn') as HTMLButtonElement;
+        
+        if (restoreBtn) {
+            restoreBtn.addEventListener('click', async () => {
+                if (!currentImageData) {
+                    showStatus('请先选择一张图片', 'error');
+                    return;
+                }
+                
+                const keyInput = document.getElementById('keyInput') as HTMLInputElement;
+                const key = keyInput.value.trim();
+                
+                if (!key) {
+                    showStatus('请输入密钥', 'error');
+                    return;
+                }
+                
+                try {
+                    // 禁用按钮
+                    restoreBtn.disabled = true;
+                    const obfuscateBtn = document.getElementById('obfuscateBtn') as HTMLButtonElement;
+                    if (obfuscateBtn) obfuscateBtn.disabled = true;
+                    
+                    await initWasm();
+                    
+                    const useGilbert = getUseGilbert();
+                    const resultData = wasmModule.restore_image(currentImageData, key, useGilbert);
+                    
+                    const resultCanvas = document.getElementById('resultCanvas') as HTMLCanvasElement;
+                    const resultPlaceholder = document.getElementById('resultPlaceholder');
+                    const downloadBtn = document.getElementById('downloadBtn');
+                    
+                    if (!resultCanvas || !resultPlaceholder || !downloadBtn) return;
+                    
+                    await displayResultImage(resultData, resultCanvas);
+                    
+                    resultCanvas.classList.remove('hidden');
+                    resultPlaceholder.classList.add('hidden');
+                    downloadBtn.classList.remove('hidden');
+                    
+                    // 保存结果数据供下载使用
+                    (downloadBtn as any).__resultData = resultData;
+                    (downloadBtn as any).__fileName = currentFileName.replace(/\.[^/.]+$/, '_restored.png');
+                    
+                } catch (error) {
+                    console.error('Failed to restore image:', error);
+                    showStatus('图片还原失败: ' + String(error), 'error');
+                } finally {
+                    // 重新启用按钮
+                    restoreBtn.disabled = false;
+                    const obfuscateBtn = document.getElementById('obfuscateBtn') as HTMLButtonElement;
+                    if (obfuscateBtn) obfuscateBtn.disabled = false;
+                }
+            });
+        }
+        
+        // 下载结果图片
+        const downloadBtn = document.getElementById('downloadBtn');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', () => {
+                const btn = downloadBtn as any;
+                const resultData = btn.__resultData;
+                const fileName = btn.__fileName || 'result.png';
+                
+                if (!resultData) {
+                    showStatus('没有可下载的图片', 'error');
+                    return;
+                }
+                
+                const blob = new Blob([resultData], { type: 'image/png' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = fileName;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+        }
+    }
+
+    // 显示状态信息
+    function showStatus(message: string, type: 'info' | 'success' | 'error' = 'info') {
+        const statusEl = document.getElementById('statusMessage');
+        if (!statusEl) return;
+        
+        statusEl.textContent = message;
+        
+        // 使用博客的样式系统
+        const baseClasses = 'text-sm text-center py-3 px-4 rounded-[var(--radius-large)] font-medium transition-all';
+        let colorClasses = '';
+        
+        if (type === 'error') {
+            colorClasses = 'bg-red-500/10 text-red-500 dark:bg-red-500/20 border-2 border-red-500/30';
+        } else if (type === 'success') {
+            colorClasses = 'bg-green-500/10 text-green-600 dark:text-green-400 dark:bg-green-500/20 border-2 border-green-500/30';
+        } else {
+            colorClasses = 'bg-[var(--primary)]/10 text-[var(--primary)] border-2 border-[var(--primary)]/30';
+        }
+        
+        statusEl.className = `${baseClasses} ${colorClasses}`;
+        statusEl.classList.remove('hidden');
+        
+        if (type !== 'error') {
+            setTimeout(() => {
+                statusEl.classList.add('hidden');
+            }, 3000);
+        }
+    }
+
+    // 读取图片文件并显示预览
+    async function loadImage(file: File) {
+        const img = new Image();
+        const reader = new FileReader();
+        
+        return new Promise<HTMLImageElement>((resolve, reject) => {
+            reader.onload = (e) => {
+                img.onload = () => resolve(img);
+                img.onerror = reject;
+                if (e.target?.result) {
+                    img.src = e.target.result as string;
+                }
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    }
+
+    // 将图片转换为 Uint8Array
+    async function imageToUint8Array(file: File): Promise<Uint8Array> {
+        const arrayBuffer = await file.arrayBuffer();
+        return new Uint8Array(arrayBuffer);
+    }
+
+    // 在 canvas 上绘制图片
+    function drawImageOnCanvas(canvas: HTMLCanvasElement, img: HTMLImageElement) {
+        // 计算合适的显示尺寸，最大 400px
+        const maxSize = 400;
+        let width = img.width;
+        let height = img.height;
+        
+        if (width > maxSize || height > maxSize) {
+            const ratio = Math.min(maxSize / width, maxSize / height);
+            width = width * ratio;
+            height = height * ratio;
+        }
+        
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, width, height);
+    }
+
+    // 从 Uint8Array 创建图片并显示在 canvas 上
+    async function displayResultImage(imageData: Uint8Array, canvas: HTMLCanvasElement) {
+        const blob = new Blob([imageData], { type: 'image/png' });
+        const url = URL.createObjectURL(blob);
+        const img = new Image();
+        
+        return new Promise<void>((resolve, reject) => {
+            img.onload = () => {
+                drawImageOnCanvas(canvas, img);
+                URL.revokeObjectURL(url);
+                resolve();
+            };
+            img.onerror = reject;
+            img.src = url;
+        });
+    }
+
+    // 初始化函数
+    function init() {
+        initTabs();
+        bindEventListeners();
+        
+        // 页面加载时初始化 WASM
+        initWasm().catch(err => {
+            console.error('Failed to initialize WASM on page load:', err);
+            showStatus('WASM 加载失败，请刷新页面重试', 'error');
+        });
+    }
+
+    // DOM 加载完成后初始化
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+</script>

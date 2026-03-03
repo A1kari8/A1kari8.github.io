@@ -180,5 +180,9 @@ export default defineConfig({
 				},
 			},
 		},
+		optimizeDeps: {
+			exclude: ['pixobfus'],
+		},
+		assetsInclude: ['**/*.wasm'],
 	},
 });

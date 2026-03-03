@@ -6,6 +6,7 @@ export const zh_CN: Translation = {
 	[Key.about]: "关于",
 	[Key.archive]: "归档",
 	[Key.search]: "搜索",
+	[Key.tools]: "工具",
 
 	[Key.tags]: "标签",
 	[Key.categories]: "分类",
@@ -38,4 +39,11 @@ export const zh_CN: Translation = {
 	[Key.license]: "许可协议",
 
 	[Key.friends]: "友链",
+
+	[Key.requirePermissionTitle]: "需要权限",
+	[Key.requirePermissionDesc]: "此内容需要密钥访问",
+	[Key.keyUnlock]: "解锁",
+	[Key.keyUnlocking]: "解锁中...",
+	[Key.keyIncorrect]: "密钥错误",
+	[Key.keyDecryptError]: "解密错误",
 };

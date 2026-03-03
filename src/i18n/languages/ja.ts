@@ -6,6 +6,7 @@ export const ja: Translation = {
 	[Key.about]: "About",
 	[Key.archive]: "Archive",
 	[Key.search]: "検索",
+	[Key.tools]: "ツール",
 
 	[Key.tags]: "タグ",
 	[Key.categories]: "カテゴリ",
@@ -39,4 +40,11 @@ export const ja: Translation = {
 	[Key.license]: "ライセンス",
 
 	[Key.friends]: "友達",
+
+	[Key.requirePermissionTitle]: "権限が必要",
+	[Key.requirePermissionDesc]: "このコンテンツにアクセスするにはキーが必要です",
+	[Key.keyUnlock]: "ロック解除",
+	[Key.keyUnlocking]: "ロック解除中...",
+	[Key.keyIncorrect]: "キーが正しくありません",
+	[Key.keyDecryptError]: "復号化エラー",
 };

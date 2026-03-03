@@ -6,6 +6,7 @@ export const en: Translation = {
 	[Key.about]: "About",
 	[Key.archive]: "Archive",
 	[Key.search]: "Search",
+	[Key.tools]: "Tools",
 
 	[Key.tags]: "Tags",
 	[Key.categories]: "Categories",
@@ -38,4 +39,11 @@ export const en: Translation = {
 	[Key.license]: "License",
 
 	[Key.friends]: "Friends",
+
+	[Key.requirePermissionTitle]: "Permission Required",
+	[Key.requirePermissionDesc]: "This content requires a key to access",
+	[Key.keyUnlock]: "Unlock",
+	[Key.keyUnlocking]: "Unlocking...",
+	[Key.keyIncorrect]: "Incorrect key",
+	[Key.keyDecryptError]: "Decryption error",
 };

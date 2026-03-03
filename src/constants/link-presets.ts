@@ -23,4 +23,9 @@ export const LinkPresets: { [key in LinkPreset]: NavBarLink } = {
 		url: "/friends/",
 		icon: "mdi:link-variant"
 	},
+	[LinkPreset.Tools]: {
+		name: i18n(I18nKey.tools),
+		url: "/tools/",
+		icon: "material-symbols:construction"
+	},
 };

@@ -6,6 +6,7 @@ export const zh_TW: Translation = {
 	[Key.about]: "關於",
 	[Key.archive]: "彙整",
 	[Key.search]: "搜尋",
+	[Key.tools]: "工具",
 
 	[Key.tags]: "標籤",
 	[Key.categories]: "分類",
@@ -38,4 +39,11 @@ export const zh_TW: Translation = {
 	[Key.license]: "許可協議",
 
 	[Key.friends]: "友鏈",
+
+	[Key.requirePermissionTitle]: "需要權限",
+	[Key.requirePermissionDesc]: "此內容需要密鑰訪問",
+	[Key.keyUnlock]: "解鎖",
+	[Key.keyUnlocking]: "解鎖中...",
+	[Key.keyIncorrect]: "密鑰錯誤",
+	[Key.keyDecryptError]: "解密錯誤",
 };
