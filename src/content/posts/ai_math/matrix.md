@@ -43,6 +43,8 @@ $$\overline{A} = [\overline{a_{ij}}]$$
 
 ## 共轭转置矩阵(也成为伴随或埃尔米特共轭)
 
+> 此「伴随」和线性代数课里的「伴随矩阵」不是一个概念
+
 共轭转置矩阵是指先取共轭矩阵再转置(其实先后都一样)的矩阵，记为$A^H$或$A^*$：
 
 $$A^* = \overline{A}^T$$
@@ -50,6 +52,8 @@ $$A^* = \overline{A}^T$$
 如果$A$是实数矩阵，则$A^* = A^T$
 
 若$A^* = A$，则称$A$为埃尔米特矩阵(也称自伴矩阵)，其特征值为实数
+
+若$A^* = -A$，则称$A$为斜(反)埃尔米特矩阵，其特征值为纯虚数或0
 
 ## 酉(Unitary)矩阵
 
@@ -95,6 +99,13 @@ $$
 A^\dagger = (A^* A)^{-1} A^* \quad \text{(当$A$列满秩时)} \\
 X = A^\dagger B
 $$
+
+条件：
+
+- $AA^\dagger A = A$
+- $A^\dagger A A^\dagger = A^\dagger$
+- $(AA^\dagger)^T = AA^\dagger$
+- $(A^\dagger A)^T = A^\dagger A$
 
 ## Gram矩阵
 

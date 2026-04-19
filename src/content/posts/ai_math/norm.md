@@ -18,7 +18,7 @@ draft: false
 
 也就是曼哈顿距离，定义为向量元素绝对值之和：
 
-$$\|x\|_1 = \sum_{i=1}^n |x_i|$$
+$$\Vert x\Vert_1 = \sum_{i=1}^n |x_i| $$
 
 单位球是一个菱形（二维时），超正轴体，**稀疏性较强**，适合特征选择和稀疏表示
 
@@ -26,7 +26,7 @@ $$\|x\|_1 = \sum_{i=1}^n |x_i|$$
 
 欧几里得距离，定义为向量元素平方和的平方根：
 
-$$\|x\|_2 = \sqrt{\sum_{i=1}^n x_i^2}$$
+$$\Vert x\Vert_2 = \sqrt{\sum_{i=1}^n x_i^2}$$
 
 也就是向量的长度，单位球是（超）球体，**不具备稀疏性**
 
@@ -34,7 +34,7 @@ $$\|x\|_2 = \sqrt{\sum_{i=1}^n x_i^2}$$
 
 Lp范数是L1和L2范数的推广，定义为：
 
-$$\|x\|_p = \left( \sum_{i=1}^n |x_i|^p \right)^{1/p}$$
+$$\Vert x\Vert_p = \left( \sum_{i=1}^n |x_i|^p \right)^{1/p}$$
 
 $p \rightarrow \infty$时，Lp范数趋近于L∞范数。单位球趋近于一个（超）立方体，**稀疏性极弱**，抑制大值
 
@@ -42,35 +42,35 @@ $p \rightarrow \infty$时，Lp范数趋近于L∞范数。单位球趋近于一�
 
 加权p范数引入权重向量$w$，定义为：
 
-$$\|x\|_{p,w} = \left( \sum_{i=1}^n w_i |x_i|^p \right)^{1/p}$$
+$$\Vert x\Vert_{p,w} = \left( \sum_{i=1}^n w_i |x_i|^p \right)^{1/p}$$
 
 ### L0范数（伪）
 
 L0范数不是一个真正的范数(**不满足齐次性**)，定义为向量中非零元素的数量：
 
-$$\|x\|_0 = \text{number of non-zero elements in } x$$
+$$\Vert x\Vert_0 = \text{number of non-zero elements in } x$$
 
 ## 矩阵的范数
 
-矩阵的范数通用性质在向量范数的基础上增加了**次乘性**：对于任意矩阵$A$和$B$，有$\|AB\| \leq \|A\| \|B\|$
+矩阵的范数通用性质在向量范数的基础上增加了**次乘性**：对于任意矩阵$A$和$B$，有$\Vert AB\Vert \leq \Vert A\Vert \Vert B\Vert$
 
 ### Frobenius范数(希尔伯特-施密特范数)
 
 类似于L2范数，定义为矩阵元素平方和的平方根：
 
-$$\|A\|_F = \sqrt{\sum_{i=1}^m \sum_{j=1}^n a_{ij}^2}$$
+$$\Vert A\Vert_F = \sqrt{\sum_{i=1}^m \sum_{j=1}^n a_{ij}^2}$$
 
 特别性质：
 
-- 与矩阵的迹相关：$\|A\|_F = \sqrt{\text{trace}(A^TA)} = \sqrt{\text{trace}(AA^T)}$
-- 与矩阵的奇异值相关：$\|A\|_F = \sqrt{\sum_{i=1}^r \sigma_i^2}$，其中$r$是矩阵的秩，$\sigma_i$是矩阵的奇异值。（奇异值的L2范数）
-- 与矩阵的特征值相关（**必须是正规矩阵**）：$\|A\|_F = \sqrt{\sum_{i=1}^n |\lambda_i|^2}$，其中$\lambda_i$是矩阵的特征值。（特征值的L2范数）
+- 与矩阵的迹相关：$\Vert A\Vert_F = \sqrt{\text{trace}(A^TA)} = \sqrt{\text{trace}(AA^T)}$
+- 与矩阵的奇异值相关：$\Vert A\Vert_F = \sqrt{\sum_{i=1}^r \sigma_i^2}$，其中$r$是矩阵的秩，$\sigma_i$是矩阵的奇异值。（奇异值的L2范数）
+- 与矩阵的特征值相关（**必须是正规矩阵**）：$\Vert A\Vert_F = \sqrt{\sum_{i=1}^n |\lambda_i|^2}$，其中$\lambda_i$是矩阵的特征值。（特征值的L2范数）
 
 ### 核范数
 
 核范数是矩阵的奇异值的L1范数，定义为：
 
-$$\|A\|_* = \sum_{i=1}^r \sigma_i$$
+$$\Vert A\Vert_* = \sum_{i=1}^r \sigma_i$$
 
 $r$是矩阵的秩
 
@@ -78,16 +78,16 @@ $r$是矩阵的秩
 
 定义为矩阵列向量的L1范数的最大值：
 
-$$\|A\|_1 = \max_{1 \leq j \leq n} \sum_{i=1}^m |a_{ij}|$$
+$$\Vert A\Vert_1 = \max_{1 \leq j \leq n} \sum_{i=1}^m |a_{ij}|$$
 
 ### 谱范数(L2诱导范数)
 
 定义为矩阵的最大奇异值：
 
-$$\|A\|_2 = \sigma_{\max}$$
+$$\Vert A\Vert_2 = \sigma_{\max}$$
 
 ### 行和范数(L∞诱导范数)
 
 定义为矩阵行向量的L1范数的最大值：
 
-$$\|A\|_\infty = \max_{1 \leq i \leq m} \sum_{j=1}^n |a_{ij}|$$
+$$\Vert A\Vert_\infty = \max_{1 \leq i \leq m} \sum_{j=1}^n |a_{ij}|$$
