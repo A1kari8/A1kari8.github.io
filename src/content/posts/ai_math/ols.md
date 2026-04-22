@@ -86,9 +86,11 @@ $$
 \mathbf{a} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}
 $$
 
-如果此时$\mathbf{X}^T \mathbf{X}$恰好满秩(可逆)，那就直接解吧
+如果此时$\mathbf{X}^T \mathbf{X}$恰好满秩(可逆)且是良态，那就直接解吧
 
-## 如果不可逆怎么办
+[什么是良态&病态&条件数](#矩阵的条件数)
+
+## 如果$\mathbf{X}^T \mathbf{X}$不可逆或病态怎么办
 
 ### SVD奇异值分解(伪逆)
 
@@ -190,3 +192,51 @@ $$
 $$
 \mathbf{r}_{\text{new}} = \mathbf{r}_{\text{old}} -  \mathbf{x}_j(a_j - a_j^{\text{old}})
 $$
+
+## 矩阵的条件数
+
+> 理论上可逆不代表工程上真的能用，因为数值计算中可能会遇到**病态矩阵**，即矩阵的条件数非常大，导致解不稳定
+
+矩阵$\mathbf{X}$的条件数定义为：
+
+$$
+\kappa(\mathbf{X}) = \Vert \mathbf{X} \Vert \cdot \Vert \mathbf{X}^{-1} \Vert
+$$
+
+其中$\Vert \cdot \Vert$表示某种范数，$\kappa(\mathbf{X}) \in [1, +\infty)$
+
+- 良态: $\kappa(\mathbf{X})$接近1，说明$\mathbf{X}$的列向量之间**强**线性无关(高度正交)，解稳定
+- 病态: $\kappa(\mathbf{X})$很大，说明$\mathbf{X}$的列向量之间**接近**线性相关，解不稳定，对输入的微小变化可能导致输出的巨大变化
+
+### Hager算法
+
+Hager算法用于估算条件数公式中的$\Vert \mathbf{A}^{-1} \Vert$:
+
+优化目标：
+
+$$
+\max \Vert \mathbf{A^{-1}} \mathbf{v} \Vert_1 \quad \text{其中 } \Vert \mathbf{v} \Vert_1 = 1
+$$
+
+在单位球面上找一个向量$\mathbf{v}$，使得被$\mathbf{A^{-1}}$变换后的向量最长
+
+1. 先随机选一个初始向量$\mathbf{b}$
+2. 解方程组$\mathbf{A} \mathbf{x} = \mathbf{b}$(使用LU分解)，得到$\mathbf{x} = \mathbf{A^{-1}} \mathbf{b}$
+3. 对$f= \Vert \mathbf{x} \Vert_1$求梯度
+
+$$
+\nabla_{\mathbf{b}} f = (\frac{\partial \mathbf{x}}{\partial \mathbf{b}})^T \nabla_{\mathbf{\mathbf{x}}} f = (A^{-1})^T \nabla_{\mathbf{x}} f = (A^T)^{-1} \nabla_{\mathbf{x}} f
+$$
+
+因为绝对值函数的梯度是符号函数，所以$\nabla_{\mathbf{x}} f = \text{sign}(\mathbf{x})$
+
+得到:
+
+$$
+\begin{aligned}
+\mathbf{z} &= (A^T)^{-1} \text{sign}(\mathbf{x}) \\[1em]
+A^T \mathbf{z} &= \text{sign}(\mathbf{x})
+\end{aligned}
+$$
+
+解方程组$\mathbf{A}^T \mathbf{z} = \text{sign}(\mathbf{x})$得到$\mathbf{z}$(刚刚已经对$A$进行过LU分解，此步很快)，得到绝对值最大分量的索引$j=\arg \max_i |z_i|$，如果$|z_j| > z^T\mathbf{b}$，说明在$j$的方向上可以找到一个更大的值，所以更新$\mathbf{b}$为单位向量$\mathbf{e}_j$并重复以上过程，否则说明已经找到最大值了，此时$\mathbf{b}$就是算法结果
