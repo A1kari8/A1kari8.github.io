@@ -3,7 +3,7 @@ title: "[ICS大作业] 第四章 汇编"
 published: 2025-11-26 22:48:00
 tags: [Linux,C]
 category: ICS
-draft: false
+draft: true
 ---
 
 ## 4.1 汇编的概念和作用

@@ -3,7 +3,7 @@ title: "[ICS大作业] 第一章 概述"
 published: 2025-09-30 23:40:00
 tags: [Linux,C]
 category: ICS
-draft: false
+draft: true
 ---
 
 ## 1.1 Hello简介

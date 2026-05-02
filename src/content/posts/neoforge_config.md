@@ -3,7 +3,7 @@ title: Neoforge模组开发-Config
 published: 2025-09-24 18:08:00
 tags: [NeoForge, Minecraft, Modding, Java]
 category: Minecraft/NeoForge
-draft: false
+draft: true
 ---
 
 Config用于存储模组的配置选项，允许用户在游戏内或通过配置文件进行调整。NeoForge提供了一个强大的配置系统，支持多种数据类型
@@ -38,7 +38,7 @@ public class MyModConfig {
 }
 ```
 
-### 配置项举例 
+### 配置项举例
 
 ```java title="MyModConfig.java" {"配置的详情描述":6-7} {"翻译键名，对应lang/xx_xx.json":8-9} {"定义path和默认值":10-11}
 public class MyModConfig {
