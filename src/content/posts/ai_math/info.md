@@ -1,6 +1,6 @@
 ---
 title: "[人工智能数学基础] 不确定度量与熵"
-published: 2026-4-23 14:45:00
+published: 2026-5-03 14:45:00
 tags: [人工智能数学基础, 数学]
 category: 人工智能数学基础
 draft: false

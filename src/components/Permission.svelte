@@ -126,10 +126,6 @@ onMount(() => {
             <span class="text-2xl font-extrabold">这是一篇加密文章</span>
         </div>
 
-        <h2>{i18n(I18nKey.requirePermissionTitle)}</h2>
-        <p>{i18n(I18nKey.requirePermissionDesc)}</p>
-
-        <!-- 权限等级提示 - 样式1：当前样式 -->
         <!-- <div class="permission-level-info">
             <div class="level-indicator">
                 <div class="level-icon">
