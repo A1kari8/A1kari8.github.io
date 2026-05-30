@@ -33,6 +33,18 @@ $$\text{tr}(A) = \sum_{i=1}^n a_{ii}$$
 - 线性：$\text{tr}(A + B) = \text{tr}(A) + \text{tr}(B)$，$\text{tr}(\alpha A) = \alpha \text{tr}(A)$
 - $\text{tr}(A^*) = \overline{\text{tr}(A)}$，其中$A^*$是$A$的共轭转置
 
+## Spark
+
+线性相关的列的最小数量
+
+越大说明矩阵越稀疏
+
+当要找一个$k$-稀疏的解(即解中最多有$k$个非零元素，$\Vert \mathbf{x} \Vert_0 \leq k$)时，若满足：
+
+$$\Vert \mathbf{x} \Vert_0 < \frac{\text{spark}(A)}{2}$$
+
+则该解是唯一的
+
 ## 共轭矩阵
 
 共轭矩阵是指矩阵元素取共轭复数后的矩阵，记为$A^*$或$\overline{A}$：
