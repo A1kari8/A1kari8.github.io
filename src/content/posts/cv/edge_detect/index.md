@@ -80,7 +80,7 @@ $$
 
 Canny算子是一种多阶段的边缘检测算法，包含以下步骤：
 
-1. 使用[高斯滤波器](https://a1kari8.github.io/posts/cv/conv_denoise/)对图像进行平滑，减少噪声的影响
+1. 使用[高斯滤波器](https://alkaid114.github.io/posts/cv/conv_denoise/)对图像进行平滑，减少噪声的影响
 2. 计算图像的梯度幅值和方向，使用[Sobel算子](#sobel算子)或[Prewitt算子](#prewitt算子)
 3. 进行非极大值抑制，保留局部最大值，抑制非边缘的噪声
 4. 使用双阈值算法连接边缘，确定哪些边缘是强边缘，哪些是弱边缘，并连接强边缘和弱边缘
