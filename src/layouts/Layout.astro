@@ -519,6 +519,11 @@ function disableAnimation() {
 			if (heightExtend) {
 				heightExtend.classList.remove("hidden");
 			}
+
+			// Initialize page-specific components
+			if (document.getElementById('image-obfuscation')) {
+				import('../scripts/tools-init').then(mod => mod.initToolsPage());
+			}
 		});
 		window.swup.hooks.on("visit:end", (_visit: { to: { url: string } }) => {
 			setTimeout(() => {

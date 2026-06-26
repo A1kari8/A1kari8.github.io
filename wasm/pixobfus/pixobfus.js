@@ -81,7 +81,7 @@ export function restore_image(image_data, key, use_gilbert) {
 function __wbg_get_imports() {
     const import0 = {
         __proto__: null,
-        __wbg_getRandomValues_ab1935b403569652: function() { return handleError(function (arg0, arg1) {
+        __wbg_getRandomValues_76dfc69825c9c552: function() { return handleError(function (arg0, arg1) {
             globalThis.crypto.getRandomValues(getArrayU8FromWasm0(arg0, arg1));
         }, arguments); },
         __wbindgen_cast_0000000000000001: function(arg0, arg1) {
