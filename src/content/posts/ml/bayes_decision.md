@@ -1,6 +1,6 @@
 ---
 title: "[模式识别与机器学习] 贝叶斯决策理论"
-published: 2026-5-31 16:35:00
+published: 2026-6-26 16:35:00
 tags: [模式识别, 机器学习]
 category: 大学计算机
 draft: false
@@ -8,7 +8,7 @@ draft: false
 
 ## 概率论复习
 
-- **条件概率**：$P(A|B) = \frac{P(A \cap B)}{P(B)}$
+- **条件概率**：$P(A|B) = \frac{P(AB)}{P(B)}$
 - **联合概率**：$P(A \cap B) = P(A|B)P(B) = P(B|A)P(A)$
 - **全概率公式**：$P(A) = \sum_{i} P(A|B_i)P(B_i)$
 - **贝叶斯定理**：$P(B|A) = \frac{P(A|B)P(B)}{P(A)}$
@@ -26,7 +26,7 @@ $$
 
 ## 贝叶斯决策理论
 
-### 最小错误率
+### 最小错误率(最小平均风险的特殊情况)
 
 哪个后验概率大选哪个：
 
@@ -34,7 +34,7 @@ $$
 i = \arg\max_{1\leq j \leq c} P(\omega_j | x) \quad \mathbf{x} \in \omega_i
 $$
 
-### 最小平均风险
+### 最小平均风险(贝叶斯准则)
 
 有$c$个类别$\omega_1, \omega_2, \ldots, \omega_c$，将属于$\omega_i$的样本判别为$\omega_j$的代价为$\lambda_{ij}$
 
@@ -63,11 +63,36 @@ $$
 
 ### Neyman-Pearson准则(代价未知)
 
+> 无需先验概率
+
 代价未知时可通过NP准则控制到指定的错误率，在限定一类错误率的前提下，最小化另一类错误率
 
-> 不好算，应该不能考，懒得写
+已知要求将属于$\omega_1$的样本判别为$\omega_2$的错误率不超过$\alpha$，即：
 
-### 极小极大准则
+$$
+P(\text{判为}\omega_2 | \omega_1) \leq \alpha
+$$
+
+进行似然比检验：
+
+$$
+\frac{P(\mathbf{x} | \omega_1)}{P(\mathbf{x} | \omega_2)}  \begin{cases}
+\geq \eta, & \text{判为}\omega_1 \\
+< \eta, & \text{判为}\omega_2
+\end{cases}
+$$
+
+- $\eta$：阈值，控制错误率
+
+通过$\alpha$计算$\eta$：
+
+$$
+P(\text{判为}\omega_2 | \omega_1) = P(\frac{P(\mathbf{x} | \omega_1)}{P(\mathbf{x} | \omega_2)} < \eta | \omega_1) = \alpha
+$$
+
+之后解方程确定分布函数右边的面积等于$\alpha$，即可得到$\eta$的值
+
+### 极小极大准则(先验概率未知)
 
 最小化最大风险，适用于不确定的代价函数
 
@@ -96,3 +121,17 @@ $$
 - **概率判别函数**：$g_i(\mathbf{x}) = P(\omega_i | \mathbf{x})$，直接使用后验概率作为判别函数
 
 $\mu_i$是属于类别$\omega_i$的样本的均值向量
+
+### 朴素贝叶斯分类器(Naive Bayes Classifier)
+
+> 先学$P(\mathbf{x} | \omega_i)$，再用贝叶斯公式求$P(\omega_i | \mathbf{x})$
+
+用于解决**维度灾难**问题，设计特征向量$\mathbf{x} = (x_1, x_2, \ldots, x_d)^T$，若要计算$P(x_1, x_2, \ldots, x_d | \omega_i)$，即使均为二值，也有$2^d$种可能的组合，计算量非常大
+
+朴素贝叶斯分类器假设特征之间相互独立，即：
+
+$$
+P(x_1, x_2, \ldots, x_d | \omega_i) = \prod_{j=1}^d P(x_j | \omega_i)
+$$
+
+只有$d$个条件概率需要计算，计算量大幅减少
