@@ -125,7 +125,7 @@ export default defineConfig({
 			parseDirectiveNode,
 		],
 		rehypePlugins: [
-			rehypeKatex,
+			[rehypeKatex, { strict: false }],
 			rehypeSlug,
 			[
 				rehypeComponents,
