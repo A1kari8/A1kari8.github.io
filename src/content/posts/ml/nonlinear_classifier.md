@@ -58,9 +58,53 @@ $$
 
 $k=1$ 时，称为最近邻分类器，边界复杂易受噪声影响。$k$较大时，边界更平滑但可能丢失细节。
 
+#### Voronoi网格
+
+将输入空间划分为若干个区域，每个区域对应一个训练样本，区域内的所有点都被分类为该样本的类别。Voronoi网格的边界就是最近邻分类器的决策边界。
+
 ## 多层感知机(MLP)
 
-这个简单，先不写了
+### 反向传播算法
+
+设输入层有 $n$ 个神经元，隐藏层有 $h$ 个神经元，输出层有 $m$ 个神经元。
+
+我们需要得到第$i$层的梯度$\frac{\partial J}{\partial \mathbf{W}^{(i)}}$，其中 $J$ 是损失，$\mathbf{W}^{(i)}$ 是第$i$层的权重。
+
+根据链式法则：
+
+$$
+\frac{\partial J}{\partial \mathbf{W}^{(i)}} = \frac{\partial J}{\partial \mathbf{z}^{(i)}} \cdot \frac{\partial \mathbf{z}^{(i)}}{\partial \mathbf{W}^{(i)}}
+$$
+
+$\mathbf{z}^{(i)}$ 是第$i$层的线性输出，$\mathbf{z}^{(i)} = \mathbf{W}^{(i)} \mathbf{a}^{(i-1)} + \mathbf{b}^{(i)}$，其中 $\mathbf{a}^{(i-1)}$ 是第$i-1$层的激活输出（也是第$i$层的输入）。
+
+所以：
+
+$$
+\frac{\partial \mathbf{z}^{(i)}}{\partial \mathbf{W}^{(i)}} = \mathbf{a}^{(i-1)}
+$$
+
+则：
+
+$$
+\frac{\partial J}{\partial \mathbf{W}^{(i)}} = \frac{\partial J}{\partial \mathbf{z}^{(i)}} \cdot \mathbf{a}^{(i-1)}
+$$
+
+$\dfrac{\partial J}{\partial \mathbf{z}^{(i)}}$被称作第$i$层的局部误差
+
+若$i$是最后一层时，则$\frac{\partial J}{\partial \mathbf{z}^{(i)}}$ 可以直接计算；若$i$不是最后一层，则从最后一层开始，逐层向前计算$\frac{\partial J}{\partial \mathbf{z}^{(i)}}$，直到计算到第$i$层。
+
+$$
+\begin{aligned}
+\frac{\partial J}{\partial \mathbf{z}^{(i-1)}} &= \frac{\partial J}{\partial \mathbf{z}^{(i)}} \cdot \frac{\partial \mathbf{z}^{(i)}}{\partial \mathbf{a}^{(i-1)}} \cdot \frac{\partial \mathbf{a}^{(i-1)}}{\partial \mathbf{z}^{(i-1)}} \\
+&= (\mathbf{W}^{(i)})^T  \cdot \frac{\partial J}{\partial \mathbf{z}^{(i)}} \cdot \sigma'(\mathbf{z}^{(i-1)})
+\end{aligned}
+$$
+
+> [!TIP]
+> $\dfrac{\partial \mathbf{a}^{(i-1)}}{\partial \mathbf{z}^{(i-1)}}$就是激活函数的导数
+>
+> $z^{(i)} = W^{(i)} a^{(i-1)} + b^{(i)}$，所以$\dfrac{\partial \mathbf{z}^{(i)}}{\partial \mathbf{a}^{(i-1)}} = W^{(i)}$
 
 ## 核方法
 
