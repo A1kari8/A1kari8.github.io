@@ -98,14 +98,16 @@ $$
 - 如何定义距离(欧氏距离、曼哈顿距离等)
 - 如何定义类的中心(均值、质心等)
 
-## k-均值聚类
+## k-均值聚类(K-means)
 
 1. 随机选择$k$个样本作为初始聚类中心
 2. 将每个样本分配到距离最近的聚类中心所在的子集中
-3. 重新计算每个子集的均值作为新的聚类中心
+3. 重新计算每个子集内所有点的均值作为新的聚类中心
 4. 重复步骤2和3，直到聚类中心不再发生变化或达到最大迭代次数为止
 
 可看作是对**平方误差准则**的**贪心搜索**算法
+
+聚类结果受初始聚类中心的选择影响较大，可能会陷入局部最优解
 
 ## 高斯混合模型(GMM)
 
@@ -118,44 +120,34 @@ $$
 最常用的是GMM:
 
 $$
-p(\mathbf{x}) = \sum_{i=1}^M a_i \mathcal{N}(\mathbf{x};\mathbf{\mu_i}, \mathbf{\Sigma_i}) \qquad \sum_{i=1}^M a_i = 1
+p(\mathbf{x}) = \sum_{i=1}^M a_i N(\mathbf{x};\mathbf{\mu_i}, \mathbf{\Sigma_i}) \qquad \sum_{i=1}^M a_i = 1
 $$
 
-GMM能得到每个样本属于每个子集的概率，适用于样本分布不均匀的情况
+- $\mu_i$为第$i$个高斯函数的均值（中心位置）
+- $\Sigma_i$为第$i$个高斯函数的协方差矩阵（控制形状和方向）
 
-### 隐含数据集合
+GMM能得到每个样本属于每个子集的概率，适用于样本分布不均匀的情况，可用于软聚类，输出属于哪类的可能性，而非硬聚类的类别标签
 
-$$
-Y = \{y_1, \cdots, y_N\} \qquad y_i \in \{1, \cdots, M\}
-$$
+## 期望最大化算法(EM)
 
-$y_i$表示第$i$个样本是由组合中第$y_i$个高斯函数产生的，也就是第$i$个样本属于第$y_i$个子集，将$Y$作为丢失数据集合，采用EM算法进行迭代估计
+### E-Step求期望
 
-### 期望最大化算法(EM)
-
-令$\mathbf{X}$是观察到的样本数据集合，$\mathbf{Y}$是丢失的隐含数据集合，完整的样本集合是$\mathbf{D} = \mathbf{X} \cup \mathbf{Y}$
+用当前参数计算每个样本$\mathbf{x_i}$由每个高斯分量$k$生成的后验概率：
 
 $$
-p(\mathbf{D}|\theta) = p(\mathbf{X}, \mathbf{Y}|\theta)
+\gamma_{ik} = \frac{a_k N(\mathbf{x_i};\mathbf{\mu_k}, \mathbf{\Sigma_k})}{\sum_{j=1}^M a_j N(\mathbf{x_i};\mathbf{\mu_j}, \mathbf{\Sigma_j})}
 $$
 
-似然函数：
+### M-Step求最大化
 
-$$
-l(\theta) = l(\theta|\mathbf{D}) = \ln p(\mathbf{X}, \mathbf{Y}|\theta)
-$$
-
-E-Step: 计算期望
+根据E-Step计算的后验概率，重新估计参数：
 
 $$
 \begin{aligned}
-Q(\theta, \theta^{(t)}) &= E_{Y}\left (l(\theta|\mathbf{X}, \mathbf{Y})|\mathbf{X},\theta^{i-1}\right ) \\[1em]
-&= E_{Y}\left (\ln p(\mathbf{X}, \mathbf{Y}|\theta)|\mathbf{X},\theta^{i-1}\right )
+\text{新权重} \quad a_k &= \frac{1}{N} \sum_{i=1}^N \gamma_{ik} \\[1.5em]
+\text{新均值} \quad \mathbf{\mu_k} &= \frac{\sum_{i=1}^N \gamma_{ik} \mathbf{x_i}}{\sum_{i=1}^N \gamma_{ik}} \\[1.5em]
+\text{新协方差矩阵} \quad \mathbf{\Sigma_k} &= \frac{\sum_{i=1}^N \gamma_{ik} (\mathbf{x_i} - \mathbf{\mu_k})(\mathbf{x_i} - \mathbf{\mu_k})^T}{\sum_{i=1}^N \gamma_{ik}}
 \end{aligned}
 $$
 
-M-Step: 最大化期望
-
-$$
-\theta^{i} = \arg \max_{\theta} Q(\theta|\theta^{i-1})
-$$
+得到新参数后重复E-Step和M-Step，直到参数收敛为止
