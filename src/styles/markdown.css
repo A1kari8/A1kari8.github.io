@@ -115,6 +115,13 @@
 
     }
 
+    .katex {
+        color: oklch(0.25 0.02 var(--hue));
+    }
+    :root.dark & .katex {
+        color: oklch(0.88 0.02 var(--hue));
+    }
+
     .katex-display-container {
         max-width: 100%;
         overflow-x: auto;
