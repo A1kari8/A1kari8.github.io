@@ -18,7 +18,7 @@ import {
 import { defaultFavicons } from "../constants/icon";
 import type { Favicon } from "../types/config";
 import { pathsEqual, url } from "../utils/url-utils";
-import "katex/dist/katex.css";
+import "katex/dist/katex-swap.css";
 
 interface Props {
 	title?: string;
@@ -247,6 +247,103 @@ const bannerOffset =
 			@apply opacity-0 -translate-y-16;
 		}
 	}
+	.katex-card {
+		all: unset;
+		display: block;
+		border-radius: 0.75rem;
+		background: var(--codeblock-bg);
+		margin: 1.25em 0;
+		overflow: hidden;
+		position: relative;
+	}
+	.katex-display-container {
+		max-width: 100%;
+		overflow-x: auto;
+		padding: 0.75rem 0;
+		position: relative;
+	}
+	.katex-display-container .katex-display {
+		margin: 0;
+	}
+	.katex-display-container .katex-display > .katex {
+		padding: 0 0.75rem;
+	}
+	.katex-display-container[data-language]::before {
+		position: absolute;
+		z-index: 2;
+		right: 0.5rem;
+		top: 0.5rem;
+		padding: 0.1rem 0.5rem;
+		content: attr(data-language);
+		font-family: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: oklch(0.75 0.1 var(--hue));
+		background: oklch(0.33 0.035 var(--hue));
+		border-radius: 0.5rem;
+		pointer-events: none;
+		transition: opacity 0.3s;
+		opacity: 1;
+	}
+	.katex-card:hover .katex-display-container[data-language]::before {
+		opacity: 0;
+	}
+	.katex-copy-btn {
+		all: unset;
+		position: absolute;
+		top: 0.5rem;
+		right: 0.5rem;
+		z-index: 2;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2rem;
+		height: 2rem;
+		border-radius: 0.5rem;
+		cursor: pointer;
+		opacity: 0;
+		transition: opacity 0.15s, background 0.15s;
+		background: oklch(0.45 0.01 var(--hue));
+		box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+	}
+	:root.dark .katex-copy-btn {
+		background: oklch(0.30 0.02 var(--hue));
+	}
+	.katex-card:hover .katex-copy-btn {
+		opacity: 1;
+	}
+	.katex-copy-btn:hover {
+		background: oklch(0.50 0.01 var(--hue));
+	}
+	:root.dark .katex-copy-btn:hover {
+		background: oklch(0.35 0.03 var(--hue));
+	}
+	.katex-copy-btn:active {
+		background: oklch(0.55 0.01 var(--hue));
+	}
+	:root.dark .katex-copy-btn:active {
+		background: oklch(0.40 0.03 var(--hue));
+	}
+	.katex-copy-svg,
+	.katex-check-svg {
+		width: 1.1rem;
+		height: 1.1rem;
+		fill: white;
+	}
+	:root.dark .katex-copy-svg,
+	:root.dark .katex-check-svg {
+		fill: oklch(0.75 0.02 var(--hue));
+	}
+	.katex-check-svg {
+		display: none;
+	}
+	.katex-copy-btn.success .katex-copy-svg {
+		display: none;
+	}
+	.katex-copy-btn.success .katex-check-svg {
+		display: block;
+		fill: var(--primary);
+	}
 </style>
 
 <script>
@@ -377,30 +474,12 @@ function disableAnimation() {
 			},
 		);
 
-		const katexElements = document.querySelectorAll(
-			".katex-display",
+		const katexContainers = document.querySelectorAll(
+			".katex-display-container",
 		) as NodeListOf<HTMLElement>;
 
-		const katexObserverOptions = {
-			root: null,
-			rootMargin: "100px",
-			threshold: 0.1,
-		};
-
-		const processKatexElement = (element: HTMLElement) => {
-			if (!element.parentNode) return;
-			if (element.hasAttribute("data-scrollbar-initialized")) return;
-
-			const container = document.createElement("div");
-			container.className = "katex-display-container";
-			container.setAttribute(
-				"aria-label",
-				"scrollable container for formulas",
-			);
-
-			element.parentNode.insertBefore(container, element);
-			container.appendChild(element);
-
+		katexContainers.forEach((container) => {
+			if (container.hasAttribute("data-scrollbar-initialized")) return;
 			OverlayScrollbars(container, {
 				scrollbars: {
 					theme: "scrollbar-base scrollbar-auto",
@@ -409,21 +488,7 @@ function disableAnimation() {
 					autoHideSuspend: false,
 				},
 			});
-
-			element.setAttribute("data-scrollbar-initialized", "true");
-		};
-
-		const katexObserver = new IntersectionObserver((entries, observer) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-					processKatexElement(entry.target as HTMLElement);
-					observer.unobserve(entry.target);
-				}
-			});
-		}, katexObserverOptions);
-
-		katexElements.forEach((element) => {
-			katexObserver.observe(element);
+			container.setAttribute("data-scrollbar-initialized", "true");
 		});
 	}
 
@@ -439,11 +504,29 @@ function disableAnimation() {
 		banner.classList.remove("opacity-0", "scale-105");
 	}
 
+	function initKatexCopy() {
+		document.addEventListener("click", (e: MouseEvent) => {
+			const btn = (e.target as Element)?.closest?.(".katex-copy-btn") as HTMLElement | null;
+			if (!btn) return;
+			const latex = btn.getAttribute("data-latex");
+			if (!latex) return;
+			navigator.clipboard.writeText(latex);
+			const timeoutId = btn.getAttribute("data-timeout-id");
+			if (timeoutId) clearTimeout(parseInt(timeoutId));
+			btn.classList.add("success");
+			const newTimeoutId = setTimeout(() => {
+				btn.classList.remove("success");
+			}, 1000);
+			btn.setAttribute("data-timeout-id", newTimeoutId.toString());
+		});
+	}
+
 	function init() {
 		// disableAnimation()()		// TODO
 		loadTheme();
 		loadHue();
 		initCustomScrollbar();
+		initKatexCopy();
 		showBanner();
 	}
 

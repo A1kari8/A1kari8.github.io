@@ -10,6 +10,7 @@ import { defineConfig } from "astro/config";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeComponents from "rehype-components"; /* Render the custom directive content */
 import rehypeKatex from "rehype-katex";
+import rehypeKatexCard from "./src/plugins/rehype-katex-card.mjs";
 import rehypeSlug from "rehype-slug";
 import remarkDirective from "remark-directive"; /* Handle directives */
 import remarkGithubAdmonitionsToDirectives from "remark-github-admonitions-to-directives";
@@ -126,6 +127,7 @@ export default defineConfig({
 		],
 		rehypePlugins: [
 			[rehypeKatex, { strict: false }],
+			rehypeKatexCard,
 			rehypeSlug,
 			[
 				rehypeComponents,
