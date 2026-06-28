@@ -2,7 +2,7 @@
 title: "[模式识别与机器学习] 特征提取"
 published: 2026-6-18 11:58:00
 tags: [模式识别, 机器学习]
-category: 大学计算机
+category: 模式识别与机器学习
 draft: false
 ---
 

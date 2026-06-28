@@ -2,7 +2,7 @@
 title: "[计算机视觉] 卷积与图像降噪"
 published: 2026-5-30 18:04:00
 tags: [计算机视觉]
-category: 大学计算机
+category: 计算机视觉
 draft: false
 ---
 

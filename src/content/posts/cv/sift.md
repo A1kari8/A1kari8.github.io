@@ -2,7 +2,7 @@
 title: "[计算机视觉] SIFT尺度不变特征变换"
 published: 2026-6-6 11:53:00
 tags: [计算机视觉]
-category: 大学计算机
+category: 计算机视觉
 draft: true
 ---
 

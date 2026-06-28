@@ -2,7 +2,7 @@
 title: "[模式识别与机器学习] 非线性分类器"
 published: 2026-6-17 17:33:00
 tags: [模式识别, 机器学习]
-category: 大学计算机
+category: 模式识别与机器学习
 draft: false
 ---
 

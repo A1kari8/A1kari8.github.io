@@ -2,7 +2,7 @@
 title: "[计算机视觉] 斑点检测"
 published: 2026-6-6 11:15:00
 tags: [计算机视觉]
-category: 大学计算机
+category: 计算机视觉
 draft: false
 ---
 

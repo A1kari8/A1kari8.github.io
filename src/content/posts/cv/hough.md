@@ -2,7 +2,7 @@
 title: "[计算机视觉] 霍夫变换"
 published: 2026-6-6 10:03:00
 tags: [计算机视觉]
-category: 大学计算机
+category: 计算机视觉
 draft: false
 ---
 
