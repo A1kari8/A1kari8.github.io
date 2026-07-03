@@ -2,7 +2,7 @@
 title: "[形式语言与自动机] 正则语言与正则表达式"
 published: 2026-5-30 16:25:00
 tags: [形式语言与自动机]
-category: 大学计算机
+category: 形式语言与自动机
 draft: false
 ---
 

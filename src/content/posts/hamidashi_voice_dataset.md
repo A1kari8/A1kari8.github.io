@@ -1,16 +1,15 @@
 ﻿---
 title: "[解包] 常轨脱离(ハミダシ)语音与文本解包制作GPTSoVits数据集"
 published: 2025-08-29 21:47:58
-tags: [数据集, 解包, TTS, GPTSoVits, Lua]
-category: 数据集制作
+tags: [解包, TTS, GPTSoVits]
+category: GPTSoVits
 draft: false
 ---
 
 ## 需要准备什么
 
 - 游戏本体<!-- （不建议steam版，~~虽然我也没试过~~，但之前试过解包steam版的别的游戏，内容是加密的解不了） -->
-- [Lua环境](https://github.com/rjpcomputing/luaforwindows/releases)，提取文本用
-- ~~[Node.js](https://nodejs.org/)，写脚本用~~ **既然用Lua了就直接全用Lua写算了**
+- [Lua环境](https://github.com/rjpcomputing/luaforwindows/releases)，提取文本+数据处理脚本
 - [GARbro](https://github.com/morkt/GARbro/releases)，解包用
 - [FFmpeg](https://ffmpeg.org/download.html#build-windows)，`.ogg`转`.wav`，记得添加到环境变量
 
@@ -20,15 +19,15 @@ draft: false
 
 将`script`目录内所有内容（扩展名`.ast`的文件）导出备用，这个目录内即为脚本文件
 
-之后打开游戏目录内的`hamidashi.pfs.000`，将`sound/vo/名简写`，比如我要导出**錦あすみ**的语音，就导出`sound/vo/asu`内的所有`.ogg`音频
+之后打开游戏目录内的`hamidashi.pfs.000`，将`sound/vo/名简写`，比如要导出**錦あすみ**的语音，就导出`sound/vo/asu`内的所有`.ogg`音频
 
-（不过如果你在找**妃愛**的语音的话，还有一部分在`hamidashi.pfs.001`的`sound/vo/hiy`）
+（如果在找**妃愛**的语音，还有一部分在`hamidashi.pfs.001`的`sound/vo/hiy`）
 
 将所有需要的`.ogg`音频导出到一个文件夹内备用，暂且称之`voice_ogg`目录吧
 
 ## 提取语音对应的文本
 
-不同于很多使用经典的`.json`的其他galgame，解析这个~~神秘的~~`.ast`的过程相当波折
+不同于很多使用`.json`的其他galgame，解析这个`.ast`的过程相当波折
 
 一段例子
 
@@ -49,7 +48,7 @@ text={
 }
 ```
 
-一开始看到这神奇的语法还以为是什么私有的标记语言，然后跟AI对线一小时整了个正则表达式
+一开始看到这语法还以为是私有标记语言，然后跟AI对线一小时整了个正则表达式
 
 后来注意到怎么从1开始呢，不会跟lua有关吧，查了一下才知道原来这整个文件就是个lua脚本（~~电脑里有一款索引从1开始的语言~~）
 
@@ -195,7 +194,7 @@ for file in lfs.dir(input_dir) do
 end
 ```
 
-运行脚本后我们便有了所有需要的资源，可以拿着它们炼TTS啦
+运行脚本后我们便有了所有需要的资源
 
 ## 生成GPTSoVits数据集使用的`slicer.list`
 

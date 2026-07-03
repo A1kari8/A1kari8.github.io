@@ -25,6 +25,41 @@ draft: false
 - SVM-RFE(递归特征消除)：训练SVM模型，根据权重大小递归地消除特征(得到的支持向量就是重要的特征)
 - L1正则化(Lasso回归)：通过引入L1正则项，使得一些特征的权重变为零，从而实现特征选择
 
+## 相关性评价
+
+### 熵
+
+$$
+H(X) = -\sum_{i=1}^{n} p(x_i) \log p(x_i)
+$$
+
+### 联合熵
+
+$$
+H(X,Y) = -\sum_{i=1}^{n} \sum_{j=1}^{m} p(x_i, y_j) \log p(x_i, y_j)
+$$
+
+### Kullback-Leibler散度
+
+$$
+D_{KL}(P||Q) = \sum_{i=1}^{n} p(x_i) \log \frac{p(x_i)}{q(x_i)}
+$$
+
+- 非负性
+- KL散度为0: PQ同分布
+- **不对称**
+
+### Jensen-Shannon散度
+
+$$
+D_{JS}(P||Q) = \frac{1}{2} D_{KL}(P||M) + \frac{1}{2} D_{KL}(Q||M) \\[1em]
+M = \frac{1}{2}(P + Q) \quad \text{两个分布的平均值}
+$$
+
+- 非负性
+- JS散度为0: PQ同分布
+- **对称**
+
 ## 特征提取(线性方法)
 
 ### 主成分分析(PCA)

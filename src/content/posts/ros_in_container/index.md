@@ -7,7 +7,7 @@ category: ROS
 
 ## 需要的工具
 
-安装`distrobox`和`podman`（`docker`也可以，但是我觉得`podman`比较轻量）
+安装`distrobox`和`podman`或`docker`
 
 ## 生成nvidia的cdi配置（不需要独显可以跳过）
 

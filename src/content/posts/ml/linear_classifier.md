@@ -275,7 +275,7 @@ $$
 f(\mathbf{x}) = \text{sign} \left( \sum_{i \in SV} \alpha_i y_i \mathbf{x}_i^T \mathbf{x} + b \right)
 $$
 
-### 线性不可分SVM(软间隔)
+### 不完全线性可分SVM(软间隔)
 
 引入松弛变量 $\xi_i \geq 0$，允许部分样本被误分类(可以不满足函数间隔$\ge1$)，但对误分类样本进行惩罚。优化问题：
 
@@ -314,3 +314,15 @@ $$
 - 当 $\alpha_i > 0$ 且 $\alpha_i < C$ 时，$y_i (\mathbf{w}^T \mathbf{x}_i + b) = 1 - \xi_i$，样本 $\mathbf{x}_i$ 位于间隔边界上，称为**支持向量**
 - 当 $\alpha_i = 0$ 时，$y_i (\mathbf{w}^T \mathbf{x}_i + b) > 1 - \xi_i$，样本 $\mathbf{x}_i$ 位于间隔外，不是支持向量，样本对决策面没有贡献
 - 当 $\alpha_i = C$ 时，$y_i (\mathbf{w}^T \mathbf{x}_i + b) < 1 - \xi_i$，样本 $\mathbf{x}_i$ 被误分类，称为**误分类支持向量**
+
+### 非线性可分SVM(核方法)
+
+给软间隔最后得到的对偶问题的$\mathbf{x}_i^T \mathbf{x}_j$替换为核函数$K(\mathbf{x}_i, \mathbf{x}_j)$，得到：
+
+$$
+\begin{aligned}
+\max_{\boldsymbol{\alpha}} \quad & \sum_{i=1}^N \alpha_i - \frac{1}{2} \sum_{i=1}^N \sum_{j=1}^N \alpha_i \alpha_j y_i y_j K(\mathbf{x}_i, \mathbf{x}_j) \\
+\text{subject to} \quad & 0 \leq \alpha_i \le C, \quad i = 1, 2, \ldots, N \\
+& \sum_{i=1}^N \alpha_i y_i = 0
+\end{aligned}
+$$

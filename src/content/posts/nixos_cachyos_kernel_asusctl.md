@@ -6,6 +6,9 @@ category: Linux/NixOS
 draft: false
 ---
 
+> [!NOTE]
+> 2026-07-03更新： 很久之前Linux 6.19已经集成了asusctl的补丁，现在都支持asusctl，直接用就行了
+
 `asusctl`的功耗控制功能是依赖特殊的内核功能的，默认的内核并不支持，经过一番搜索，在NixOS Discourse上找到了对Arch Linux上`linux-g14`内核的[打包配置](https://discourse.nixos.org/t/integrating-the-linux-g14-kernel-into-nixos-kernels-broader-asus-laptop-support/63350)，但是需要自行编译，在笔记本上编译内核压力实在有点大了
 
 但其实CachyOS的内核已经集成了这些补丁，直接用CachyOS内核就可以了，Chaotic项目还提供了CachyOS内核的二进制缓存

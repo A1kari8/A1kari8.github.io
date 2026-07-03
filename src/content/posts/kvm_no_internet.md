@@ -14,7 +14,7 @@ draft: true
 
 今天在Fedora 42上安装了virt-manager，发现虚拟机和主机互相都能ping通，但是虚拟机无法连接互联网
 
-之后在网上搜寻解决方法找到了这篇有着完全相同问题的[文章](https://ak4ri-amamiya.github.io/2024/06/28/20240628_libvirtd-no-network/)，感谢Ak4ri大佬
+之后在网上搜寻解决方法找到了这篇有着完全相同问题的[文章](https://ak4ri-amamiya.github.io/2024/06/28/20240628_libvirtd-no-network/)，感谢Ak4ri
 
 ## 原文解决方法
 
