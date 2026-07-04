@@ -10,7 +10,7 @@ draft: false
 
 在[非线性分类器](/post/ml/nonlinear_classifier#反向传播算法)
 
-## 优化器
+## 优化器(不考)
 
 $\eta$ 学习率
 
@@ -166,3 +166,66 @@ $$
 > $$
 > \text{Softplus}(x) = \log(1 + e^x)
 > $$
+
+## 批归一化(BN)
+
+> 通过规范化每层输入，解决训练过程中**内部协变量偏移(Internal Covariate Shift)**问题，即前层参数变化导致后层输入分布持续变化的现象。
+
+### 前向传播
+
+对每个 mini-batch $\mathcal{B} = \{\mathbf{x}_1, \dots, \mathbf{x}_m\}$，对每个特征维独立进行归一化：
+
+$$
+\begin{aligned}
+\mu_{\mathcal{B}} &= \frac{1}{m} \sum_{i=1}^m \mathbf{x}_i \qquad \text{(批均值)} \\[1em]
+\sigma_{\mathcal{B}}^2 &= \frac{1}{m} \sum_{i=1}^m (\mathbf{x}_i - \mu_{\mathcal{B}})^2 \qquad \text{(批方差)} \\[1em]
+\hat{\mathbf{x}}_i &= \frac{\mathbf{x}_i - \mu_{\mathcal{B}}}{\sqrt{\sigma_{\mathcal{B}}^2 + \epsilon}} \qquad \text{(归一化)} \\[1em]
+\mathbf{y}_i &= \gamma \hat{\mathbf{x}}_i + \beta \qquad \text{(缩放平移)}
+\end{aligned}
+$$
+
+- $\gamma$（缩放参数）、$\beta$（平移参数）是可学习参数，恢复网络的表达能力
+- $\epsilon$ 防止除零，通常取 $10^{-5}$
+
+> 引入 $\gamma, \beta$ 的原因是：单纯归一化会将数据限制在单位方差、零均值，可能破坏网络的表达能力（如将原本在 Sigmoid 线性区的输入推到饱和区）；通过可学习的 $\gamma, \beta$，网络可以自行决定是否恢复原始分布。
+
+### 训练与推理的差异
+
+- **训练时**：使用当前 mini-batch 的 $\mu_{\mathcal{B}}, \sigma_{\mathcal{B}}^2$ 进行归一化
+- **推理时**：使用训练集上累积的**全局**均值 $\mu_{\text{run}}$ 和方差 $\sigma_{\text{run}}^2$（指数移动平均）：
+
+  $$
+  \mu_{\text{run}} \leftarrow \alpha \mu_{\text{run}} + (1 - \alpha) \mu_{\mathcal{B}} \\
+  \sigma_{\text{run}}^2 \leftarrow \alpha \sigma_{\text{run}}^2 + (1 - \alpha) \sigma_{\mathcal{B}}^2
+  $$
+
+  - $\alpha$ 为动量系数（通常 $0.9$），推理时固定该统计量
+
+### 反向传播
+
+BN 层参与梯度计算，链式法则需考虑 $\mu$ 和 $\sigma^2$ 对输入的依赖。现代框架自动处理，梯度通过归一化、$\gamma$、$\beta$ 逐层回传。
+
+### 放置位置
+
+通常置于**线性变换之后、激活函数之前**：
+
+$$
+\mathbf{z} = \mathbf{W}\mathbf{x} + \mathbf{b} \rightarrow \text{BN}(\mathbf{z}) \rightarrow \sigma(\cdot)
+$$
+
+> 因 BN 含有平移参数 $\beta$，线性层中的偏置 $\mathbf{b}$ 可省略。
+
+### 作用与效果
+
+| 作用 | 说明 |
+|------|------|
+| 加速收敛 | 缓解梯度消失/梯度爆炸，允许使用更大的学习率 |
+| 减少过拟合 | 每个 batch 的均值方差存在随机性，带来轻微正则化效果 |
+| 降低对初始化的依赖 | 每层输入分布相对稳定，参数初始化不必过于精确 |
+| 允许更大学习率 | 输出分布受控，不易发散 |
+
+### 局限
+
+- **小 batch 不友好**：batch 过小时统计量不稳定，影响训练质量（替代方案：LayerNorm、GroupNorm）
+- **训练与推理行为不一致**：训练依赖 batch 内其他样本，推理使用全局统计量
+- **对序列模型不直接适用**：RNN 中不同时间步共享 BN 参数需特殊处理

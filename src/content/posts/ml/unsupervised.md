@@ -132,7 +132,9 @@ GMM能得到每个样本属于每个子集的概率，适用于样本分布不�
 
 ### E-Step求期望
 
-用当前参数计算每个样本$\mathbf{x_i}$由每个高斯分量$k$生成的后验概率：
+根据先验随机初始化模型参数$\theta = \{a_k, \mathbf{\mu_k}, \mathbf{\Sigma_k}\}$
+
+用当前参数计算每个样本$\mathbf{x_i}$由每个高斯分量$k$生成的**后验概率**：
 
 $$
 \gamma_{ik} = \frac{a_k N(\mathbf{x_i};\mathbf{\mu_k}, \mathbf{\Sigma_k})}{\sum_{j=1}^M a_j N(\mathbf{x_i};\mathbf{\mu_j}, \mathbf{\Sigma_j})}
