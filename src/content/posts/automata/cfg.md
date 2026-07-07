@@ -221,10 +221,11 @@ $C$根本就产生不了，所以它是不可达，可以直接删掉
 
 ## 乔姆斯基范式(CNF)
 
-乔姆斯基范式是一种特殊的上下文无关文法形式，所有的产生式都满足以下两种形式之一：
+乔姆斯基范式是一种特殊的上下文无关文法形式，所有的产生式都满足以下三种形式之一：
 
 1. $A \to BC$，其中 $A, B, C$ 是非终结符，且 $B$ 和 $C$ 不能是开始符号
 2. $A \to a$，其中 $A$ 是非终结符，$a$ 是终结符
+3. $S \to \epsilon$，当且仅当语言包含空串时，且$S$不可以出现在产生式右侧
 
 ### 将一个CFG转换成CNF的步骤
 
@@ -242,7 +243,7 @@ $$
 
 $$
 \begin{aligned}
-S &\to AB \mid A \mid B \mid a \\
+S &\to AB \mid A \mid B \mid \epsilon \\
 A &\to aA \mid a \\
 B &\to bB \mid b \\
 \end{aligned}
@@ -252,7 +253,7 @@ $$
 
 $$
 \begin{aligned}
-S &\to AB \mid a \\
+S &\to AB \mid aA \mid a \mid bB \mid b \mid \epsilon \\
 A &\to aA \mid a \\
 B &\to bB \mid b \\
 \end{aligned}
@@ -264,7 +265,9 @@ $$
 
 $$
 \begin{aligned}
-S &\to AB \mid a \\
+S &\to \epsilon \\
+S &\to AB \mid a \mid b \\
+S &\to CA \mid DB \\
 A &\to CA \mid a \\
 B &\to DB \mid b \\
 C &\to a \\
