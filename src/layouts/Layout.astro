@@ -251,10 +251,13 @@ const bannerOffset =
 		all: unset;
 		display: block;
 		border-radius: 0.75rem;
-		background: var(--codeblock-bg);
+		background: var(--btn-regular-bg);
 		margin: 1.25em 0;
 		overflow: hidden;
 		position: relative;
+	}
+	:root.dark .katex-card {
+		background: var(--codeblock-bg);
 	}
 	.katex-display-container {
 		max-width: 100%;
@@ -278,12 +281,16 @@ const bannerOffset =
 		font-family: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 		font-size: 0.75rem;
 		font-weight: 600;
-		color: oklch(0.75 0.1 var(--hue));
-		background: oklch(0.33 0.035 var(--hue));
+		color: oklch(0.35 0.04 var(--hue));
+		background: oklch(0.90 0.04 var(--hue));
 		border-radius: 0.5rem;
 		pointer-events: none;
 		transition: opacity 0.3s;
 		opacity: 1;
+	}
+	:root.dark .katex-display-container[data-language]::before {
+		color: oklch(0.75 0.1 var(--hue));
+		background: oklch(0.33 0.035 var(--hue));
 	}
 	.katex-card:hover .katex-display-container[data-language]::before {
 		opacity: 0;
@@ -303,23 +310,24 @@ const bannerOffset =
 		cursor: pointer;
 		opacity: 0;
 		transition: opacity 0.15s, background 0.15s;
-		background: oklch(0.45 0.01 var(--hue));
-		box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+		background: oklch(0.75 0.06 var(--hue));
+		box-shadow: 0 2px 4px rgba(0,0,0,0.12);
 	}
 	:root.dark .katex-copy-btn {
 		background: oklch(0.30 0.02 var(--hue));
+		box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
 	}
 	.katex-card:hover .katex-copy-btn {
 		opacity: 1;
 	}
 	.katex-copy-btn:hover {
-		background: oklch(0.50 0.01 var(--hue));
+		background: oklch(0.80 0.06 var(--hue));
 	}
 	:root.dark .katex-copy-btn:hover {
 		background: oklch(0.35 0.03 var(--hue));
 	}
 	.katex-copy-btn:active {
-		background: oklch(0.55 0.01 var(--hue));
+		background: oklch(0.82 0.06 var(--hue));
 	}
 	:root.dark .katex-copy-btn:active {
 		background: oklch(0.40 0.03 var(--hue));
@@ -328,7 +336,7 @@ const bannerOffset =
 	.katex-check-svg {
 		width: 1.1rem;
 		height: 1.1rem;
-		fill: white;
+		fill: oklch(0.25 0.02 var(--hue));
 	}
 	:root.dark .katex-copy-svg,
 	:root.dark .katex-check-svg {
