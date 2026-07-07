@@ -138,15 +138,15 @@ $$
 
 设空非终结符集合$Null = \{\}$，由于$A$和$B$都可以产生空串，所以$Null = \{A, B\}$，然后迭代发现$S$也可以产生空串，所以$Null = \{S, A, B\}$
 
-扫描原文法，发现$A \to aA$和$B \to bB$都可以产生空非终结符，所以我们可以将它们的右侧的空非终结符去掉，得到新的产生式：
+扫描原文法，发现$A \to aA$、$B \to bB$和$S \to AB$都可以产生空非终结符，所以我们可以将它们的右侧的空非终结符去掉，得到新的产生式：
 
-> $A$或$B$删除或保留，所以是 $aA$ 或 $a$，$bB$ 或 $b$
+> $A$或$B$删除或保留，所以是 $aA$ 或 $a$，$bB$ 或 $b$，$AB$ 或 $A$ 或 $B$ 或 $\epsilon$
 
 $$
-A \to aA \mid a, \quad B \to bB \mid b
+A \to aA \mid a, \quad B \to bB \mid b, \quad S \to AB \mid A \mid B \mid \epsilon
 $$
 
-因为$S$也可以产生空串，所以我们需要添加一个新的产生式 $S_0 \to S \mid \epsilon$，最终得到的文法为：
+因为$S$也可以产生空串，所以我们需要添加一个新的产生式 $S_0 \to S \mid \epsilon$ 替代掉$S \to \epsilon$，最终得到的文法为：
 
 $$
 \begin{aligned}
