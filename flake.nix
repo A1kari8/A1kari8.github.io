@@ -19,18 +19,16 @@
       in
       {
         devShells.default = pkgs.mkShell {
-          name = "my-devshell";
+          name = "blog-devshell";
           shell = pkgs.zsh;
 
           packages = with pkgs; [
-            git
             nodejs_24
             pnpm
             biome
           ];
 
           shellHook = ''
-            echo "Welcome to your pnpm development shell!"
           '';
         };
       }
